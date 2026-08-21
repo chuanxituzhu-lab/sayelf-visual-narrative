@@ -1,0 +1,96 @@
+{
+  "mode": "story_sequence",
+  "story": {
+    "intent": "An elderly man returns to his abandoned childhood home and quietly confronts the passage of time.",
+    "theme": "memory and aging",
+    "emotional_arc": "recognition toward acceptance"
+  },
+  "style": {
+    "visual_philosophy": "The man remains concrete and sharply present while traces of the past appear softer and quieter; nostalgia is restrained rather than sentimentalized.",
+    "medium": "cinematic naturalistic photography",
+    "shape_language": "simple horizontal calm interrupted by vertical door and wall marks",
+    "material_language": "worn wood, faded plaster, oxidized metal, dusty floor",
+    "color_strategy": "muted warm neutrals with restrained cool daylight",
+    "texture_density": "controlled",
+    "contrast_strategy": "moderate local contrast around face, hand, and wall marks",
+    "forbidden_patterns": [
+      "orange-teal blockbuster grading",
+      "excessive HDR",
+      "decorative light rays"
+    ]
+  },
+  "character": {
+    "identity": "elderly-man-01",
+    "appearance": "Chinese man in his late seventies, lean face, short silver hair",
+    "costume": "plain dark jacket and faded trousers"
+  },
+  "world": {
+    "location": "abandoned childhood home",
+    "materials": "faded plaster, old timber, dusty concrete",
+    "spatial_rules": "doorway on right, old height marks on left interior wall"
+  },
+  "scene": {
+    "intent": "Show that he has accepted the past enough to leave without erasing it.",
+    "beat": "release",
+    "decisive_moment": "His hand has left the height marks; he pauses at the doorway for one last side glance before stepping outside.",
+    "emotional_state": "quiet release",
+    "visual_state": "late afternoon natural light, still air"
+  },
+  "performance": {
+    "body": "at the doorway, weight shifted outward",
+    "head": "slightly turned back toward the room",
+    "eyes": "toward the height marks, not camera",
+    "hands": "right hand relaxed at his side",
+    "posture": "upright but unhurried"
+  },
+  "evidence": {
+    "action": "leaving the room after touching the marks",
+    "prop": "none added",
+    "environment": "furniture ghost marks, old nail holes, worn door handle",
+    "temporal": "faded marks and surface wear",
+    "relationship": "adult figure separating from childhood measurements"
+  },
+  "staging": {
+    "blocking": "man framed by doorway on right, height marks remain visible left-center",
+    "orientation": "body toward exit, attention toward past",
+    "distance": "close enough to read hand and wall marks",
+    "eyeline": "toward wall marks, never toward camera"
+  },
+  "composition": {
+    "primary": "the man paused inside the doorway",
+    "secondary": "the childhood height marks left behind",
+    "information_route": [
+      "doorway figure",
+      "backward glance",
+      "height marks",
+      "empty room",
+      "exterior light"
+    ],
+    "negative_space": "empty room between man and far wall",
+    "complexity_budget": "controlled"
+  },
+  "camera": {
+    "narrative_distance": "observing release from a respectful distance",
+    "shot_size": "medium-wide shot",
+    "height": "chest height",
+    "angle": "neutral eye-level",
+    "lens_tendency": "natural perspective, approximately 50mm equivalent",
+    "depth": "enough depth to keep hand and wall evidence readable"
+  },
+  "light_color": {
+    "key_direction": "soft side daylight from left window",
+    "contrast": "restrained",
+    "value_structure": "face and hand slightly brighter than room",
+    "palette_state": "muted warm gray-brown with cool daylight edge",
+    "atmosphere": "quiet, dry, unsentimental"
+  },
+  "constraints": {
+    "aspect_ratio": "3:4",
+    "people_count": 1,
+    "avoid": [
+      "crying",
+      "looking at camera",
+      "fantasy particles"
+    ]
+  }
+}
