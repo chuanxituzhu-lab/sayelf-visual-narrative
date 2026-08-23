@@ -1,0 +1,9 @@
+{
+  "harnesses": [
+    { "id": "codex", "name": "Codex", "transport": "cli", "enabled": true, "description": "OpenAI Codex CLI adapter.", "command": "codex", "args": ["exec", "-"], "auth": { "url": "https://auth.openai.com/log-in", "command": "codex", "args": ["login"], "verify": { "command": "codex", "args": ["login", "status"] } }, "capabilities": ["assist", "review", "refine"] },
+    { "id": "claude-code", "name": "Claude Code", "transport": "cli", "enabled": false, "description": "Anthropic Claude Code CLI adapter.", "command": "claude", "args": ["-p", "{prompt}"], "auth": { "url": "https://claude.ai/login", "command": "claude", "args": ["auth", "login"] }, "stdin": false, "capabilities": ["assist", "review", "refine"] },
+    { "id": "workbuddy", "name": "WorkBuddy", "transport": "cli", "enabled": false, "description": "WorkBuddy CLI adapter; adjust args for the installed client.", "command": "workbuddy", "args": ["{prompt}"], "auth": { "command": "workbuddy", "args": ["login"] }, "stdin": false, "capabilities": ["assist"] },
+    { "id": "custom-mcp", "name": "Custom MCP", "transport": "mcp", "enabled": false, "description": "Example stdio MCP adapter.", "command": "node", "args": ["path/to/mcp-server.mjs"], "tool": "assist_visual_narrative", "capabilities": ["assist", "tools"] },
+    { "id": "custom-api", "name": "Custom HTTP API", "transport": "api", "enabled": false, "description": "Example server-side HTTP API adapter.", "url": "http://127.0.0.1:9000/assist", "capabilities": ["assist"] }
+  ]
+}

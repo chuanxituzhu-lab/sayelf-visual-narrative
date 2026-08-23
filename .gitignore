@@ -1,0 +1,14 @@
+# Local runtime state and credentials
+.runtime/
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+coverage/
+dist/
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db

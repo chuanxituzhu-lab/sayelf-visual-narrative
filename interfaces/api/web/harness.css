@@ -1,0 +1,16 @@
+.harness-panel { margin-top: 24px; padding-top: 20px; border-top: 1px solid #263047; }
+.harness-label { display: grid; gap: 7px; margin-top: 14px; color: #8f9bb2; font-size: 12px; }
+.harness-label select { width: 100%; padding: 9px; border: 1px solid #263047; border-radius: 8px; background: #111827; color: #edf1fa; }
+.harness-prompt { width: 100%; height: 112px; min-height: 112px; margin-top: 12px; padding: 12px; resize: vertical; border: 1px solid #263047; border-radius: 8px; background: #111418; color: #edf1fa; font: 12px/1.55 "IBM Plex Mono", ui-monospace, monospace; }
+.harness-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.harness-output { min-height: 96px; max-height: 240px; margin-top: 12px; }
+.harness-link { display: inline-block; margin-top: 10px; color: #d7ff52; font-size: 12px; }
+.confirm-harness { margin-top: 10px; }
+.realtime-chat { margin-top: 18px; padding-top: 16px; border-top: 1px solid #263047; }
+.chat-head { display: flex; align-items: center; justify-content: space-between; color: #66738c; font-size: 10px; letter-spacing: .14em; font-weight: 800; }
+.chat-log { height: 150px; overflow: auto; margin-top: 10px; padding: 10px; border: 1px solid #263047; border-radius: 8px; background: #080c13; color: #b9c6da; font: 11px/1.6 "IBM Plex Mono", ui-monospace, monospace; }
+.chat-user, .chat-assistant { margin-bottom: 8px; white-space: pre-wrap; }
+.chat-user { color: #d7ff52; }
+.chat-compose { display: flex; gap: 8px; margin-top: 8px; }
+.chat-compose input { min-width: 0; flex: 1; padding: 10px; border: 1px solid #263047; border-radius: 8px; background: #111827; color: #edf1fa; }
+button:disabled { cursor: not-allowed; opacity: .45; }

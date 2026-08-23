@@ -94,6 +94,29 @@ node interfaces/cli/index.mjs compile examples/single-image/input.json --provide
 
 The project keeps provider credentials outside VisualSpec and outside repository files.
 
+### AI Harness Bridge
+
+The WebUI includes a server-side adapter bridge for collaborating with AI coding harnesses and auxiliary tools without exposing commands or credentials to the browser.
+
+- Presets: Codex CLI, Claude Code CLI, and WorkBuddy CLI.
+- Extension transports: stdio MCP, local/remote HTTP API, and CLI.
+- Configuration: `config/harnesses.json`, or set `SAYELF_HARNESS_CONFIG` to an external JSON file.
+- HTTP endpoints: `GET /v1/harnesses` and `POST /v1/harness/run`.
+
+Adapters are disabled by default. Enable only installed and trusted server-side tools. The browser can select registered adapters and send the current VisualSpec, compiled prompt, and collaboration request, but it cannot provide arbitrary commands or target URLs.
+
+### Codex plugin and API-key-optional mode
+
+The repository is also packaged as a local Codex plugin through `.codex-plugin/plugin.json` and `.mcp.json`. The bundled stdio MCP server exposes VisualSpec validation, prompt compilation, continuity checks, and optional OpenAI image generation. Validation, continuity, and prompt compilation run locally and do not require `OPENAI_API_KEY`; only the OpenAI image provider requires that credential.
+
+To use the local MCP server directly:
+
+```bash
+npm run mcp
+```
+
+The plugin skill is in `skills/visual-narrative-director/SKILL.md`. Codex, Claude Code, WorkBuddy, and other compatible hosts can use the MCP server with their own login or authorization flow. Keep provider credentials in the host environment, never in VisualSpec or browser requests.
+
 ### Story continuity MVP
 
 `examples/story-sequence/shot-01.json` and `shot-02.json` demonstrate the frozen rule:

@@ -1,0 +1,28 @@
+{
+  "name": "sayelf-visual-narrative",
+  "version": "0.3.0",
+  "description": "Local-first visual directing workflow for VisualSpec validation, continuity checks, and provider-ready prompt compilation.",
+  "author": {
+    "name": "chuanxituzhu-lab",
+    "url": "https://github.com/chuanxituzhu-lab"
+  },
+  "repository": "https://github.com/chuanxituzhu-lab/sayelf-visual-narrative",
+  "license": "MIT",
+  "keywords": ["visual narrative", "prompt compiler", "art direction", "image generation"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Sayelf Visual Narrative",
+    "shortDescription": "视觉导演与提示词编译器",
+    "longDescription": "先完成叙事、艺术指导、镜头和连续性决策，再编译为可执行的视觉提示词。",
+    "developerName": "chuanxituzhu-lab",
+    "category": "Creative Tools",
+    "capabilities": ["Interactive", "Image generation"],
+    "brandColor": "#D7FF52",
+    "defaultPrompt": [
+      "把这个创意转换成 VisualSpec",
+      "检查这组镜头的连续性",
+      "编译成可用于文生图的提示词"
+    ]
+  }
+}

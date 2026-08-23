@@ -1,0 +1,15 @@
+{
+  "type": "sayelf-assist-plugin",
+  "id": "example-assist",
+  "name": "Example Assist Plugin",
+  "version": "0.1.0",
+  "description": "A disabled template for adding a local CLI, MCP, or HTTP assistant.",
+  "transport": "cli",
+  "enabled": false,
+  "entry": {
+    "command": "replace-with-your-tool",
+    "args": ["{prompt}"],
+    "stdin": false
+  },
+  "capabilities": ["assist"]
+}
