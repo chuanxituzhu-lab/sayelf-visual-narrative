@@ -2,14 +2,16 @@
 
 Use this file when the Skill is used for a recurring account. The account has two
 deliberately different cartoon identities, but one shared visual grammar. Select
-exactly one profile for each Hero Image and its five-shot video package.
+exactly one profile for each Hero Image and its five-shot video package. These two
+profile blocks are the account's character bible and apply in daylight, night,
+interiors, weather changes, and every other setting.
 
 ## Shared account grammar
 
 ```text
 realistic or materially believable world
 + one small symbolic 2D character
-+ fixed clothing, silhouette, and body framework
++ fixed identity cues, silhouette, and body framework
 + natural pose deformation without redesign
 + one readable gesture at the decisive moment
 + vertical 9:16 by default
@@ -23,11 +25,12 @@ Image and the five shots.
 ## Profile A · NEON-LINE-01 · 霓虹小人物
 
 ```text
-identity     tiny anonymous neon raindrop person, unchanged across night scenes
+identity     tiny anonymous neon raindrop person, unchanged across every setting
 silhouette   small smooth teardrop body, compact torso, articulated short limbs
 treatment    bright cyan-blue outer contour with a restrained violet inner glow
 face         two tiny light-dot eyes and one curved smile
 limb grammar upper arm → forearm → palm; thigh → shin → foot
+scale        small fixed body-to-limb ratio; no costume or added anatomy
 use          distance, hope, choice, persistence, an unseen destination
 ```
 
@@ -47,37 +50,47 @@ design is not.
 
 ```text
 identity     tiny original hand-drawn account mascot, unchanged across every setting
-silhouette   round head, one soft body shape, two short open arms, two small feet
+silhouette   round cream head, one soft teal body shape, short simple limbs
 treatment    clean black ink-like outline with flat colors: cream face, teal body,
              coral-red short scarf/accent, mustard-yellow feet
 face         two dot eyes and one clear joyful curved smile; sparse, non-realistic features
+limb grammar upper arm → forearm → small palm; thigh → shin → mustard foot
+scale        fixed head-to-body ratio, scarf size, foot shape, and simple line weight
 use          pressure, acceptance, release, gentle joy, everyday resilience
 ```
 
 Remove animal traits and realistic-human traits: no ears, tail, muzzle, fur, paws,
 whiskers, skin texture, detailed anatomy, complex clothing, or props. Keep the scarf
-as a tiny simple accent, never a detailed costume. This profile is a new account
-mascot design; it must not imitate a supplied reference character.
+as a tiny simple accent, never a detailed costume; keep arms and legs as simple
+readable cartoon segments. This profile is a new account mascot design; it must not
+imitate a supplied reference character.
 
 ## Cross-scene identity lock
 
-Carry the same character into daylight, city streets, mountains, interiors, and
-other worlds without recoloring or redesigning it:
+Carry the selected character into daylight, city streets, mountains, interiors, and
+other worlds without recoloring or redesigning it. The two profiles are alternatives,
+not interchangeable parts:
 
 ```text
-round cream face + teal rounded body + coral-red short scarf/accent
-+ mustard-yellow feet + black ink outline + joyful simple smile
+NEON-LINE-01 = teardrop body + cyan outer contour + violet inner glow
+               + two light dots + curved smile + articulated line limbs
+
+INK-PERSON-02 = cream round face + teal rounded body + coral-red short scarf/accent
+                + mustard-yellow feet + black ink outline + joyful simple smile
+                + articulated ink limbs
 ```
 
 Only the surrounding world, lighting, pose, and metaphor relationship may change.
+The chosen profile ID and its complete identity block must be repeated consistently
+in the Hero Image prompt, every video prompt, and the final `ACCOUNT CHARACTER LOCK`.
 
 ## Fixed appearance, natural motion
 
-For both profiles, freeze the character's clothing or line costume, silhouette,
-head-to-body proportions, signature colors, face, and major body framework. When an
-action changes, allow natural joint angles, torso lean, weight shift, foreshortening,
-occlusion, and perspective compression. The character may bend, sit, reach, turn,
-or jump, but the fixed identity must remain recognizable.
+For both profiles, freeze the character's clothing or line treatment, silhouette,
+head-to-body proportions, signature colors, face, limb grammar, and major body
+framework. When an action changes, allow natural joint angles, torso lean, weight
+shift, foreshortening, occlusion, and perspective compression. The character may
+bend, sit, reach, turn, or jump, but the fixed identity must remain recognizable.
 
 ```text
 appearance = fixed
@@ -95,9 +108,9 @@ pose / action / framing scale / scene / weather / light
 ```
 
 Variation is allowed only when it serves the semantic chain. The profile name,
-silhouette logic, line or fill treatment, face, signature colors, and simplicity
-level remain fixed. Framing scale means composition scale, not changing body
-proportions.
+silhouette logic, line or fill treatment, face, signature colors, limb grammar, and
+simplicity level remain fixed. Framing scale means composition scale, not changing
+body proportions.
 
 ## Forbidden drift
 

@@ -13,7 +13,7 @@ Regression source: the local rain reference from the current conversation. The s
 [FEEL]       接纳中的纯粹快乐
 [WOUND]      仍在躲避无法控制的暴雨
 [AVATAR]     很小的匿名手绘小人物，奶油色圆脸、青绿色身体、珊瑚红小围巾、黄色小脚和笑脸
-[CHARACTER_PROFILE] INK-PERSON-02：手绘小人物；奶油色圆脸、青绿色身体、珊瑚红小围巾、黄色小脚
+[CHARACTER_PROFILE] INK-PERSON-02：手绘小人物；奶油色圆脸、青绿色身体、珊瑚红小围巾、黄色小脚；大臂/小臂/手掌与大腿/小腿/脚掌为简化墨线骨架
 [WORLD]      黄昏的深色森林道路，真实雨幕与浅积水
 [METAPHOR]   暴雨，代表无法控制的处境
 [TENSION]    PRESSURE → EMBRACE：人物从躲避雨转为站进雨里
@@ -86,7 +86,7 @@ Primary motion: one synchronized impact beat—raindrop impact → crown splash 
 Micro-motions: suspended droplets; distant warm light shimmer kept nearly imperceptible.
 Camera: locked and centered to protect the peak.
 Sound: one clear water impact; a small warm musical note may enter after the impact.
-Continuity: same body proportions, shirt, rain, forest, and light; no magical transformation.
+Continuity: same head-to-body ratio, teal body, coral-red scarf accent, mustard feet, black outline, simple ink limb grammar, rain, forest, and light; no magical transformation.
 Video prompt: Preserve the exact INK-PERSON-02 identity, hand-drawn treatment, realistic rain, centered low composition, colors, and light. At the single emotional peak, the large raindrop hits the puddle and one transparent crown-shaped splash rises around the little person as the little person opens both arms once in the same causal beat. Keep the camera locked, droplets briefly suspended, and all other motion subdued. No second effect, no transformation, no text, no UI, no exaggerated glow.
 ```
 
@@ -117,8 +117,8 @@ the little person's single arm-opening beat change.
 
 ```text
 profile        INK-PERSON-02 · 手绘小人物
-immutable      cream round face, teal body, coral-red short scarf, mustard-yellow feet, simple smile
-allowed        open-arm pose with natural joint and weight changes may serve the TURN; appearance remains fixed
+immutable      cream round face, teal body, coral-red short scarf, mustard-yellow feet, black outline, simple smile, limb grammar
+allowed        open-arm pose with natural elbow, wrist, knee, ankle, palm, and foot changes may serve the TURN; appearance remains fixed
 forbidden      fox ears, tail, muzzle, fur, realistic human anatomy, copied mascot
 ```
 

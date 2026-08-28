@@ -1,6 +1,6 @@
 # Unified Input → Dual Output Contract
 
-This is the v0.2.4 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
+This is the v0.2.5 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
 
 ## Input
 
@@ -19,7 +19,7 @@ If multiple ideas are present, choose one dominant proposition and note the assu
 [FEEL]       one dominant feeling
 [WOUND]      one unresolved starting condition
 [AVATAR]     one anonymous audience proxy
-[CHARACTER_PROFILE] one account profile ID plus its immutable identity block
+[CHARACTER_PROFILE] one account profile ID plus its immutable identity block, repeated across Hero Image and all five shots
 [WORLD]      one believable environment
 [METAPHOR]   one meaning-bearing physical carrier
 [TENSION]    one relationship between avatar and world/metaphor
@@ -71,7 +71,7 @@ Write one independent prompt for each shot. It may rely on a shared `CONTINUITY 
 After the five shots, return:
 
 ```text
-[ACCOUNT CHARACTER LOCK] selected profile / fixed clothing and body framework / natural pose variation / forbidden drift
+[ACCOUNT CHARACTER LOCK] selected profile / fixed identity, body framework, and limb grammar / natural pose variation / forbidden drift
 [CONTINUITY LOCK] identity / style / wardrobe or line treatment / world / weather
                   metaphor / light direction / palette / camera grammar
 [SOUND]           ambience / decisive sound / music entry and exit
