@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "node --test",
+    "test:nature-encounter": "node skills/sayelf-nature-encounter/scripts/validate_skill.mjs",
     "validate:examples": "node interfaces/cli/index.mjs validate examples/single-image/input.json",
     "api": "node interfaces/api/server.mjs",
     "mcp": "node interfaces/mcp/server.mjs",

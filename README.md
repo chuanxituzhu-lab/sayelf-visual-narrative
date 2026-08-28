@@ -117,6 +117,22 @@ npm run mcp
 
 The plugin skill is in `skills/visual-narrative-director/SKILL.md`. Codex, Claude Code, WorkBuddy, and other compatible hosts can use the MCP server with their own login or authorization flow. Keep provider credentials in the host environment, never in VisualSpec or browser requests.
 
+### Nature Encounter peer Skill
+
+`skills/sayelf-nature-encounter/` is a peer Skill for quiet encounters between living things. It compiles one shared Nature Event Core into exactly two coordinated outputs: `01 IMAGE` and `02 VIDEO`. The frozen grammar is `DWELL → MEET → TOUCH → BREATHE → TRACE`, with shared SILENCE LAYER, Reality Lock, Continuity Lock, and Negative Lock fields.
+
+Run its focused local validation with:
+
+```bash
+npm run test:nature-encounter
+```
+
+PyYAML is optional and is used only by the external Skill frontmatter checker. Standard Skill installation does not execute arbitrary package-install hooks. When that checker is needed, prepare the local dependency with:
+
+```bash
+python skills/sayelf-nature-encounter/scripts/bootstrap_validation.py
+```
+
 ### Story continuity MVP
 
 `examples/story-sequence/shot-01.json` and `shot-02.json` demonstrate the frozen rule:

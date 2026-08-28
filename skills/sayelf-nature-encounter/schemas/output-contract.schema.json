@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sayelf-nature-encounter.output-contract.0.1.1",
+  "title": "sayelf-nature-encounter Output Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "version", "nature_event", "outputs"],
+  "properties": {
+    "skill": { "const": "sayelf-nature-encounter" },
+    "version": { "const": "0.1.1" },
+    "nature_event": { "$ref": "nature-event.schema.json" },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image", "video"],
+      "properties": {
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "event_id",
+            "grammar",
+            "prompt",
+            "silence_layer",
+            "reality_lock",
+            "continuity_lock",
+            "negative_lock"
+          ],
+          "properties": {
+            "id": { "const": "01 IMAGE" },
+            "kind": { "const": "IMAGE" },
+            "event_id": { "type": "string" },
+            "grammar": { "$ref": "#/$defs/grammar" },
+            "prompt": { "type": "string", "minLength": 1 },
+            "silence_layer": { "type": "string", "minLength": 1 },
+            "reality_lock": { "$ref": "#/$defs/realityLock" },
+            "continuity_lock": { "$ref": "#/$defs/continuityLock" },
+            "negative_lock": { "$ref": "#/$defs/negativeLock" }
+          }
+        },
+        "video": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "event_id",
+            "grammar",
+            "prompt",
+            "silence_layer",
+            "reality_lock",
+            "continuity_lock",
+            "negative_lock",
+            "storyboard"
+          ],
+          "properties": {
+            "id": { "const": "02 VIDEO" },
+            "kind": { "const": "VIDEO" },
+            "event_id": { "type": "string" },
+            "grammar": { "$ref": "#/$defs/grammar" },
+            "prompt": { "type": "string", "minLength": 1 },
+            "silence_layer": { "type": "string", "minLength": 1 },
+            "reality_lock": { "$ref": "#/$defs/realityLock" },
+            "continuity_lock": { "$ref": "#/$defs/continuityLock" },
+            "negative_lock": { "$ref": "#/$defs/negativeLock" },
+            "storyboard": {
+              "type": "array",
+              "minItems": 5,
+              "maxItems": 5,
+              "items": { "$ref": "#/$defs/shot" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "grammar": {
+      "type": "array",
+      "prefixItems": [
+        { "const": "DWELL" },
+        { "const": "MEET" },
+        { "const": "TOUCH" },
+        { "const": "BREATHE" },
+        { "const": "TRACE" }
+      ],
+      "items": false,
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "realityLock": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "continuityLock": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "negativeLock": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "shot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shot_id",
+        "stage",
+        "duration_s",
+        "frame",
+        "camera",
+        "action",
+        "transition_in",
+        "transition_out",
+        "prompt"
+      ],
+      "properties": {
+        "shot_id": { "type": "string", "pattern": "^S0[1-5]$" },
+        "stage": {
+          "enum": ["DWELL", "MEET", "TOUCH", "BREATHE", "TRACE"]
+        },
+        "duration_s": { "type": "number", "minimum": 0.5, "maximum": 10 },
+        "frame": { "type": "string", "minLength": 1 },
+        "camera": { "type": "string", "minLength": 1 },
+        "action": { "type": "string", "minLength": 1 },
+        "transition_in": { "type": "string", "minLength": 1 },
+        "transition_out": { "type": "string", "minLength": 1 },
+        "prompt": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

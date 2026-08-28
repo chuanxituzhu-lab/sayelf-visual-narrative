@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sayelf-nature-encounter.nature-event.0.1.1",
+  "title": "Nature Event Core",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "title",
+    "subject",
+    "plant",
+    "habitat",
+    "relationship",
+    "decisive_moment",
+    "moment_phase",
+    "physical_trace",
+    "camera",
+    "light",
+    "silence_layer",
+    "grammar",
+    "locks"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "pattern": "^NE-[0-9]{3}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "subject": { "type": "string", "minLength": 1 },
+    "plant": { "type": "string", "minLength": 1 },
+    "habitat": { "type": "string", "minLength": 1 },
+    "relationship": { "type": "string", "minLength": 1 },
+    "decisive_moment": { "type": "string", "minLength": 1 },
+    "moment_phase": {
+      "type": "string",
+      "enum": ["before_touch", "during_touch", "after_touch"]
+    },
+    "physical_trace": { "type": "string", "minLength": 1 },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "lens_feel", "composition"],
+      "properties": {
+        "position": { "type": "string", "minLength": 1 },
+        "lens_feel": { "type": "string", "minLength": 1 },
+        "composition": { "type": "string", "minLength": 1 }
+      }
+    },
+    "light": { "type": "string", "minLength": 1 },
+    "silence_layer": { "type": "string", "minLength": 1 },
+    "grammar": {
+      "type": "array",
+      "prefixItems": [
+        { "const": "DWELL" },
+        { "const": "MEET" },
+        { "const": "TOUCH" },
+        { "const": "BREATHE" },
+        { "const": "TRACE" }
+      ],
+      "items": false,
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "locks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reality_lock", "continuity_lock", "negative_lock"],
+      "properties": {
+        "reality_lock": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "continuity_lock": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "negative_lock": {
+          "type": "array",
+          "minItems": 5,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

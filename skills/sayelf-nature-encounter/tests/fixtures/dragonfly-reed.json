@@ -1,0 +1,101 @@
+{
+  "skill": "sayelf-nature-encounter",
+  "version": "0.1.1",
+  "nature_event": {
+    "event_id": "NE-001",
+    "title": "露水芦苇边的豆娘",
+    "subject": "一只蓝灰色豆娘",
+    "plant": "一根弯向水面的芦苇细茎与未完全展开的叶片",
+    "habitat": "清晨湿地边缘，浅水、芦苇根部和低矮水草共同形成的狭小水岸空间",
+    "relationship": "豆娘从低处飞来，悬停在弯曲芦苇细茎前，准备落下借力",
+    "decisive_moment": "豆娘后足即将接触细茎，翅膀仍半透明地张开，芦苇尖端被气流和重量预先压低",
+    "moment_phase": "before_touch",
+    "physical_trace": "细茎轻微回弹，叶缘的一颗露珠沿着弧线缓慢下滑",
+    "camera": {
+      "position": "贴近水面、略低于芦苇中段，从侧前方观察，不越过植物的自然遮挡",
+      "lens_feel": "真实微距长焦压缩感，浅景深但保留可辨认的中景湿地层",
+      "composition": "豆娘位于偏右的呼吸空间中，弯曲细茎从左下引向关系发生点，前景一片失焦芦苇叶形成自然边缘"
+    },
+    "light": "阴晴交界的清晨自然散射光，水面反光从下方微弱补亮，露珠只在朝向天空的表面闪光",
+    "silence_layer": "远处低信息密度的湿地绿色与灰蓝水面，只保留柔和光斑、轻微水纹和一两片失焦叶缘，不让背景制造第二个焦点",
+    "grammar": ["DWELL", "MEET", "TOUCH", "BREATHE", "TRACE"],
+    "locks": {
+      "reality_lock": [
+        "只使用可解释的湿地结构：芦苇细茎、叶片、浅水、露珠和低矮水草",
+        "豆娘体态、翅脉、足部接触点和尺度保持真实昆虫比例",
+        "光源来自清晨自然散射光，露珠只出现在可接触的植物表面，景深服从真实微距光学"
+      ],
+      "continuity_lock": [
+        "NE-001 始终是同一只蓝灰色豆娘、同一根弯曲芦苇细茎和同一处清晨水岸",
+        "豆娘保持从画面右侧接近并向左下细茎落下的空间方向，光线方向不改变",
+        "事件时间只从悬停推进到接触、回弹和露珠下滑，不跳季节、不跳天气、不换镜头轴线"
+      ],
+      "negative_lock": [
+        "不要第二只昆虫、鸟、人物或额外花朵抢走关系焦点",
+        "不要梦幻光晕、彩色能量、塑料植物、CGI、3D 渲染或假散景",
+        "不要人工布景、完美对称、棚拍光、过度 HDR 或所有景物同时清晰",
+        "不要改变豆娘颜色、芦苇形状、清晨时段、镜头侧别或空间方向",
+        "不要文字、字幕、标题、标志、水印、边框或把自然事件解释成戏剧表演"
+      ]
+    }
+  },
+  "outputs": {
+    "image": {
+      "id": "01 IMAGE",
+      "kind": "IMAGE",
+      "event_id": "NE-001",
+      "grammar": ["DWELL", "MEET", "TOUCH", "BREATHE", "TRACE"],
+      "prompt": "fixture image prompt with DWELL MEET TOUCH BREATHE TRACE and all locks; SILENCE LAYER; Reality Lock; Continuity Lock; Negative Lock",
+      "silence_layer": "远处低信息密度的湿地绿色与灰蓝水面，只保留柔和光斑、轻微水纹和一两片失焦叶缘，不让背景制造第二个焦点",
+      "reality_lock": [
+        "只使用可解释的湿地结构：芦苇细茎、叶片、浅水、露珠和低矮水草",
+        "豆娘体态、翅脉、足部接触点和尺度保持真实昆虫比例",
+        "光源来自清晨自然散射光，露珠只出现在可接触的植物表面，景深服从真实微距光学"
+      ],
+      "continuity_lock": [
+        "NE-001 始终是同一只蓝灰色豆娘、同一根弯曲芦苇细茎和同一处清晨水岸",
+        "豆娘保持从画面右侧接近并向左下细茎落下的空间方向，光线方向不改变",
+        "事件时间只从悬停推进到接触、回弹和露珠下滑，不跳季节、不跳天气、不换镜头轴线"
+      ],
+      "negative_lock": [
+        "不要第二只昆虫、鸟、人物或额外花朵抢走关系焦点",
+        "不要梦幻光晕、彩色能量、塑料植物、CGI、3D 渲染或假散景",
+        "不要人工布景、完美对称、棚拍光、过度 HDR 或所有景物同时清晰",
+        "不要改变豆娘颜色、芦苇形状、清晨时段、镜头侧别或空间方向",
+        "不要文字、字幕、标题、标志、水印、边框或把自然事件解释成戏剧表演"
+      ]
+    },
+    "video": {
+      "id": "02 VIDEO",
+      "kind": "VIDEO",
+      "event_id": "NE-001",
+      "grammar": ["DWELL", "MEET", "TOUCH", "BREATHE", "TRACE"],
+      "prompt": "fixture video prompt with DWELL MEET TOUCH BREATHE TRACE and all locks; SILENCE LAYER; Reality Lock; Continuity Lock; Negative Lock",
+      "silence_layer": "远处低信息密度的湿地绿色与灰蓝水面，只保留柔和光斑、轻微水纹和一两片失焦叶缘，不让背景制造第二个焦点",
+      "reality_lock": [
+        "只使用可解释的湿地结构：芦苇细茎、叶片、浅水、露珠和低矮水草",
+        "豆娘体态、翅脉、足部接触点和尺度保持真实昆虫比例",
+        "光源来自清晨自然散射光，露珠只出现在可接触的植物表面，景深服从真实微距光学"
+      ],
+      "continuity_lock": [
+        "NE-001 始终是同一只蓝灰色豆娘、同一根弯曲芦苇细茎和同一处清晨水岸",
+        "豆娘保持从画面右侧接近并向左下细茎落下的空间方向，光线方向不改变",
+        "事件时间只从悬停推进到接触、回弹和露珠下滑，不跳季节、不跳天气、不换镜头轴线"
+      ],
+      "negative_lock": [
+        "不要第二只昆虫、鸟、人物或额外花朵抢走关系焦点",
+        "不要梦幻光晕、彩色能量、塑料植物、CGI、3D 渲染或假散景",
+        "不要人工布景、完美对称、棚拍光、过度 HDR 或所有景物同时清晰",
+        "不要改变豆娘颜色、芦苇形状、清晨时段、镜头侧别或空间方向",
+        "不要文字、字幕、标题、标志、水印、边框或把自然事件解释成戏剧表演"
+      ],
+      "storyboard": [
+        { "shot_id": "S01", "stage": "DWELL", "duration_s": 2, "frame": "fixture frame 1", "camera": "fixture camera 1", "action": "fixture action 1", "transition_in": "fixture in 1", "transition_out": "fixture out 1", "prompt": "fixture shot prompt DWELL" },
+        { "shot_id": "S02", "stage": "MEET", "duration_s": 2, "frame": "fixture frame 2", "camera": "fixture camera 2", "action": "fixture action 2", "transition_in": "fixture in 2", "transition_out": "fixture out 2", "prompt": "fixture shot prompt MEET" },
+        { "shot_id": "S03", "stage": "TOUCH", "duration_s": 2, "frame": "fixture frame 3", "camera": "fixture camera 3", "action": "fixture action 3", "transition_in": "fixture in 3", "transition_out": "fixture out 3", "prompt": "fixture shot prompt TOUCH" },
+        { "shot_id": "S04", "stage": "BREATHE", "duration_s": 2, "frame": "fixture frame 4", "camera": "fixture camera 4", "action": "fixture action 4", "transition_in": "fixture in 4", "transition_out": "fixture out 4", "prompt": "fixture shot prompt BREATHE" },
+        { "shot_id": "S05", "stage": "TRACE", "duration_s": 2, "frame": "fixture frame 5", "camera": "fixture camera 5", "action": "fixture action 5", "transition_in": "fixture in 5", "transition_out": "fixture out 5", "prompt": "fixture shot prompt TRACE" }
+      ]
+    }
+  }
+}
