@@ -118,7 +118,7 @@ the little person's single arm-opening beat change.
 ```text
 profile        INK-PERSON-02 · 手绘小人物
 immutable      cream round face, teal body, coral-red short scarf, mustard-yellow feet, simple smile
-allowed        open-arm pose may serve the TURN; the fixed colors and face remain
+allowed        open-arm pose with natural joint and weight changes may serve the TURN; appearance remains fixed
 forbidden      fox ears, tail, muzzle, fur, realistic human anatomy, copied mascot
 ```
 

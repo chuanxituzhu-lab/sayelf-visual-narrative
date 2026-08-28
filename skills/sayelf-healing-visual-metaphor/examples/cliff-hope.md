@@ -129,7 +129,7 @@ the figure's one step to the edge. No bridge, crossing, or flower transformation
 ```text
 profile        NEON-LINE-01 · 霓虹小人物
 immutable      rounded hood, A-line coat, cyan outer line, violet inner line, three buttons, star, smile
-allowed        one small step and a readable lean may serve the TURN; appearance remains fixed
+allowed        one small step and a readable lean with natural weight shift may serve the TURN; appearance remains fixed
 forbidden      realistic human anatomy, animal traits, extra costume details, copied mascot
 ```
 

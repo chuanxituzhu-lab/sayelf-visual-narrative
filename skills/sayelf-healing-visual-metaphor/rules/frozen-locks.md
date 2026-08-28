@@ -1,4 +1,4 @@
-# v0.2.2 Frozen Locks
+# v0.2.3 Frozen Locks
 
 These five rules are hard constraints, not style suggestions:
 

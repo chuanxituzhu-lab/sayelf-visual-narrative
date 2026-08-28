@@ -5,7 +5,7 @@ metadata:
   short-description: 一瞬治愈：视觉隐喻与五镜头微叙事
 ---
 
-# 一瞬治愈｜Healing Visual Metaphor v0.2.2
+# 一瞬治愈｜Healing Visual Metaphor v0.2.3
 
 > 不说大道理，让一个瞬间替你说。
 
@@ -83,6 +83,7 @@ Return these sections in this order, in the user's language unless a prompt is c
 - Each shot has one primary motion and no more than two environmental micro-motions.
 - Character, wardrobe/line treatment, world, weather, prop, light direction, and color logic remain locked across shots.
 - Exactly one account character profile is selected; its silhouette and treatment do not drift across the package.
+- Clothing, silhouette, colors, face, and body framework stay fixed while pose geometry changes naturally with the action.
 - The final state is changed but unresolved; the world does not magically become perfect.
 - Removing all explanatory text still leaves the relationship and change legible.
 - No preaching, moral caption, therapy claim, diagnosis, forced happy ending, clutter, or platform UI is added.

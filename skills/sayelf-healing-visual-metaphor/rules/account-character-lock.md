@@ -38,6 +38,14 @@ For `INK-PERSON-02`, the signature identity is specifically: cream round face,
 teal body, coral-red short scarf/accent, mustard-yellow feet, black ink outline,
 and the same simple joyful smile.
 
+## Natural pose rule
+
+The clothing or line costume, silhouette, proportions, signature colors, face, and
+major body framework are immutable. Pose may deform naturally through joint angles,
+torso lean, weight shift, foreshortening, occlusion, and perspective compression.
+Keep enough identity cues visible for the chosen framing; do not redesign the person
+to explain an action.
+
 ## Allowed variation
 
 Change only pose or action, camera relationship, and the character's relationship

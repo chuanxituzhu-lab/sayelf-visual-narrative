@@ -1,6 +1,6 @@
 # Unified Input → Dual Output Contract
 
-This is the v0.2.2 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
+This is the v0.2.3 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
 
 ## Input
 
@@ -71,7 +71,7 @@ Write one independent prompt for each shot. It may rely on a shared `CONTINUITY 
 After the five shots, return:
 
 ```text
-[ACCOUNT CHARACTER LOCK] selected profile / immutable identity / allowed variation / forbidden drift
+[ACCOUNT CHARACTER LOCK] selected profile / fixed clothing and body framework / natural pose variation / forbidden drift
 [CONTINUITY LOCK] identity / style / wardrobe or line treatment / world / weather
                   metaphor / light direction / palette / camera grammar
 [SOUND]           ambience / decisive sound / music entry and exit

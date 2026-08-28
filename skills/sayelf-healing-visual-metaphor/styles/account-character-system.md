@@ -9,6 +9,8 @@ exactly one profile for each Hero Image and its five-shot video package.
 ```text
 realistic or materially believable world
 + one small symbolic 2D character
++ fixed clothing, silhouette, and body framework
++ natural pose deformation without redesign
 + one readable gesture at the decisive moment
 + vertical 9:16 by default
 + no copied character, no platform UI, no explanatory text
@@ -64,6 +66,23 @@ round cream face + teal rounded body + coral-red short scarf/accent
 ```
 
 Only the surrounding world, lighting, pose, and metaphor relationship may change.
+
+## Fixed appearance, natural motion
+
+For both profiles, freeze the character's clothing or line costume, silhouette,
+head-to-body proportions, signature colors, face, and major body framework. When an
+action changes, allow natural joint angles, torso lean, weight shift, foreshortening,
+occlusion, and perspective compression. The character may bend, sit, reach, turn,
+or jump, but the fixed identity must remain recognizable.
+
+```text
+appearance = fixed
+pose geometry = naturally variable
+identity cues = always visible when framing allows
+```
+
+Never redraw the costume, replace the body with a new design, or use motion as a
+reason to add realistic anatomy.
 
 ## Allowed variation
 

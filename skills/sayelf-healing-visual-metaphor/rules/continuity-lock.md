@@ -16,3 +16,4 @@ State the lock once in the final package and repeat only the shot-specific chang
 
 For account recognition, also apply [ACCOUNT CHARACTER LOCK](account-character-lock.md):
 select one of the two account profiles and preserve its silhouette and treatment.
+Natural pose deformation is allowed only when the fixed identity remains recognizable.
