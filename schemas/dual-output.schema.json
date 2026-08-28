@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual-output/1.0/dual-output",
+  "title": "Dual Output Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "skill_id", "narrative_core", "image_prompt", "video_storyboard"],
+  "properties": {
+    "contract_version": { "const": "dual-output/1.0" },
+    "skill_id": { "type": "string", "minLength": 1 },
+    "narrative_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "idea", "theme", "emotion", "world", "life", "relation", "decisive_moment", "afterglow"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "idea": { "type": "string", "minLength": 1 },
+        "theme": { "type": "string", "minLength": 1 },
+        "emotion": { "type": "string", "minLength": 1 },
+        "world": { "type": "string", "minLength": 1 },
+        "life": { "type": "string", "minLength": 1 },
+        "relation": { "type": "string", "minLength": 1 },
+        "decisive_moment": { "type": "string", "minLength": 1 },
+        "afterglow": { "type": "string", "minLength": 1 }
+      }
+    },
+    "image_prompt": { "$ref": "dual-output/1.0/image-prompt" },
+    "video_storyboard": { "$ref": "dual-output/1.0/video-storyboard" }
+  }
+}

@@ -4,6 +4,8 @@
 
 > **好画面不是生成出来的，是决定出来的。**
 
+[中文说明](README.zh-CN.md)
+
 Sayelf Visual Narrative is a model-agnostic **AI Visual Director Skill** that turns creative intent into structured story, art-direction, cinematic, and continuity decisions before compiling provider-specific prompts.
 
 ## Why
@@ -93,6 +95,25 @@ node interfaces/cli/index.mjs compile examples/single-image/input.json --provide
 - `openai` — compiles to the OpenAI Images API and can generate images when `OPENAI_API_KEY` is present.
 
 The project keeps provider credentials outside VisualSpec and outside repository files.
+
+## v0.3.0 · Dual Output Contract v1.0
+
+The repository now exposes a provider-independent visual narrative contract:
+
+> **One sentence → automatically select a visual-narrative Skill → same-source image keyframe + video storyboard.**
+
+The Core only discovers enabled Skills, routes intent through manifest tags, executes the selected plugin, and validates the result. Each plugin owns its visual-domain intelligence. The two registered Skills are:
+
+- `life-comes-closer` / `自然靠近你`
+- `visual-storytelling` / `视觉叙事`
+
+Both outputs carry the same `narrative_core_id`, and the local runtime rejects invalid schemas, broken shot order, or duration drift. See `schemas/dual-output.schema.json`, `skills/registry.json`, and `core/dual-output/`.
+
+Run the focused contract checks with:
+
+```bash
+npm run test:dual-output
+```
 
 ### AI Harness Bridge
 

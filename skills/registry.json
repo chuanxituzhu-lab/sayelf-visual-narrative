@@ -1,0 +1,7 @@
+{
+  "contract_version": "dual-output/1.0",
+  "skills": [
+    { "id": "life-comes-closer", "manifest": "./life-comes-closer/manifest.json", "enabled": true, "priority": 100 },
+    { "id": "visual-storytelling", "manifest": "./visual-storytelling/manifest.json", "enabled": true, "priority": 80 }
+  ]
+}

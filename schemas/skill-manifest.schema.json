@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual-output/1.0/skill-manifest",
+  "title": "Dual Output Skill Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "id", "name", "version", "kind", "capabilities", "input", "router", "plugin", "source"],
+  "properties": {
+    "contract_version": { "const": "dual-output/1.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zh", "en"],
+      "properties": {
+        "zh": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 }
+      }
+    },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "kind": { "const": "visual-narrative-skill" },
+    "capabilities": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "enum": ["image_prompt", "video_storyboard"] }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "optional"],
+      "properties": {
+        "required": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "optional": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "router": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tags", "examples"],
+      "properties": {
+        "tags": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "examples": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "plugin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module", "entrypoint"],
+      "properties": {
+        "module": { "type": "string", "minLength": 1 },
+        "entrypoint": { "const": "execute" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label"],
+      "properties": { "label": { "type": "string", "minLength": 1 } }
+    }
+  }
+}

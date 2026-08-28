@@ -50,3 +50,7 @@ Narrative is optional for non-story commercial/utility images. In those cases re
 ## Mutation rule
 
 Never rewrite the whole prompt because one field failed. Diagnose the failure, modify the smallest responsible field set, and recompile.
+
+## Dual Output Contract v1.0
+
+When a visual-narrative Skill is selected, its execution returns one shared `narrative_core`, one `image_prompt` keyframe, and one `video_storyboard`. Both outputs must carry the same `narrative_core_id`. The Core discovers, routes, executes and validates; visual-domain intelligence remains in the registered Skill plugin.

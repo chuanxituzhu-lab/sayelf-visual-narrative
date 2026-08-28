@@ -1,0 +1,18 @@
+{
+  "contract_version": "dual-output/1.0",
+  "id": "life-comes-closer",
+  "name": { "zh": "自然靠近你", "en": "Life Comes Closer" },
+  "version": "1.0.0",
+  "kind": "visual-narrative-skill",
+  "capabilities": ["image_prompt", "video_storyboard"],
+  "input": {
+    "required": ["idea"],
+    "optional": ["emotion", "environment", "life", "character", "time", "aspect_ratio", "duration_seconds", "language"]
+  },
+  "router": {
+    "tags": ["靠近", "相遇", "信任", "陪伴", "自然", "动物", "life", "closer", "encounter", "trust"],
+    "examples": ["人与自然相遇", "动物主动靠近", "a quiet encounter with nature"]
+  },
+  "plugin": { "module": "./plugin.mjs", "entrypoint": "execute" },
+  "source": { "label": "Referenced Life Comes Closer visual narrative prototype" }
+}

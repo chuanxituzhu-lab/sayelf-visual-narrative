@@ -1,0 +1,18 @@
+{
+  "contract_version": "dual-output/1.0",
+  "id": "visual-storytelling",
+  "name": { "zh": "视觉叙事", "en": "Visual Storytelling" },
+  "version": "1.0.0",
+  "kind": "visual-narrative-skill",
+  "capabilities": ["image_prompt", "video_storyboard"],
+  "input": {
+    "required": ["idea"],
+    "optional": ["emotion", "environment", "life", "character", "time", "aspect_ratio", "duration_seconds", "language", "style"]
+  },
+  "router": {
+    "tags": ["疗愈", "希望", "孤独", "放下", "留白", "绘画", "安静", "healing", "hope", "painting", "quiet"],
+    "examples": ["一束光穿过窗缝", "雨停之后重新开始", "a quiet restorative image"]
+  },
+  "plugin": { "module": "./plugin.mjs", "entrypoint": "execute" },
+  "source": { "label": "Historical saylef-visual visual-storytelling Skill" }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual-output/1.0/skills-registry",
+  "title": "Dual Output Skills Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "skills"],
+  "properties": {
+    "contract_version": { "const": "dual-output/1.0" },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "manifest", "enabled", "priority"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "manifest": { "type": "string", "minLength": 1 },
+          "enabled": { "type": "boolean" },
+          "priority": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

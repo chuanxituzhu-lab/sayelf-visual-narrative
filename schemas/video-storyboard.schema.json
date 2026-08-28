@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual-output/1.0/video-storyboard",
+  "title": "Dual Output Video Storyboard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "type", "narrative_core_id", "language", "aspect_ratio", "duration_seconds", "continuity_anchor", "shots"],
+  "properties": {
+    "contract_version": { "const": "dual-output/1.0" },
+    "type": { "const": "video_storyboard" },
+    "narrative_core_id": { "type": "string", "minLength": 1 },
+    "language": { "enum": ["zh", "en", "bilingual"] },
+    "aspect_ratio": { "enum": ["1:1", "3:4", "4:5", "9:16", "16:9"] },
+    "duration_seconds": { "type": "integer", "minimum": 6, "maximum": 60 },
+    "continuity_anchor": { "type": "string", "minLength": 1 },
+    "shots": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "order", "duration_seconds", "frame_role", "visual_action", "camera", "transition", "audio", "continuity"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^shot-[0-9]+$" },
+          "order": { "type": "integer", "minimum": 1 },
+          "duration_seconds": { "type": "integer", "minimum": 1, "maximum": 30 },
+          "frame_role": { "enum": ["start", "development", "end"] },
+          "visual_action": { "type": "string", "minLength": 1 },
+          "camera": { "type": "string", "minLength": 1 },
+          "transition": { "type": "string", "minLength": 1 },
+          "audio": { "type": "string", "minLength": 1 },
+          "continuity": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

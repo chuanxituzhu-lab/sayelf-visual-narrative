@@ -1,6 +1,6 @@
 {
   "name": "sayelf-visual-narrative",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "AI visual directing skill: decide before generating.",
   "type": "module",
   "license": "MIT",
@@ -13,7 +13,8 @@
     "api": "node interfaces/api/server.mjs",
     "mcp": "node interfaces/mcp/server.mjs",
     "compile:openai": "node interfaces/cli/index.mjs compile examples/single-image/input.json --provider openai",
-    "test:story": "node --test tests/story-sequence.test.mjs"
+    "test:story": "node --test tests/story-sequence.test.mjs",
+    "test:dual-output": "node --test tests/dual-output-contract.test.mjs"
   },
   "engines": {
     "node": ">=20"

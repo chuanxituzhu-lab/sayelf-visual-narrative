@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual-output/1.0/image-prompt",
+  "title": "Dual Output Image Prompt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "type", "narrative_core_id", "language", "aspect_ratio", "prompt", "negative_prompt", "keyframe"],
+  "properties": {
+    "contract_version": { "const": "dual-output/1.0" },
+    "type": { "const": "image_prompt" },
+    "narrative_core_id": { "type": "string", "minLength": 1 },
+    "language": { "enum": ["zh", "en", "bilingual"] },
+    "aspect_ratio": { "enum": ["1:1", "3:4", "4:5", "9:16", "16:9"] },
+    "prompt": { "type": "string", "minLength": 20 },
+    "negative_prompt": { "type": "string", "minLength": 1 },
+    "keyframe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "decisive_moment", "foreground", "midground", "background", "continuity_anchor"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "decisive_moment": { "type": "string", "minLength": 1 },
+        "foreground": { "type": "string", "minLength": 1 },
+        "midground": { "type": "string", "minLength": 1 },
+        "background": { "type": "string", "minLength": 1 },
+        "continuity_anchor": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
