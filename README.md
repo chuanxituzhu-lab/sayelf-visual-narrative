@@ -22,6 +22,15 @@ The core is intentionally provider-independent. OpenAI, Gemini, Flux, Midjourney
 4. **Continuity Director** — character, costume, prop, world, time and style consistency.
 5. **Prompt Compiler** — converts validated VisualSpec into provider-ready prompts.
 
+## Bundled healing visual metaphor skill
+
+`skills/sayelf-healing-visual-metaphor/` adds a text-only workflow for turning one sentence, feeling, reflection, or short story into two coordinated outputs:
+
+- a Hero Image prompt that freezes the decisive visual moment;
+- a five-shot video storyboard/prompt that explains how the moment happens.
+
+The Skill carries the frozen rules `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, and `NO PREACHING`. It has no runtime dependency or automatic package installation; its local validator uses only the Python standard library.
+
 ## Modes
 
 - `single_image`
@@ -63,13 +72,13 @@ node interfaces/cli/index.mjs compile examples/single-image/input.json
 
 ## Repository status
 
-`v0.1.0 MVP scaffold` — architecture frozen, implementation beginning.
+`v0.3.1` — plugin manifest and npm package version aligned; the healing visual metaphor Skill is bundled under `skills/`.
 
 ## License
 
 MIT
 
-## v0.2.0 MVP runtime
+## v0.3.1 MVP runtime
 
 The frozen directing architecture now has a runnable local runtime:
 
