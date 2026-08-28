@@ -14,6 +14,7 @@ realistic or materially believable world
 + fixed identity cues, silhouette, and body framework
 + natural pose deformation without redesign
 + one readable gesture at the decisive moment
++ action-first pose readability, pure signature hues, and strong value separation
 + vertical 9:16 by default
 + no copied character, no platform UI, no explanatory text
 ```
@@ -38,8 +39,10 @@ Keep the body small and compact. The elbow, wrist, knee, ankle, palm, and foot m
 bend, turn, overlap, or foreshorten naturally, but the teardrop body, line colors,
 line weight, face, and limb proportions remain fixed. Do not add realistic anatomy,
 hair, clothing, buttons, star emblems, or decorative light trails attached to the
-body. The environment can carry a separate metaphor light; it is not part of the
-character identity.
+body. Keep enough scale and negative space for the action to read immediately;
+pure cyan/violet signature hues must remain distinct from the environment and strong
+light/dark separation must not be softened by bloom or haze. The environment can
+carry a separate metaphor light; it is not part of the character identity.
 
 Actions may change from scene to scene—walking, sitting, reaching, holding, turning,
 or dancing—but the teardrop silhouette, cyan/violet line treatment, face, limb
@@ -61,9 +64,11 @@ use          pressure, acceptance, release, gentle joy, everyday resilience
 
 Remove animal traits and realistic-human traits: no ears, tail, muzzle, fur, paws,
 whiskers, skin texture, detailed anatomy, complex clothing, or props. Keep the scarf
-as a tiny simple accent, never a detailed costume; keep arms and legs as simple
-readable cartoon segments. This profile is a new account mascot design; it must not
-imitate a supplied reference character.
+as a tiny simple accent, never a detailed costume; keep arms and legs as simple,
+open, readable cartoon segments. Keep the cream, teal, coral, and mustard areas pure
+and distinguishable against the world; do not let shadows or painterly blending hide
+the gesture. This profile is a new account mascot design; it must not imitate a
+supplied reference character.
 
 ## Cross-scene identity lock
 

@@ -5,7 +5,7 @@ metadata:
   short-description: 一瞬治愈：视觉隐喻与五镜头微叙事
 ---
 
-# 一瞬治愈｜Healing Visual Metaphor v0.2.5
+# 一瞬治愈｜Healing Visual Metaphor v0.2.6
 
 > 不说大道理，让一个瞬间替你说。
 
@@ -43,7 +43,7 @@ healing visual = one feeling × one metaphor × one relationship
 5. **Choose the account character.** Read [styles/account-character-system.md](styles/account-character-system.md) and select exactly one profile: `NEON-LINE-01` or `INK-PERSON-02`. Record it as `[CHARACTER_PROFILE]`; do not mix the two profiles in one package.
 6. **Choose one visual style.** Use one of the style references in [styles/](styles/); do not mix style systems unless the input itself requires the contrast. The account profile is an identity lock, not an invitation to add complexity.
 7. **Build the dual output.** Follow [core/output-contract.md](core/output-contract.md). Produce one Hero Image prompt and exactly five storyboard shots, each with an independent video prompt.
-8. **Apply the frozen locks.** Read and enforce [rules/frozen-locks.md](rules/frozen-locks.md), including [rules/account-character-lock.md](rules/account-character-lock.md), then use the focused references when needed: `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, and `NO PREACHING`. A lock failure requires revising the decision before returning the package.
+8. **Apply the frozen locks.** Read and enforce [rules/frozen-locks.md](rules/frozen-locks.md), including [rules/account-character-lock.md](rules/account-character-lock.md), then use the focused references when needed: `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, `NO PREACHING`, and the action/color readability rule in [rules/visual-contrast.md](rules/visual-contrast.md). A lock failure requires revising the decision before returning the package.
 
 ## Required final package
 
@@ -85,6 +85,8 @@ Return these sections in this order, in the user's language unless a prompt is c
 - Exactly one account character profile is selected; its fixed identity applies across every setting and does not drift across the package.
 - Appearance cues, silhouette, colors, face, body framework, and limb grammar stay fixed while pose geometry changes naturally with the action.
 - For both profiles, articulated limbs remain readable as upper arm/forearm/palm and thigh/shin/foot; articulation changes pose, never character design.
+- Action readability is a first-order constraint: make the full-body pose, joint sequence, contact point, and weight shift visibly clear before adding atmosphere.
+- Use pure, distinguishable character colors with strong light/dark separation; do not let bloom, haze, muddy gradients, or low contrast hide the limbs or merge the palette.
 - The final state is changed but unresolved; the world does not magically become perfect.
 - Removing all explanatory text still leaves the relationship and change legible.
 - No preaching, moral caption, therapy claim, diagnosis, forced happy ending, clutter, or platform UI is added.

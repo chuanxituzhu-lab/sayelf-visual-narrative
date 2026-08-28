@@ -30,7 +30,7 @@ The core is intentionally provider-independent. OpenAI, Gemini, Flux, Midjourney
 - a five-shot video storyboard/prompt that explains how the moment happens;
 - two fixed account character profiles (`NEON-LINE-01` and `INK-PERSON-02`) with an account-level continuity lock.
 
-The Skill carries the frozen rules `ACCOUNT CHARACTER LOCK`, `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, and `NO PREACHING`. It has no runtime dependency or automatic package installation; its local validator uses only the Python standard library.
+The Skill carries the frozen rules `ACCOUNT CHARACTER LOCK`, `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, `NO PREACHING`, and `VISUAL READABILITY LOCK`. The last rule makes pose clarity, pure hues, strong light/dark separation, and color recognition first-order generation constraints. It has no runtime dependency or automatic package installation; its local validator uses only the Python standard library.
 
 ## Modes
 
@@ -73,13 +73,13 @@ node interfaces/cli/index.mjs compile examples/single-image/input.json
 
 ## Repository status
 
-`v0.3.7` — plugin manifest and npm package version aligned; the healing visual metaphor Skill is bundled under `skills/` with two locked account character profiles: an articulated neon raindrop person and a colorful hand-drawn little person.
+`v0.3.8` — plugin manifest and npm package version aligned; the healing visual metaphor Skill is bundled under `skills/` with two locked account character profiles and a fixed action/color readability lock.
 
 ## License
 
 MIT
 
-## v0.3.7 MVP runtime
+## v0.3.8 MVP runtime
 
 The frozen directing architecture now has a runnable local runtime:
 

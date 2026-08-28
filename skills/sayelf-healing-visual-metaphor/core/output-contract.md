@@ -1,6 +1,6 @@
 # Unified Input → Dual Output Contract
 
-This is the v0.2.5 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
+This is the v0.2.6 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
 
 ## Input
 
@@ -35,7 +35,7 @@ Produce one complete copy-ready prompt containing:
 
 ```text
 format/aspect → account character profile → world → avatar → metaphor → relationship → moment
-→ light → color → composition → depth → style contrast → silence
+→ action readability → light → pure color → value separation → composition → depth → style contrast → silence
 → negative constraints
 ```
 

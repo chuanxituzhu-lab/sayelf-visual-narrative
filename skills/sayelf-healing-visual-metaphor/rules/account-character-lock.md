@@ -43,6 +43,15 @@ the same simple joyful smile, and simple ink limbs using upper arm/forearm/palm 
 thigh/shin/foot segments. The head-to-body ratio, scarf accent, foot shape, and line
 weight stay fixed in every setting.
 
+## Pose readability and color recognition
+
+The selected profile must remain immediately readable at the decisive moment. Keep
+the action unobstructed, show the contact point or weight-bearing foot when relevant,
+and preserve visible upper-arm/forearm/palm and thigh/shin/foot separation. Pose may
+change naturally; joints must not collapse into a single stroke or disappear into
+the background. Signature hues stay pure and distinguishable, with deliberate
+light/dark separation from the world.
+
 ## Natural pose rule
 
 The clothing or line treatment, silhouette, proportions, signature colors, face,

@@ -1,4 +1,4 @@
-# sayelf-healing-visual-metaphor v0.2.5
+# sayelf-healing-visual-metaphor v0.2.6
 
 中文名：**一瞬治愈｜Healing Visual Metaphor**
 
@@ -16,12 +16,13 @@ CORE → FEEL → WOUND → AVATAR → WORLD → METAPHOR
 
 第一性原则：**治愈不是世界突然变好了，而是人物与世界的关系发生了一点改变。**
 
-## v0.2.5 冻结范围
+## v0.2.6 冻结范围
 
 - 一个核心情绪、一个主隐喻、一个关系、一次微小改变、一个未完成瞬间；
 - 五个功能镜头：`WORLD / WOUND / TENSION / TURN / AFTERGLOW`；
 - 两个固定账号角色槽位：`NEON-LINE-01` 霓虹线条人、`INK-PERSON-02` 手绘小人物；每个包只能选择一个；
 - `ACCOUNT CHARACTER LOCK`、`CONTINUITY LOCK`、`MOTION BUDGET`、`EMOTIONAL PEAK LOCK`、`NO PREACHING`；
+- `VISUAL READABILITY LOCK`：先保证肢体动作、关节、受力点和姿态清楚，再处理氛围；使用纯色相、强明暗和高辨识度配色；
 - 不绑定图像模型、视频模型、API、渲染器、发布平台或 WebUI。
 - `NEON-LINE-01` 固化为紧凑雨滴主体；`INK-PERSON-02` 固化为彩色手绘小人物；两者都跨场景保持外观、比例、脸部、线条/填色和肢体骨架不变，仅动作姿态可变；
 
