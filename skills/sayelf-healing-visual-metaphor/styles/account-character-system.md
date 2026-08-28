@@ -33,16 +33,30 @@ color to the figure. The environment can carry a separate warm metaphor light.
 ## Profile B · INK-PERSON-02 · 手绘小人物
 
 ```text
-identity     tiny original hand-drawn paper-person, round head and one soft body shape
-silhouette   two short limbs and two small feet; one open gesture reads at a glance
-treatment    clean black ink-like outline, flat muted blue-grey fill, one tiny warm accent
-face         two dot eyes and one small curved smile; sparse, non-realistic features
+identity     tiny original hand-drawn account mascot, unchanged across every setting
+silhouette   round head, one soft body shape, two short open arms, two small feet
+treatment    clean black ink-like outline with flat colors: cream face, teal body,
+             coral-red short scarf/accent, mustard-yellow feet
+face         two dot eyes and one clear joyful curved smile; sparse, non-realistic features
 use          pressure, acceptance, release, gentle joy, everyday resilience
 ```
 
 Remove animal traits and realistic-human traits: no ears, tail, muzzle, fur, paws,
-whiskers, skin texture, detailed anatomy, complex clothing, or props. This profile
-is a new account mascot design; it must not imitate a supplied reference character.
+whiskers, skin texture, detailed anatomy, complex clothing, or props. Keep the scarf
+as a tiny simple accent, never a detailed costume. This profile is a new account
+mascot design; it must not imitate a supplied reference character.
+
+## Cross-scene identity lock
+
+Carry the same character into daylight, city streets, mountains, interiors, and
+other worlds without recoloring or redesigning it:
+
+```text
+round cream face + teal rounded body + coral-red short scarf/accent
++ mustard-yellow feet + black ink outline + joyful simple smile
+```
+
+Only the surrounding world, lighting, pose, and metaphor relationship may change.
 
 ## Allowed variation
 

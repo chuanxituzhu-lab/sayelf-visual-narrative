@@ -12,8 +12,8 @@ Regression source: the local rain reference from the current conversation. The s
 [CORE]       真正的快乐不要求环境先变好；关系改变就足够了。
 [FEEL]       接纳中的纯粹快乐
 [WOUND]      仍在躲避无法控制的暴雨
-[AVATAR]     很小的匿名手绘小人物，圆头、单一软身体、黑色线稿、蓝灰填色和黄色小心形
-[CHARACTER_PROFILE] INK-PERSON-02：手绘小人物；圆头、单一软身体、黑色线稿、低复杂度
+[AVATAR]     很小的匿名手绘小人物，奶油色圆脸、青绿色身体、珊瑚红小围巾、黄色小脚和笑脸
+[CHARACTER_PROFILE] INK-PERSON-02：手绘小人物；奶油色圆脸、青绿色身体、珊瑚红小围巾、黄色小脚
 [WORLD]      黄昏的深色森林道路，真实雨幕与浅积水
 [METAPHOR]   暴雨，代表无法控制的处境
 [TENSION]    PRESSURE → EMBRACE：人物从躲避雨转为站进雨里
@@ -28,7 +28,7 @@ Regression source: the local rain reference from the current conversation. The s
 ```text
 style        realistic dark world + deliberately simple hand-drawn cartoon avatar
 light        cool dark forest; one restrained warm circular light in the distance
-color        deep green / black / wet grey, one warm yellow accent and distant light
+color        deep green / black / wet grey, teal body, coral accent, mustard feet, distant warm light
 composition  vertical 9:16, low puddle-level camera, centered tiny subject, symmetry
 depth        foreground water texture, midground figure/splash, soft forest background
 silence      large dark upper space; no text or platform interface
@@ -37,7 +37,7 @@ silence      large dark upper space; no text or platform interface
 ## HERO IMAGE
 
 ```text
-Vertical 9:16 cinematic visual metaphor. A photorealistic dark forest road at dusk during heavy rain, wet black asphalt and a shallow puddle, deep green forest fading into soft natural depth. In the center stands one tiny original hand-drawn little person: a round head, one soft blue-grey paper-doll body shape, two short open arms, two small feet, sparse black ink-like outline, two dot eyes, one small curved smile, and one tiny warm yellow heart accent. Keep the character deliberately flat 2D and simple while the forest, rain, asphalt, and water remain physically believable. The character is standing inside the rain instead of hiding from it. Freeze the exact instant one large raindrop strikes the puddle and a transparent crown-shaped splash rises symmetrically around the small body; individual droplets hang in the air. Extremely low camera at puddle level, strong vertical symmetry, tiny character against a large dark world, generous quiet space above. Cool dark environment with one distant soft warm circular light behind the character; transparent water catches subtle highlights. The image should express that the rain did not stop, but the relationship with the rain changed. No fox ears, tail, muzzle, fur, paws, whiskers, realistic human anatomy, detailed clothing, text, subtitles, logo, social-media UI, watermark, extra characters, plastic water, fantasy particles, excessive glow, clutter, or multiple competing light sources.
+Vertical 9:16 cinematic visual metaphor. A photorealistic dark forest road at dusk during heavy rain, wet black asphalt and a shallow puddle, deep green forest fading into soft natural depth. In the center stands one tiny original hand-drawn little person: a round cream face, one soft teal body shape, two short open arms, two mustard-yellow feet, a short coral-red scarf/accent, clean black ink-like outline, two dot eyes, and one clear joyful curved smile. Keep the character deliberately flat 2D and simple while the forest, rain, asphalt, and water remain physically believable. The character is standing inside the rain instead of hiding from it. Freeze the exact instant one large raindrop strikes the puddle and a transparent crown-shaped splash rises symmetrically around the small body; individual droplets hang in the air. Extremely low camera at puddle level, strong vertical symmetry, tiny character against a large dark world, generous quiet space above. Cool dark environment with one distant soft warm circular light behind the character; transparent water catches subtle highlights. The image should express that the rain did not stop, but the relationship with the rain changed. No fox ears, tail, muzzle, fur, paws, whiskers, realistic human anatomy, detailed clothing, text, subtitles, logo, social-media UI, watermark, extra characters, plastic water, fantasy particles, excessive glow, clutter, or multiple competing light sources.
 ```
 
 ## STORYBOARD + VIDEO PROMPTS
@@ -50,7 +50,7 @@ Primary motion: steady rainfall descending through frame.
 Micro-motions: small puddle rings; distant foliage barely shifting.
 Camera: fixed ultra-low wide shot.
 Sound: soft continuous rain and distant forest air.
-Continuity: establish the same INK-PERSON-02, blue-grey body, tiny yellow heart accent, dark green forest, cool dusk, and distant warm light.
+Continuity: establish the same INK-PERSON-02, cream face, teal body, coral-red scarf, mustard feet, dark green forest, cool dusk, and distant warm light.
 Video prompt: Preserve the reference composition, the simple 2D hand-drawn little person, realistic rain, colors, and lighting. Hold an ultra-low wide shot near the wet road while steady rain falls around the still centered character. Add only small puddle rings and barely moving distant foliage. Quiet pacing, no text, no UI, no new objects, no camera shake.
 ```
 
@@ -63,7 +63,7 @@ Micro-motions: rainfall; shallow water ripples.
 Camera: low centered dolly-in.
 Sound: rain grows slightly fuller, no music yet.
 Continuity: same character, clothing, road, weather, light position, and palette.
-Video prompt: Preserve the same INK-PERSON-02 silhouette, blue-grey fill, yellow heart accent, realistic dark forest road, rain, palette, and distant warm light. Make one extremely slow centered push-in as the character stays still and small inside the large wet world. Let rainfall and shallow ripples remain the only environmental motion. No expression change, no extra event, no text, no UI.
+Video prompt: Preserve the same INK-PERSON-02 silhouette, cream face, teal body, coral-red scarf, mustard feet, realistic dark forest road, rain, palette, and distant warm light. Make one extremely slow centered push-in as the character stays still and small inside the large wet world. Let rainfall and shallow ripples remain the only environmental motion. No expression change, no extra event, no text, no UI.
 ```
 
 ### Shot 03 · TENSION · 4–6s
@@ -105,7 +105,8 @@ Video prompt: Preserve the same centered low composition, little person, blue-gr
 ## CONTINUITY LOCK
 
 ```text
-same tiny INK-PERSON-02 hand-drawn little person; same black outline, blue-grey body, and tiny yellow heart;
+same tiny INK-PERSON-02 hand-drawn little person; same black outline, cream face, teal body,
+coral-red scarf, mustard-yellow feet, and joyful simple smile;
 same realistic dark green forest road and shallow puddle; same heavy dusk rain;
 same distant warm circular light behind the character; same cool green-black palette;
 same vertical 9:16 low puddle-level camera language; only the causal water impact and
@@ -116,8 +117,8 @@ the little person's single arm-opening beat change.
 
 ```text
 profile        INK-PERSON-02 · 手绘小人物
-immutable      round head, soft single body shape, sparse black ink outline, simple face
-allowed        open-arm pose and one warm accent may serve the TURN
+immutable      cream round face, teal body, coral-red short scarf, mustard-yellow feet, simple smile
+allowed        open-arm pose may serve the TURN; the fixed colors and face remain
 forbidden      fox ears, tail, muzzle, fur, realistic human anatomy, copied mascot
 ```
 

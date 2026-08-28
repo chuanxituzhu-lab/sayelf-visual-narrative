@@ -29,6 +29,10 @@ signature palette and glow or accent logic
 animal-versus-human boundary
 ```
 
+For `INK-PERSON-02`, the signature identity is specifically: cream round face,
+teal body, coral-red short scarf/accent, mustard-yellow feet, black ink outline,
+and the same simple joyful smile.
+
 ## Allowed variation
 
 Change only pose, expression, scene relationship, and one small narrative accent
@@ -37,6 +41,6 @@ when the `TURN` requires it. A change in pose is not a new character.
 ## Failure conditions
 
 The package fails if it mixes profiles, adds realistic anatomy, introduces a fox or
-other animal into `INK-PERSON-02`, changes line treatment between shots, or makes a
-supplied reference image the character's identity. Revise the profile decision
-before returning the package.
+other animal into `INK-PERSON-02`, changes its fixed colors or smile between scenes,
+changes line treatment between shots, or makes a supplied reference image the
+character's identity. Revise the profile decision before returning the package.
