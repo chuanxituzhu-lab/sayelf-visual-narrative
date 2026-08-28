@@ -1,6 +1,6 @@
 {
   "name": "sayelf-visual-narrative",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Local-first visual directing workflow for VisualSpec validation, continuity checks, and provider-ready prompt compilation.",
   "author": {
     "name": "chuanxituzhu-lab",

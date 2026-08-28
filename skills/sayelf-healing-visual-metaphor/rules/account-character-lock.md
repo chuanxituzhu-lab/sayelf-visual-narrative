@@ -29,14 +29,21 @@ signature palette and glow or accent logic
 animal-versus-human boundary
 ```
 
+For `NEON-LINE-01`, the signature identity is specifically: rounded hood, simple
+A-line coat silhouette, cyan-blue outer neon line, violet inner line, three circular
+buttons, one small warm star emblem, two dot eyes, one curved smile, and fixed body
+proportions.
+
 For `INK-PERSON-02`, the signature identity is specifically: cream round face,
 teal body, coral-red short scarf/accent, mustard-yellow feet, black ink outline,
 and the same simple joyful smile.
 
 ## Allowed variation
 
-Change only pose, expression, scene relationship, and one small narrative accent
-when the `TURN` requires it. A change in pose is not a new character.
+Change only pose or action, camera relationship, and the character's relationship
+to the scene when the `TURN` requires it. Environmental metaphor accents may change;
+the character's appearance may not. A change in pose or action is not permission to
+change the character's appearance.
 
 ## Failure conditions
 

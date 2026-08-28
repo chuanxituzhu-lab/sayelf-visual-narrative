@@ -18,17 +18,24 @@ The two profiles are original slots, not references to reproduce. A scene may
 change, but the selected profile's identity block must not drift between the Hero
 Image and the five shots.
 
-## Profile A · NEON-LINE-01 · 霓虹线条人
+## Profile A · NEON-LINE-01 · 霓虹小人物
 
 ```text
-identity     tiny anonymous figure drawn only with thin blue-white luminous lines
-silhouette   round head, sparse limbs, simple readable pose
-treatment    cool cyan-blue line, restrained glow, no filled costume
+identity     tiny anonymous hooded neon little person, unchanged across night scenes
+silhouette   rounded hood, simple A-line coat body, short arms, short legs, open pose
+treatment    bright cyan-blue outer line with a restrained violet inner line
+details      three small circular buttons, one small warm star emblem, simple smile
 use          distance, hope, choice, persistence, an unseen destination
 ```
 
-Do not add a face, realistic anatomy, decorative light trails, or a second glow
-color to the figure. The environment can carry a separate warm metaphor light.
+Keep the face as two tiny light dots and one curved smile. Do not add realistic
+anatomy, hair, decorative light trails attached to the body, or extra costume
+details. The environment can carry a separate warm metaphor light; it is not part
+of the character identity.
+
+Actions may change from scene to scene—walking, sitting, reaching, holding, turning,
+or dancing—but the hood, coat silhouette, cyan/violet line treatment, buttons, star,
+face, and proportions must remain unchanged.
 
 ## Profile B · INK-PERSON-02 · 手绘小人物
 
@@ -61,11 +68,13 @@ Only the surrounding world, lighting, pose, and metaphor relationship may change
 ## Allowed variation
 
 ```text
-pose / expression / scale within the shot / tiny warm accent / scene / weather / light
+pose / action / framing scale / scene / weather / light
 ```
 
 Variation is allowed only when it serves the semantic chain. The profile name,
-silhouette logic, line or fill treatment, and simplicity level remain fixed.
+silhouette logic, line or fill treatment, face, signature colors, and simplicity
+level remain fixed. Framing scale means composition scale, not changing body
+proportions.
 
 ## Forbidden drift
 

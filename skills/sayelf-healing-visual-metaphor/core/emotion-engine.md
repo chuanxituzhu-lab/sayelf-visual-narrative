@@ -2,7 +2,7 @@
 
 ## Choose one feeling
 
-Use the user's wording to select one dominant `FEEL`. The v0.2.1 domain labels are:
+Use the user's wording to select one dominant `FEEL`. The v0.2.2 domain labels are:
 
 ```text
 healing / life insight / hope / loneliness / persistence
@@ -34,6 +34,6 @@ Examples:
 
 ## Failure modes
 
-- If the input contains several lessons, choose the one that can be shown by one relationship and keep the rest out of v0.2.1.
+- If the input contains several lessons, choose the one that can be shown by one relationship and keep the rest out of v0.2.2.
 - If the feeling is only named and has no condition, infer a minimal `WOUND` and label it as a director inference internally.
 - If a proposed `FEEL` needs narration to be understood, it is not yet visual enough.

@@ -1,4 +1,4 @@
-# sayelf-healing-visual-metaphor v0.2.1
+# sayelf-healing-visual-metaphor v0.2.2
 
 中文名：**一瞬治愈｜Healing Visual Metaphor**
 
@@ -16,7 +16,7 @@ CORE → FEEL → WOUND → AVATAR → WORLD → METAPHOR
 
 第一性原则：**治愈不是世界突然变好了，而是人物与世界的关系发生了一点改变。**
 
-## v0.2.1 冻结范围
+## v0.2.2 冻结范围
 
 - 一个核心情绪、一个主隐喻、一个关系、一次微小改变、一个未完成瞬间；
 - 五个功能镜头：`WORLD / WOUND / TENSION / TURN / AFTERGLOW`；

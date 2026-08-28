@@ -5,7 +5,7 @@ metadata:
   short-description: 一瞬治愈：视觉隐喻与五镜头微叙事
 ---
 
-# 一瞬治愈｜Healing Visual Metaphor v0.2.1
+# 一瞬治愈｜Healing Visual Metaphor v0.2.2
 
 > 不说大道理，让一个瞬间替你说。
 
