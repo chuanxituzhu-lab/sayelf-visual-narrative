@@ -1,6 +1,6 @@
 # Unified Input → Dual Output Contract
 
-This is the v0.1 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
+This is the v0.2 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
 
 ## Input
 
@@ -19,6 +19,7 @@ If multiple ideas are present, choose one dominant proposition and note the assu
 [FEEL]       one dominant feeling
 [WOUND]      one unresolved starting condition
 [AVATAR]     one anonymous audience proxy
+[CHARACTER_PROFILE] one account profile ID plus its immutable identity block
 [WORLD]      one believable environment
 [METAPHOR]   one meaning-bearing physical carrier
 [TENSION]    one relationship between avatar and world/metaphor
@@ -33,7 +34,7 @@ If multiple ideas are present, choose one dominant proposition and note the assu
 Produce one complete copy-ready prompt containing:
 
 ```text
-format/aspect → world → avatar → metaphor → relationship → moment
+format/aspect → account character profile → world → avatar → metaphor → relationship → moment
 → light → color → composition → depth → style contrast → silence
 → negative constraints
 ```
@@ -70,6 +71,7 @@ Write one independent prompt for each shot. It may rely on a shared `CONTINUITY 
 After the five shots, return:
 
 ```text
+[ACCOUNT CHARACTER LOCK] selected profile / immutable identity / allowed variation / forbidden drift
 [CONTINUITY LOCK] identity / style / wardrobe or line treatment / world / weather
                   metaphor / light direction / palette / camera grammar
 [SOUND]           ambience / decisive sound / music entry and exit
@@ -79,4 +81,4 @@ After the five shots, return:
 
 ## Contract validation
 
-The package is invalid if any required field is missing, if more than one emotional peak is introduced, if a shot contains multiple locations or time jumps, or if the ending explains the lesson instead of showing its changed relationship.
+The package is invalid if any required field is missing, if no single account character profile is selected, if more than one emotional peak is introduced, if a shot contains multiple locations or time jumps, or if the ending explains the lesson instead of showing its changed relationship.

@@ -24,6 +24,7 @@ Hypothesis: the smallest change is not crossing the abyss but taking one step to
 [FEEL]       面对距离的安静希望
 [WOUND]      已看见目标，却停在无法跨越的距离前
 [AVATAR]     只由细蓝白发光线条构成的小型匿名人物
+[CHARACTER_PROFILE] NEON-LINE-01：霓虹线条人；圆头、稀疏四肢、冷蓝白细线
 [WORLD]      深蓝夜晚的真实岩壁峡谷，远处有微弱地景与云
 [METAPHOR]   对岸一朵小小的金色花，代表尚未抵达的未来
 [TENSION]    DISTANCE + OBSTACLE：人物想靠近花，但深渊取消了现成路径
@@ -122,10 +123,20 @@ same vertical 9:16 left-right composition and restrained camera grammar; the onl
 the figure's one step to the edge. No bridge, crossing, or flower transformation.
 ```
 
+## ACCOUNT CHARACTER LOCK
+
+```text
+profile        NEON-LINE-01 · 霓虹线条人
+immutable      round head, sparse limbs, thin blue-white luminous line, restrained glow
+allowed        one small step and a readable lean may serve the TURN
+forbidden      filled cartoon body, realistic human anatomy, animal traits, copied mascot
+```
+
 ## FROZEN LOCK CHECKS
 
 ```text
 CONTINUITY LOCK       pass: line figure, cliffs, flower, moon, light, palette, and camera persist
+ACCOUNT CHARACTER LOCK pass: one luminous line profile is used without filled-body or animal drift
 MOTION BUDGET         pass: each shot names 1 primary motion and at most 2 micro-motions
 EMOTIONAL PEAK LOCK   pass: the only peak is the one step to the edge in Shot 04
 NO PREACHING          pass: no moral text, therapy claim, narration, or resolved crossing

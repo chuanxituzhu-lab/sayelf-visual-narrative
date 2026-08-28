@@ -11,4 +11,4 @@ Use for a sentence, emotion, life insight, or short story.
 7. Generate the Hero Image prompt and five-shot storyboard using [core/output-contract.md](../core/output-contract.md).
 8. Apply all frozen locks and return the final package.
 
-If the input is broad, make one reasonable assumption and keep all other possible themes out of the v0.1 package.
+If the input is broad, make one reasonable assumption and keep all other possible themes out of the v0.2 package.

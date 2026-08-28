@@ -13,3 +13,6 @@ camera grammar and aspect ratio
 ```
 
 State the lock once in the final package and repeat only the shot-specific changes. A change in pose is not permission to change identity, style, weather, or location.
+
+For account recognition, also apply [ACCOUNT CHARACTER LOCK](account-character-lock.md):
+select one of the two account profiles and preserve its silhouette and treatment.

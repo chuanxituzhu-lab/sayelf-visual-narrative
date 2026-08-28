@@ -12,7 +12,8 @@ Regression source: the local rain reference from the current conversation. The s
 [CORE]       真正的快乐不要求环境先变好；关系改变就足够了。
 [FEEL]       接纳中的纯粹快乐
 [WOUND]      仍在躲避无法控制的暴雨
-[AVATAR]     很小的匿名手绘小孩，简单黑色线稿，黄黑条纹上衣
+[AVATAR]     很小的匿名手绘小人物，圆头、单一软身体、黑色线稿、蓝灰填色和黄色小心形
+[CHARACTER_PROFILE] INK-PERSON-02：手绘小人物；圆头、单一软身体、黑色线稿、低复杂度
 [WORLD]      黄昏的深色森林道路，真实雨幕与浅积水
 [METAPHOR]   暴雨，代表无法控制的处境
 [TENSION]    PRESSURE → EMBRACE：人物从躲避雨转为站进雨里
@@ -27,7 +28,7 @@ Regression source: the local rain reference from the current conversation. The s
 ```text
 style        realistic dark world + deliberately simple hand-drawn cartoon avatar
 light        cool dark forest; one restrained warm circular light in the distance
-color        deep green / black / wet grey, warm yellow on shirt and distant light
+color        deep green / black / wet grey, one warm yellow accent and distant light
 composition  vertical 9:16, low puddle-level camera, centered tiny subject, symmetry
 depth        foreground water texture, midground figure/splash, soft forest background
 silence      large dark upper space; no text or platform interface
@@ -36,7 +37,7 @@ silence      large dark upper space; no text or platform interface
 ## HERO IMAGE
 
 ```text
-Vertical 9:16 cinematic visual metaphor. A photorealistic dark forest road at dusk during heavy rain, wet black asphalt and a shallow puddle, deep green forest fading into soft natural depth. In the center stands a tiny anonymous hand-drawn childlike character with simple black ink outlines, sparse messy hair, closed smiling eyes, rosy cheeks, a warm yellow-and-black striped shirt, and arms stretched wide. Keep the character deliberately 2D and simple while the forest, rain, asphalt, and water remain physically believable. The character is standing inside the rain instead of hiding from it. Freeze the exact instant one large raindrop strikes the puddle and a transparent crown-shaped splash rises symmetrically around the small body; individual droplets hang in the air. Extremely low camera at puddle level, strong vertical symmetry, tiny character against a large dark world, generous quiet space above. Cool dark environment with one distant soft warm circular light behind the character; transparent water catches subtle highlights. The image should express that the rain did not stop, but the relationship with the rain changed. No text, subtitles, logo, social-media UI, watermark, extra characters, realistic human face, plastic water, fantasy particles, excessive glow, clutter, or multiple competing light sources.
+Vertical 9:16 cinematic visual metaphor. A photorealistic dark forest road at dusk during heavy rain, wet black asphalt and a shallow puddle, deep green forest fading into soft natural depth. In the center stands one tiny original hand-drawn little person: a round head, one soft blue-grey paper-doll body shape, two short open arms, two small feet, sparse black ink-like outline, two dot eyes, one small curved smile, and one tiny warm yellow heart accent. Keep the character deliberately flat 2D and simple while the forest, rain, asphalt, and water remain physically believable. The character is standing inside the rain instead of hiding from it. Freeze the exact instant one large raindrop strikes the puddle and a transparent crown-shaped splash rises symmetrically around the small body; individual droplets hang in the air. Extremely low camera at puddle level, strong vertical symmetry, tiny character against a large dark world, generous quiet space above. Cool dark environment with one distant soft warm circular light behind the character; transparent water catches subtle highlights. The image should express that the rain did not stop, but the relationship with the rain changed. No fox ears, tail, muzzle, fur, paws, whiskers, realistic human anatomy, detailed clothing, text, subtitles, logo, social-media UI, watermark, extra characters, plastic water, fantasy particles, excessive glow, clutter, or multiple competing light sources.
 ```
 
 ## STORYBOARD + VIDEO PROMPTS
@@ -44,77 +45,87 @@ Vertical 9:16 cinematic visual metaphor. A photorealistic dark forest road at du
 ### Shot 01 · WORLD · 0–2s
 
 ```text
-Visual beat: low camera close to the wet road; the tiny child stands centered in the rain.
+Visual beat: low camera close to the wet road; the tiny hand-drawn little person stands centered in the rain.
 Primary motion: steady rainfall descending through frame.
 Micro-motions: small puddle rings; distant foliage barely shifting.
 Camera: fixed ultra-low wide shot.
 Sound: soft continuous rain and distant forest air.
-Continuity: establish the same tiny hand-drawn child, yellow-black shirt, dark green forest, cool dusk, and distant warm light.
-Video prompt: Preserve the reference composition, the simple 2D child, realistic rain, colors, and lighting. Hold an ultra-low wide shot near the wet road while steady rain falls around the still centered character. Add only small puddle rings and barely moving distant foliage. Quiet pacing, no text, no UI, no new objects, no camera shake.
+Continuity: establish the same INK-PERSON-02, blue-grey body, tiny yellow heart accent, dark green forest, cool dusk, and distant warm light.
+Video prompt: Preserve the reference composition, the simple 2D hand-drawn little person, realistic rain, colors, and lighting. Hold an ultra-low wide shot near the wet road while steady rain falls around the still centered character. Add only small puddle rings and barely moving distant foliage. Quiet pacing, no text, no UI, no new objects, no camera shake.
 ```
 
 ### Shot 02 · WOUND · 2–4s
 
 ```text
-Visual beat: the child remains small as rain thickens around the body.
+Visual beat: the little person remains small as rain thickens around the body.
 Primary motion: extremely slow camera push-in.
 Micro-motions: rainfall; shallow water ripples.
 Camera: low centered dolly-in.
 Sound: rain grows slightly fuller, no music yet.
 Continuity: same character, clothing, road, weather, light position, and palette.
-Video prompt: Preserve the same child, wardrobe, realistic dark forest road, rain, palette, and distant warm light. Make one extremely slow centered push-in as the character stays still and small inside the large wet world. Let rainfall and shallow ripples remain the only environmental motion. No expression change, no extra event, no text, no UI.
+Video prompt: Preserve the same INK-PERSON-02 silhouette, blue-grey fill, yellow heart accent, realistic dark forest road, rain, palette, and distant warm light. Make one extremely slow centered push-in as the character stays still and small inside the large wet world. Let rainfall and shallow ripples remain the only environmental motion. No expression change, no extra event, no text, no UI.
 ```
 
 ### Shot 03 · TENSION · 4–6s
 
 ```text
-Visual beat: one visibly larger raindrop separates from the rain field and approaches the puddle at the child's feet.
+Visual beat: one visibly larger raindrop separates from the rain field and approaches the puddle at the little person's feet.
 Primary motion: the single large raindrop descends toward the water.
 Micro-motions: background rainfall; faint water tremor.
 Camera: locked low frame, no reframing.
 Sound: general rain narrows into the approach of one drop.
 Continuity: the larger drop is part of the same rain; no new light or prop.
-Video prompt: Preserve composition and continuity. Hold the low camera completely steady while one larger raindrop slowly enters from above and descends toward the puddle at the same child's feet. Keep the surrounding rain soft and secondary, with only a faint water tremor. Build anticipation without adding a second action, camera move, character change, text, or UI.
+Video prompt: Preserve composition and continuity. Hold the low camera completely steady while one larger raindrop slowly enters from above and descends toward the puddle at the same little person's feet. Keep the surrounding rain soft and secondary, with only a faint water tremor. Build anticipation without adding a second action, camera move, character change, text, or UI.
 ```
 
 ### Shot 04 · TURN · 6–8s
 
 ```text
-Visual beat: the large drop strikes; one causal peak lifts a transparent crown splash as the child's arms open once.
+Visual beat: the large drop strikes; one causal peak lifts a transparent crown splash as the little person's arms open once.
 Primary motion: one synchronized impact beat—raindrop impact → crown splash → arms opening.
 Micro-motions: suspended droplets; distant warm light shimmer kept nearly imperceptible.
 Camera: locked and centered to protect the peak.
 Sound: one clear water impact; a small warm musical note may enter after the impact.
 Continuity: same body proportions, shirt, rain, forest, and light; no magical transformation.
-Video prompt: Preserve the exact character identity, hand-drawn treatment, realistic rain, centered low composition, colors, and light. At the single emotional peak, the large raindrop hits the puddle and one transparent crown-shaped splash rises around the child as the child opens both arms once in the same causal beat. Keep the camera locked, droplets briefly suspended, and all other motion subdued. No second effect, no transformation, no text, no UI, no exaggerated glow.
+Video prompt: Preserve the exact INK-PERSON-02 identity, hand-drawn treatment, realistic rain, centered low composition, colors, and light. At the single emotional peak, the large raindrop hits the puddle and one transparent crown-shaped splash rises around the little person as the little person opens both arms once in the same causal beat. Keep the camera locked, droplets briefly suspended, and all other motion subdued. No second effect, no transformation, no text, no UI, no exaggerated glow.
 ```
 
 ### Shot 05 · AFTERGLOW · 8–10s
 
 ```text
-Visual beat: water falls back; the child holds the open-armed pose while rain continues.
+Visual beat: water falls back; the little person holds the open-armed pose while rain continues.
 Primary motion: suspended splash droplets descend and settle.
 Micro-motions: steady rainfall; distant warm light remains still.
 Camera: no movement; hold the final image for the last second.
 Sound: water settles back into the rain; the small musical note fades, leaving ambience.
 Continuity: preserve every lock; the rain does not stop and the world is not solved.
-Video prompt: Preserve the same centered low composition, child, clothing, forest, rain, colors, and light. Let the splash droplets slowly fall and settle while the child holds the open-armed pose. Keep the camera completely still for the final second; rain continues unchanged. End in quiet unresolved acceptance, with no new event, caption, logo, or interface.
+Video prompt: Preserve the same centered low composition, little person, blue-grey body, forest, rain, colors, and light. Let the splash droplets slowly fall and settle while the little person holds the open-armed pose. Keep the camera completely still for the final second; rain continues unchanged. End in quiet unresolved acceptance, with no new event, caption, logo, or interface.
 ```
 
 ## CONTINUITY LOCK
 
 ```text
-same tiny anonymous hand-drawn child; same black outline and yellow-black striped shirt;
+same tiny INK-PERSON-02 hand-drawn little person; same black outline, blue-grey body, and tiny yellow heart;
 same realistic dark green forest road and shallow puddle; same heavy dusk rain;
 same distant warm circular light behind the character; same cool green-black palette;
 same vertical 9:16 low puddle-level camera language; only the causal water impact and
-the child's single arm-opening beat change.
+the little person's single arm-opening beat change.
+```
+
+## ACCOUNT CHARACTER LOCK
+
+```text
+profile        INK-PERSON-02 · 手绘小人物
+immutable      round head, soft single body shape, sparse black ink outline, simple face
+allowed        open-arm pose and one warm accent may serve the TURN
+forbidden      fox ears, tail, muzzle, fur, realistic human anatomy, copied mascot
 ```
 
 ## FROZEN LOCK CHECKS
 
 ```text
-CONTINUITY LOCK       pass: child, shirt, forest, rain, light, palette, and camera persist
+CONTINUITY LOCK       pass: little person, body treatment, forest, rain, light, palette, and camera persist
+ACCOUNT CHARACTER LOCK pass: one hand-drawn person profile is used without animal or realistic-human drift
 MOTION BUDGET         pass: each shot names 1 primary motion and at most 2 micro-motions
 EMOTIONAL PEAK LOCK   pass: the only peak is the causal impact/arms-opening beat in Shot 04
 NO PREACHING          pass: no moral text, therapy claim, narration, or forced resolution
@@ -134,4 +145,4 @@ peaks, sunshine, stopped rain, forced celebration, clutter, or moral slogan
 
 ## AFTERGLOW
 
-The rain continues. The child keeps smiling with arms open. The environment has not improved; only the child's relation to it has shifted.
+The rain continues. The little person keeps smiling with arms open. The environment has not improved; only the little person's relation to it has shifted.

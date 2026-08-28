@@ -1,6 +1,6 @@
 {
   "name": "sayelf-visual-narrative",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "AI visual directing skill: decide before generating.",
   "type": "module",
   "license": "MIT",

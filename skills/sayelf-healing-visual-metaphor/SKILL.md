@@ -5,7 +5,7 @@ metadata:
   short-description: 一瞬治愈：视觉隐喻与五镜头微叙事
 ---
 
-# 一瞬治愈｜Healing Visual Metaphor v0.1
+# 一瞬治愈｜Healing Visual Metaphor v0.2
 
 > 不说大道理，让一个瞬间替你说。
 
@@ -22,7 +22,7 @@ The first version covers the semantic domains `治愈 / 人生感悟 / 希望 / 
 
 ```text
 INPUT
-  → CORE → FEEL → WOUND → AVATAR → WORLD → METAPHOR
+  → CORE → FEEL → WOUND → AVATAR → CHARACTER PROFILE → WORLD → METAPHOR
   → TENSION → TURN → MOMENT → AFTERGLOW → SILENCE
   → HERO IMAGE + 5-SHOT VIDEO
 ```
@@ -40,9 +40,10 @@ healing visual = one feeling × one metaphor × one relationship
 2. **Distill the meaning.** Choose one `CORE`, one `FEEL`, and one unresolved `WOUND`. Read [core/emotion-engine.md](core/emotion-engine.md) and [core/visual-metaphor.md](core/visual-metaphor.md).
 3. **Make the relationship visible.** Choose one anonymous `AVATAR`, one believable `WORLD`, one `METAPHOR`, and one `TENSION`. Read [core/metaphor-engine.md](core/metaphor-engine.md) and [core/tension-engine.md](core/tension-engine.md).
 4. **Find the change.** Define one `TURN`, freeze its most meaningful `MOMENT`, and leave an `AFTERGLOW`. Read [core/decisive-moment.md](core/decisive-moment.md).
-5. **Choose one visual style.** Use one of the style references in [styles/](styles/); do not mix style systems unless the input itself requires the contrast.
-6. **Build the dual output.** Follow [core/output-contract.md](core/output-contract.md). Produce one Hero Image prompt and exactly five storyboard shots, each with an independent video prompt.
-7. **Apply the frozen locks.** Read and enforce [rules/frozen-locks.md](rules/frozen-locks.md), then use the focused rule references when needed: `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, and `NO PREACHING`. A lock failure requires revising the decision before returning the package.
+5. **Choose the account character.** Read [styles/account-character-system.md](styles/account-character-system.md) and select exactly one profile: `NEON-LINE-01` or `INK-PERSON-02`. Record it as `[CHARACTER_PROFILE]`; do not mix the two profiles in one package.
+6. **Choose one visual style.** Use one of the style references in [styles/](styles/); do not mix style systems unless the input itself requires the contrast. The account profile is an identity lock, not an invitation to add complexity.
+7. **Build the dual output.** Follow [core/output-contract.md](core/output-contract.md). Produce one Hero Image prompt and exactly five storyboard shots, each with an independent video prompt.
+8. **Apply the frozen locks.** Read and enforce [rules/frozen-locks.md](rules/frozen-locks.md), including [rules/account-character-lock.md](rules/account-character-lock.md), then use the focused references when needed: `CONTINUITY LOCK`, `MOTION BUDGET`, `EMOTIONAL PEAK LOCK`, and `NO PREACHING`. A lock failure requires revising the decision before returning the package.
 
 ## Required final package
 
@@ -50,7 +51,7 @@ Return these sections in this order, in the user's language unless a prompt is c
 
 ```text
 01 SEMANTIC DISTILLATION
-   CORE / FEEL / WOUND / AVATAR / WORLD / METAPHOR / TENSION / TURN / MOMENT
+   CORE / FEEL / WOUND / AVATAR / CHARACTER_PROFILE / WORLD / METAPHOR / TENSION / TURN / MOMENT
 
 02 VISUAL DIRECTOR DECISIONS
    style / light / color / composition / depth / silence
@@ -81,9 +82,11 @@ Return these sections in this order, in the user's language unless a prompt is c
 - The storyboard has exactly five functional shots and one emotional peak at `TURN`.
 - Each shot has one primary motion and no more than two environmental micro-motions.
 - Character, wardrobe/line treatment, world, weather, prop, light direction, and color logic remain locked across shots.
+- Exactly one account character profile is selected; its silhouette and treatment do not drift across the package.
 - The final state is changed but unresolved; the world does not magically become perfect.
 - Removing all explanatory text still leaves the relationship and change legible.
 - No preaching, moral caption, therapy claim, diagnosis, forced happy ending, clutter, or platform UI is added.
+- The hand-drawn profile remains a symbolic cartoon person, never a realistic human or copied animal mascot.
 
 ## Boundaries
 
@@ -100,3 +103,4 @@ For a supplied local reference image, keep the image and any extracted details i
 - Frozen constraints: [rules/](rules/)
 - Text, image, or video workflow: [workflows/](workflows/)
 - Regression examples: [examples/rain-acceptance.md](examples/rain-acceptance.md) and [examples/cliff-hope.md](examples/cliff-hope.md)
+- Account characters: [styles/account-character-system.md](styles/account-character-system.md) and [rules/account-character-lock.md](rules/account-character-lock.md)
