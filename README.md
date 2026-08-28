@@ -73,13 +73,13 @@ node interfaces/cli/index.mjs compile examples/single-image/input.json
 
 ## Repository status
 
-`v0.3.5` — plugin manifest and npm package version aligned; the healing visual metaphor Skill is bundled under `skills/` with two locked account character profiles.
+`v0.3.6` — plugin manifest and npm package version aligned; the healing visual metaphor Skill is bundled under `skills/` with two locked account character profiles, including the articulated neon raindrop mascot.
 
 ## License
 
 MIT
 
-## v0.3.5 MVP runtime
+## v0.3.6 MVP runtime
 
 The frozen directing architecture now has a runnable local runtime:
 

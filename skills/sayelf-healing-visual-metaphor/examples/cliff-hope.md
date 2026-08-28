@@ -23,8 +23,8 @@ Hypothesis: the smallest change is not crossing the abyss but taking one step to
 [CORE]       希望可以被看见，但不承诺道路已经出现。
 [FEEL]       面对距离的安静希望
 [WOUND]      已看见目标，却停在无法跨越的距离前
-[AVATAR]     带圆兜帽和简洁外套轮廓的霓虹小人物，青蓝外线、紫色内线、笑脸和胸前小星标
-[CHARACTER_PROFILE] NEON-LINE-01：霓虹小人物；圆兜帽、A字外套轮廓、青蓝外线、紫色内线、三颗圆扣和小星标
+[AVATAR]     小巧雨滴形霓虹小人物，青蓝外轮廓、紫色内发光线、点状眼睛和笑脸
+[CHARACTER_PROFILE] NEON-LINE-01：紧凑雨滴主体；青蓝外轮廓、紫色内发光线、点状眼睛、笑脸；四肢按大臂/小臂/手掌与大腿/小腿/脚掌分段
 [WORLD]      深蓝夜晚的真实岩壁峡谷，远处有微弱地景与云
 [METAPHOR]   对岸一朵小小的金色花，代表尚未抵达的未来
 [TENSION]    DISTANCE + OBSTACLE：人物想靠近花，但深渊取消了现成路径
@@ -37,7 +37,7 @@ Hypothesis: the smallest change is not crossing the abyss but taking one step to
 ## Visual director decisions
 
 ```text
-style        realistic night landscape + fixed NEON-LINE-01 hooded neon little person
+style        realistic night landscape + fixed NEON-LINE-01 neon raindrop little person
 light        cool blue-white avatar light and restrained warm flower light only
 color        deep navy / black / muted rock, two meaningful light accents
 composition  vertical 9:16, left-right opposing cliffs, dominant central void
@@ -48,7 +48,7 @@ silence      large negative space between figure and flower; no label or arrow
 ## HERO IMAGE
 
 ```text
-Vertical 9:16 cinematic visual metaphor. A photorealistic deep rocky canyon at night beneath a dark navy sky, two opposing cliff masses separated by a dominant vertical abyss, faint clouds, a crescent moon high above, and a barely visible river of distant lights far below. On the left cliff stands one tiny NEON-LINE-01 hooded neon little person: rounded hood, simple A-line coat silhouette, cyan-blue outer neon line, restrained violet inner line, three small circular buttons, one small warm star emblem, two tiny light-dot eyes, and one curved smile. On the opposite cliff grows one small golden flower with a restrained warm glow. The figure wants to reach the flower, but no bridge or path exists. Freeze the instant one foot has just moved to the very edge of the left cliff while the enormous dark void still separates the figure from the flower. Keep the landscape realistic and the character deliberately simple and symbolic. Use only two meaningful light sources: cyan-blue/violet from the figure and warm gold from the flower. Strong left-right composition, enormous quiet space between them, readable scale contrast, stable deep navy and black palette. The destination is visible; the path is not. No text, “Your Plan” label, arrow, subtitles, social-media UI, watermark, extra people, bridge, stairs, realistic anatomy, animal traits, extra costume details, decorative particles, excessive glow, or resolved crossing.
+Vertical 9:16 cinematic visual metaphor. A photorealistic deep rocky canyon at night beneath a dark navy sky, two opposing cliff masses separated by a dominant vertical abyss, faint clouds, a crescent moon high above, and a barely visible river of distant lights far below. On the left cliff stands one tiny NEON-LINE-01 neon raindrop little person: a small smooth teardrop body, cyan-blue outer neon contour, restrained violet inner glow, two tiny light-dot eyes, one curved smile, and clearly articulated but simple limbs with upper-arm/forearm/palm and thigh/shin/foot segments. On the opposite cliff grows one small golden flower with a restrained warm glow. The figure wants to reach the flower, but no bridge or path exists. Freeze the instant one foot has just moved to the very edge of the left cliff while the enormous dark void still separates the figure from the flower. Keep the landscape realistic and the character deliberately simple and symbolic. Use only two meaningful light sources: cyan-blue/violet from the figure and warm gold from the flower. Strong left-right composition, enormous quiet space between them, readable scale contrast, stable deep navy and black palette. The destination is visible; the path is not. No text, “Your Plan” label, arrow, subtitles, social-media UI, watermark, extra people, bridge, stairs, realistic anatomy, clothing, hood, coat, buttons, star emblem, animal traits, decorative particles, excessive glow, or resolved crossing.
 ```
 
 ## STORYBOARD + VIDEO PROMPTS
@@ -56,13 +56,13 @@ Vertical 9:16 cinematic visual metaphor. A photorealistic deep rocky canyon at n
 ### Shot 01 · WORLD · 0–2s
 
 ```text
-Visual beat: wide opposing cliffs establish the hooded neon little person, the flower, and the abyss.
+Visual beat: wide opposing cliffs establish the tiny neon raindrop person, the flower, and the abyss.
 Primary motion: nearly imperceptible cloud drift.
 Micro-motions: faint distant valley lights; a small amount of night haze.
 Camera: fixed vertical wide shot.
 Sound: sparse night wind and distant low canyon air.
-Continuity: lock the same NEON-LINE-01 hood, coat outline, buttons, star, smile, cliff geometry, flower, moon, deep navy palette, and two-light system.
-Video prompt: Preserve the vertical composition, realistic two-cliff canyon, tiny NEON-LINE-01 hooded neon little person on the left, single warm golden flower on the right, crescent moon, colors, and lighting. Hold a wide static shot while clouds drift almost imperceptibly. Add only faint valley lights and thin haze. No text, arrow, UI, bridge, extra people, or camera shake.
+Continuity: lock the same NEON-LINE-01 teardrop body, cyan/violet line treatment, dot eyes, smile, articulated limb grammar, cliff geometry, flower, moon, deep navy palette, and two-light system.
+Video prompt: Preserve the vertical composition, realistic two-cliff canyon, tiny NEON-LINE-01 neon raindrop little person on the left, single warm golden flower on the right, crescent moon, colors, and lighting. Hold a wide static shot while clouds drift almost imperceptibly. Add only faint valley lights and thin haze. No text, arrow, UI, bridge, extra people, or camera shake.
 ```
 
 ### Shot 02 · WOUND · 2–4s
@@ -74,7 +74,7 @@ Micro-motions: thin clouds; subtle flower stem movement in the wind.
 Camera: restrained dolly-in that keeps both cliffs readable.
 Sound: wind becomes slightly more present; no melody.
 Continuity: same line thickness, glow colors, cliff edges, flower position, and moon.
-Video prompt: Preserve the same NEON-LINE-01 hooded little person, fixed coat outline, buttons, star, smile, cliff landscape, opposite golden flower, moon, deep navy palette, and two-light logic. Make one slow restrained push toward the left figure while keeping the right flower and the central abyss visible. Allow only thin cloud drift and a subtle flower stem movement. Do not reveal a path or add text, UI, or new objects.
+Video prompt: Preserve the same NEON-LINE-01 compact neon raindrop person, fixed teardrop body, cyan/violet line treatment, dot eyes, smile, articulated limb grammar, cliff landscape, opposite golden flower, moon, deep navy palette, and two-light logic. Make one slow restrained push toward the left figure while keeping the right flower and the central abyss visible. Allow only thin cloud drift and a subtle flower stem movement. Do not reveal a path or add text, UI, or new objects.
 ```
 
 ### Shot 03 · TENSION · 4–6s
@@ -86,7 +86,7 @@ Micro-motions: slow cloud drift; faint canyon haze below.
 Camera: locked frame, no additional zoom.
 Sound: wind narrows into a low hollow tone, still restrained.
 Continuity: the flower remains steady and visible; no bridge or light change.
-Video prompt: Preserve composition, NEON-LINE-01 identity, cliff geometry, flower, moon, palette, and lighting. Hold the frame steady as the small hooded neon little person makes one restrained forward lean toward the abyss, then stops. Keep only slow cloud drift and faint canyon haze as environmental motion. The flower remains steady and warm. No bridge, leap, flash, text, or interface.
+Video prompt: Preserve composition, NEON-LINE-01 identity, cliff geometry, flower, moon, palette, and lighting. Hold the frame steady as the small neon raindrop person makes one restrained forward lean through a natural bend of the articulated limbs toward the abyss, then stops. Keep only slow cloud drift and faint canyon haze as environmental motion. The flower remains steady and warm. No bridge, leap, flash, text, or interface.
 ```
 
 ### Shot 04 · TURN · 6–8s
@@ -98,7 +98,7 @@ Micro-motions: a single cloud layer drifts; flower glow remains almost still.
 Camera: static wide-to-medium hold, no cut during the step.
 Sound: one soft rock contact; the low tone opens slightly after it.
 Continuity: preserve the same line thickness, body scale, cliff, flower, light colors, and void.
-Video prompt: Preserve the exact realistic canyon, tiny NEON-LINE-01 hooded neon little person with fixed coat outline, buttons, star, and smile, opposite golden flower, deep navy colors, and two-light system. In one continuous locked frame, animate one small deliberate step that places the figure's foot at the cliff edge. Do not let the figure jump, cross, or gain a bridge; keep the flower unchanged and the abyss dominant. Only a barely moving cloud layer remains in the background. One quiet foot contact marks the single emotional peak. No text, arrow, UI, or extra reveal.
+Video prompt: Preserve the exact realistic canyon, tiny NEON-LINE-01 neon raindrop person with fixed teardrop body, cyan/violet line treatment, dot eyes, smile, and articulated limb grammar, opposite golden flower, deep navy colors, and two-light system. In one continuous locked frame, animate one small deliberate step using a readable knee, ankle, and foot shift that places the figure's foot at the cliff edge. Do not let the figure jump, cross, or gain a bridge; keep the flower unchanged and the abyss dominant. Only a barely moving cloud layer remains in the background. One quiet foot contact marks the single emotional peak. No text, arrow, UI, or extra reveal.
 ```
 
 ### Shot 05 · AFTERGLOW · 8–10s
@@ -110,14 +110,15 @@ Micro-motions: clouds; distant valley lights flicker very faintly.
 Camera: no movement; hold the unresolved composition for the final second.
 Sound: wind and canyon air return; the low tone fades without resolution.
 Continuity: no new light, path, character, or object; preserve the distance.
-Video prompt: Preserve the same NEON-LINE-01 hooded little person, right flower, opposing cliffs, central abyss, crescent moon, deep navy palette, and restrained two-light system. Hold the camera completely still as faint night haze moves through the canyon and the figure remains at the edge. The flower stays visible but unreachable; no bridge or solution appears. Let the sound fade into night air. End with quiet unresolved hope, no caption, logo, UI, or second event.
+Video prompt: Preserve the same NEON-LINE-01 neon raindrop person, right flower, opposing cliffs, central abyss, crescent moon, deep navy palette, and restrained two-light system. Hold the camera completely still as faint night haze moves through the canyon and the figure remains at the edge. The flower stays visible but unreachable; no bridge or solution appears. Let the sound fade into night air. End with quiet unresolved hope, no caption, logo, UI, or second event.
 ```
 
 ## CONTINUITY LOCK
 
 ```text
-same NEON-LINE-01 hooded neon little person on the left cliff; same rounded hood,
-coat outline, cyan outer line, violet inner line, buttons, star emblem, smile, and scale;
+same NEON-LINE-01 neon raindrop little person on the left cliff; same small smooth
+teardrop body, cyan outer contour, violet inner glow, dot eyes, smile, articulated
+upper-arm/forearm/palm and thigh/shin/foot grammar, and scale;
 same realistic opposing cliff masses, canyon depth, moon, clouds, and night haze;
 same single small golden flower on the right cliff; same two-light system and deep navy palette;
 same vertical 9:16 left-right composition and restrained camera grammar; the only change is
@@ -128,9 +129,9 @@ the figure's one step to the edge. No bridge, crossing, or flower transformation
 
 ```text
 profile        NEON-LINE-01 · 霓虹小人物
-immutable      rounded hood, A-line coat, cyan outer line, violet inner line, three buttons, star, smile
-allowed        one small step and a readable lean with natural weight shift may serve the TURN; appearance remains fixed
-forbidden      realistic human anatomy, animal traits, extra costume details, copied mascot
+immutable      small smooth teardrop body, cyan outer contour, violet inner glow, dot eyes, curved smile, limb grammar
+allowed        one small step and a readable lean with natural elbow, wrist, knee, ankle, palm, and foot angles may serve the TURN; appearance remains fixed
+forbidden      realistic human anatomy, clothing, hood, coat, buttons, star emblem, animal traits, copied mascot
 ```
 
 ## FROZEN LOCK CHECKS

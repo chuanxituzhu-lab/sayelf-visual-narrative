@@ -1,6 +1,6 @@
 # Unified Input → Dual Output Contract
 
-This is the v0.2.3 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
+This is the v0.2.4 interface. Keep the field names stable so image and video prompts share one semantic source of truth.
 
 ## Input
 

@@ -29,10 +29,11 @@ signature palette and glow or accent logic
 animal-versus-human boundary
 ```
 
-For `NEON-LINE-01`, the signature identity is specifically: rounded hood, simple
-A-line coat silhouette, cyan-blue outer neon line, violet inner line, three circular
-buttons, one small warm star emblem, two dot eyes, one curved smile, and fixed body
-proportions.
+For `NEON-LINE-01`, the signature identity is specifically: a small smooth teardrop
+body, compact proportions, cyan-blue outer neon contour, restrained violet inner glow,
+two light-dot eyes, one curved smile, and fixed limb grammar of upper arm/forearm/palm
+and thigh/shin/foot. Joints may bend naturally for action, but the body silhouette,
+line treatment, face, and proportions do not change.
 
 For `INK-PERSON-02`, the signature identity is specifically: cream round face,
 teal body, coral-red short scarf/accent, mustard-yellow feet, black ink outline,

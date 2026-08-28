@@ -23,21 +23,25 @@ Image and the five shots.
 ## Profile A · NEON-LINE-01 · 霓虹小人物
 
 ```text
-identity     tiny anonymous hooded neon little person, unchanged across night scenes
-silhouette   rounded hood, simple A-line coat body, short arms, short legs, open pose
-treatment    bright cyan-blue outer line with a restrained violet inner line
-details      three small circular buttons, one small warm star emblem, simple smile
+identity     tiny anonymous neon raindrop person, unchanged across night scenes
+silhouette   small smooth teardrop body, compact torso, articulated short limbs
+treatment    bright cyan-blue outer contour with a restrained violet inner glow
+face         two tiny light-dot eyes and one curved smile
+limb grammar upper arm → forearm → palm; thigh → shin → foot
 use          distance, hope, choice, persistence, an unseen destination
 ```
 
-Keep the face as two tiny light dots and one curved smile. Do not add realistic
-anatomy, hair, decorative light trails attached to the body, or extra costume
-details. The environment can carry a separate warm metaphor light; it is not part
-of the character identity.
+Keep the body small and compact. The elbow, wrist, knee, ankle, palm, and foot may
+bend, turn, overlap, or foreshorten naturally, but the teardrop body, line colors,
+line weight, face, and limb proportions remain fixed. Do not add realistic anatomy,
+hair, clothing, buttons, star emblems, or decorative light trails attached to the
+body. The environment can carry a separate metaphor light; it is not part of the
+character identity.
 
 Actions may change from scene to scene—walking, sitting, reaching, holding, turning,
-or dancing—but the hood, coat silhouette, cyan/violet line treatment, buttons, star,
-face, and proportions must remain unchanged.
+or dancing—but the teardrop silhouette, cyan/violet line treatment, face, limb
+grammar, and proportions must remain unchanged. Pose geometry is flexible; character
+design is not.
 
 ## Profile B · INK-PERSON-02 · 手绘小人物
 
