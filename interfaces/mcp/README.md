@@ -10,6 +10,13 @@ npm run mcp
 
 ## Tools
 
+- `list_visual_skills`
+- `run_visual_skill`
+- `optimize_creative_intent`
+- `list_media_providers`
+- `submit_media_job`
+- `get_media_job`
+- `refresh_media_job`
 - `validate_visual_spec`
 - `compile_visual_prompt`
 - `check_continuity`

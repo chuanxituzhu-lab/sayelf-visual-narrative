@@ -14,12 +14,12 @@
       <span class="brand-mark">S</span>
       <div><strong>Sayelf Visual Narrative</strong><small data-i18n="tagline">好画面不是生成出来的，是决定出来的。</small></div>
     </div>
-    <div class="service"><button id="language" class="language">中文 / EN</button><span class="status-dot"></span><span>Local API</span><span id="local-state" class="local-state">LOCAL DRAFT</span><code>v0.3.0</code></div>
+    <div class="service"><button id="language" class="language">中文 / EN</button><span class="status-dot"></span><span data-i18n="localApi">本地 API</span><span id="local-state" class="local-state" data-i18n="localDraft">LOCAL DRAFT</span><code>v0.3.0</code></div>
   </header>
 
   <main class="workspace">
     <aside class="sidebar">
-      <p class="eyebrow">DIRECTING FLOW</p>
+      <p class="eyebrow" data-i18n="directingFlow">导演流程</p>
       <nav>
         <button class="nav-item active" data-step="1"><span>01</span><i data-i18n="creativeIntent">创作意图</i></button>
         <button class="nav-item" data-step="2"><span>02</span><i data-i18n="storyDirector">故事导演</i></button>
@@ -28,61 +28,99 @@
         <button class="nav-item" data-step="5"><span>05</span><i data-i18n="continuity">连续性</i></button>
         <button class="nav-item" data-step="6"><span>06</span><i data-i18n="promptCompiler">提示词编译</i></button>
       </nav>
-      <div class="principle"><span>CORE PRINCIPLE</span><p data-i18n="principle">Prompt 只是最后一步。先决定意义、表演、证据与镜头，再交给模型执行。</p></div>
+      <div class="principle"><span data-i18n="corePrinciple">核心原则</span><p data-i18n="principle">Prompt 只是最后一步。先决定意义、表演、证据与镜头，再交给模型执行。</p></div>
     </aside>
 
     <section class="editor-panel">
       <div class="panel-heading">
-        <div><p class="eyebrow">DIRECTOR INPUT</p><h1 data-i18n="workspace">视觉导演工作台</h1></div>
+        <div><p class="eyebrow" data-i18n="directorInput">导演输入</p><h1 data-i18n="workspace">视觉导演工作台</h1></div>
         <div class="controls">
-          <label>Mode<select id="mode"><option value="single_image">Single image</option><option value="story_sequence">Story sequence</option><option value="storyboard">Storyboard</option></select></label>
-          <label>Provider<select id="provider"><option value="generic">Generic</option><option value="openai">OpenAI</option></select></label>
+          <label><span data-i18n="skill">Visual Skill</span><select id="skill"><option value="" data-i18n="autoRoute">自动路由</option></select></label>
+          <label><span data-i18n="mode">模式</span><select id="mode"><option value="single_image" data-i18n="singleImage">单图</option><option value="story_sequence" data-i18n="storySequence">连续故事</option><option value="storyboard" data-i18n="storyboard">视频分镜</option></select></label>
+          <label><span data-i18n="provider">Provider</span><select id="provider"><option value="generic" data-i18n="genericProvider">通用</option><option value="openai">OpenAI</option></select></label>
+          <label><span data-i18n="mediaProvider">媒体 Provider</span><select id="media-provider"><option value="local-preview" data-i18n="assistantFallback">AI 辅助回退</option></select></label>
         </div>
       </div>
       <div class="director-form">
-        <label class="field wide" data-step="1"><span data-i18n="intent">创作意图</span><textarea id="intent" data-path="story.intent"></textarea></label>
+        <label class="field wide intent-field" data-step="1"><div class="field-head"><span data-i18n="intent">创作意图</span><button id="optimize" type="button" class="quiet" data-i18n="optimize">一键优化</button></div><textarea id="intent" data-path="story.intent"></textarea><small class="field-help" data-i18n="optimizationLocalNote">本地保留原文，先给出导演版建议，确认后再采用。</small></label>
         <label class="field" data-step="1"><span data-i18n="theme">主题</span><input id="theme" data-path="story.theme"></label>
         <label class="field" data-step="1"><span data-i18n="emotion">情绪弧线</span><input id="emotion" data-path="story.emotional_arc"></label>
         <label class="field wide" data-step="2"><span data-i18n="moment">决定性瞬间</span><textarea id="moment" data-path="scene.decisive_moment"></textarea></label>
+        <label class="field" data-step="2"><span data-i18n="characterType">人物类型</span><select id="character-type"><option value="human" data-i18n="humanCharacter">人物</option><option value="anthropomorphic" data-i18n="anthropomorphicCharacter">拟人化人物</option></select></label>
+        <label class="field" data-step="2"><span data-i18n="characterIdentity">人物身份</span><input id="character-identity" data-path="character.identity" data-i18n-placeholder="characterIdentityPlaceholder"></label>
+        <label class="field wide" data-step="2"><span data-i18n="characterAppearance">外观一致性锚点</span><input id="character-appearance" data-path="character.appearance" data-i18n-placeholder="characterAppearancePlaceholder"></label>
+        <label class="field" data-step="2"><span data-i18n="characterCostume">服装/材质</span><input id="character-costume" data-path="character.costume"></label>
+        <label class="field" data-step="2"><span data-i18n="performanceAnchor">动作/姿态锚点</span><input id="performance-anchor" data-path="performance.body" data-i18n-placeholder="performanceAnchorPlaceholder"></label>
+        <div class="consistency-group" data-step="2"><div class="field-head"><span data-i18n="consistencyBase">一致性底座</span><span class="lock-label" data-i18n="consistencyLocked">锁定后贯穿所有图片与分镜</span></div><div class="consistency-fields"><label class="field"><span data-i18n="productIdentity">产品身份</span><input id="product-identity" data-path="consistency.product.identity" data-i18n-placeholder="productIdentityPlaceholder"></label><label class="field"><span data-i18n="productAppearance">产品外观</span><input id="product-appearance" data-path="consistency.product.appearance" data-i18n-placeholder="productAppearancePlaceholder"></label><label class="field"><span data-i18n="productMaterial">产品材质 / 标记</span><input id="product-material" data-path="consistency.product.material" data-i18n-placeholder="productMaterialPlaceholder"></label></div></div>
         <label class="field" data-step="3"><span data-i18n="medium">视觉媒介</span><input id="medium" data-path="style.medium"></label>
-        <label class="field wide" data-step="3"><span data-i18n="avoid">避免元素（逗号分隔）</span><input id="avoid"></label>
+        <label class="field" data-step="3"><span data-i18n="imagePlatform">图片发布平台</span><select id="image-platform"><option value="xiaohongshu_image" data-i18n="imagePlatformXiaohongshu">小红书图片</option><option value="facebook_image" data-i18n="imagePlatformFacebook">Facebook 图片</option><option value="instagram_image" data-i18n="imagePlatformInstagram">Instagram 图片</option><option value="pinterest_image" data-i18n="imagePlatformPinterest">Pinterest 图片</option><option value="generic_image" data-i18n="imagePlatformGeneric">通用图片</option></select></label>
+        <label class="field wide" data-step="3"><span data-i18n="avoid">避免元素（逗号分隔）</span><input id="avoid" data-i18n-placeholder="avoidPlaceholder"></label>
         <label class="field" data-step="4"><span data-i18n="location">场景地点</span><input id="location" data-path="world.location"></label>
         <label class="field" data-step="4"><span data-i18n="shot">镜头景别</span><input id="shot" data-path="camera.shot_size"></label>
         <label class="field" data-step="4"><span data-i18n="ratio">画面比例</span><select id="ratio" data-path="constraints.aspect_ratio"><option>1:1</option><option>3:4</option><option>4:3</option><option>16:9</option><option>9:16</option></select></label>
-        <div class="step-note" data-step="5"><span data-i18n="continuityNote">连续性检查会在右侧 Gate 区域运行，确保角色、风格与世界状态保持一致。</span></div>
+        <label class="field" data-step="4"><span data-i18n="sceneMode">空间策略</span><select id="scene-mode"><option value="auto" data-i18n="sceneAuto">按故事自动切换空间</option><option value="selected" data-i18n="sceneSelected">锁定当前地点</option><option value="random" data-i18n="sceneRandom">随机选择一个地点</option></select></label>
+        <label class="field wide" data-step="4"><span data-i18n="sceneOptions">空间序列 / 候选地点（逗号分隔）</span><input id="scene-options" data-i18n-placeholder="sceneOptionsPlaceholder"></label>
+        <label class="field" data-step="4"><span data-i18n="sceneSeed">随机种子</span><input id="scene-seed" data-i18n-placeholder="sceneSeedPlaceholder"></label>
+        <label class="field" data-step="4"><span data-i18n="platform">视频发布平台</span><select id="platform"><option value="generic_short" data-i18n="platformGeneric">通用短视频</option><option value="xiaohongshu_video" data-i18n="platformXiaohongshu">小红书视频</option><option value="youtube_shorts" data-i18n="platformYoutube">YouTube Shorts</option><option value="instagram_reels" data-i18n="platformInstagram">Instagram Reels</option><option value="tiktok" data-i18n="platformTiktok">TikTok</option><option value="douyin" data-i18n="platformDouyin">抖音</option><option value="bilibili" data-i18n="platformBilibili">B站</option><option value="wechat_channels" data-i18n="platformWechat">视频号</option><option value="facebook_reels" data-i18n="platformFacebook">Facebook Reels</option><option value="kuaishou" data-i18n="platformKuaishou">快手</option></select></label>
+        <label class="field" data-step="4"><span data-i18n="duration">视频时长（秒）</span><input id="duration" type="number" min="6" max="60" step="1" value="18"></label>
+        <div class="step-note" data-step="5"><span data-i18n="continuityNote">连续性检查会在右侧 Gate 区域运行，确保人物（含拟人化人物）、动作、风格与世界状态保持一致。</span></div>
         <div class="step-note" data-step="6"><span data-i18n="compilerNote">提示词将在通过三道 Gate 后编译，并可发送给已启用的 Harness 或文生图 Provider。</span></div>
       </div>
       <div class="actions">
         <button id="reset" class="secondary" data-i18n="reset">恢复示例</button>
-        <div><button id="validate" class="secondary" data-i18n="validate">运行三道 Gate</button><button id="compile" class="secondary" data-i18n="compile">编译 Prompt</button><button id="generate" class="primary" data-i18n="generate">生成图像</button></div>
+        <div><button id="validate" class="secondary" data-i18n="validate">运行三道 Gate</button><button id="compile" class="secondary" data-i18n="compile">编译 Prompt</button><button id="generate" class="primary" data-i18n="generate">生成图像</button><button id="generate-video" class="secondary" data-i18n="generateVideo">生成视频</button></div>
       </div>
     </section>
 
     <aside class="inspector">
-      <div class="inspector-head"><div><p class="eyebrow">QUALITY CONTROL</p><h2 data-i18n="quality">决策检查</h2></div><span id="overall" class="badge neutral">READY</span></div>
+      <div class="inspector-head"><div><p class="eyebrow" data-i18n="qualityControl">质量控制</p><h2 data-i18n="quality">决策检查</h2></div><span id="overall" class="badge neutral" data-i18n="ready">就绪</span></div>
       <div id="gates" class="gate-list">
-        <article class="gate" data-gate="director"><div><span class="gate-icon">D</span><div><strong>Director Gate</strong><small>事件、瞬间、证据、景别</small></div></div><span class="gate-state">—</span></article>
-        <article class="gate" data-gate="art_direction"><div><span class="gate-icon">A</span><div><strong>Art Direction Gate</strong><small>取舍、层级、克制、一致</small></div></div><span class="gate-state">—</span></article>
-        <article class="gate" data-gate="continuity"><div><span class="gate-icon">C</span><div><strong>Continuity Gate</strong><small>角色、风格、世界连续性</small></div></div><span class="gate-state">—</span></article>
+        <article class="gate" data-gate="director"><div><span class="gate-icon">D</span><div><strong data-i18n="directorGate">导演 Gate</strong><small data-i18n="directorGateHelp">事件、瞬间、证据、景别</small></div></div><span class="gate-state">—</span></article>
+        <article class="gate" data-gate="art_direction"><div><span class="gate-icon">A</span><div><strong data-i18n="artGate">艺术指导 Gate</strong><small data-i18n="artGateHelp">取舍、层级、克制、一致</small></div></div><span class="gate-state">—</span></article>
+        <article class="gate" data-gate="continuity"><div><span class="gate-icon">C</span><div><strong data-i18n="continuityGate">连续性 Gate</strong><small data-i18n="continuityGateHelp">角色、风格、世界连续性</small></div></div><span class="gate-state">—</span></article>
       </div>
       <section class="preview-panel">
-        <div class="output-head"><div><p class="eyebrow">IMAGE PREVIEW</p><h2 data-i18n="preview">生成预览</h2></div><span id="preview-state" class="badge neutral">EMPTY</span></div>
-        <div id="preview-frame" class="preview-frame"><div><span>◇</span><p data-i18n="previewEmpty">接入文生图服务后，生成结果将在这里显示</p></div><img id="preview-image" alt="Generated visual preview"></div>
+        <div class="output-head"><div><p class="eyebrow" data-i18n="imagePreview">图片预览</p><h2 data-i18n="preview">生成预览</h2></div><span id="preview-state" class="badge neutral" data-i18n="empty">空</span></div>
+        <div id="preview-frame" class="preview-frame"><div><span>◇</span><p data-i18n="previewEmpty">接入媒体服务后，生成结果将在这里显示</p></div><img id="preview-image" data-i18n-alt="generatedPreviewAlt" alt="生成的视觉预览"><video id="preview-video" controls playsinline></video></div>
+        <div id="media-result" class="media-result" hidden><span id="media-result-state"></span><div id="media-downloads" class="media-downloads"></div><pre id="media-fallback" class="media-fallback"></pre></div>
       </section>
-      <div class="output-head"><div><p class="eyebrow">COMPILED OUTPUT</p><h2>Canonical Prompt</h2></div><button id="copy" class="quiet">复制</button></div>
-      <pre id="output">等待编译。\n\nVisualSpec 通过三道 Gate 后，Provider Adapter 会在这里输出可执行提示词。</pre>
+      <section id="prompt-package" class="prompt-package">
+        <div class="output-head"><div><p class="eyebrow" data-i18n="imagePromptsEyebrow">图片提示词</p><h2 data-i18n="imagePrompts">图片 Prompt</h2></div><span id="image-count" class="badge neutral">0 张</span></div>
+        <div id="image-prompts" class="prompt-list"><p class="empty-output" data-i18n="waitingCompile">等待编译。</p></div>
+        <section id="video-storyboard-section" class="storyboard-section" hidden>
+          <div class="output-head"><div><p class="eyebrow" data-i18n="videoStoryboardEyebrow">视频分镜</p><h2 data-i18n="videoStoryboard">视频分镜 Prompt</h2></div><button id="copy-video-storyboard" class="quiet" data-copy-prompt="video-storyboard" data-i18n="copyStoryboard">复制完整分镜</button></div>
+          <div id="storyboard-plan" class="storyboard-plan"></div>
+          <pre id="video-storyboard-prompt" class="storyboard-prompt" data-i18n="storyboardEmpty">故事模式编译后，这里会单独列出视频分镜。</pre>
+          <div id="storyboard-shots" class="storyboard-shots"></div>
+        </section>
+        <details class="canonical-details">
+          <summary data-i18n="canonicalPrompt">查看 Canonical Prompt 底稿</summary>
+          <div class="output-head"><div><p class="eyebrow" data-i18n="compiledOutput">编译输出</p><h2 data-i18n="canonicalPromptTitle">Canonical Prompt</h2></div><button id="copy" class="quiet" data-copy-prompt="canonical" data-i18n="copy">复制</button></div>
+          <pre id="output" data-i18n="outputEmpty">等待编译。
+
+VisualSpec 通过三道 Gate 后，Provider Adapter 会在这里输出可执行提示词。</pre>
+        </details>
+      </section>
+      <section id="optimization-panel" class="optimization-panel" hidden>
+        <div class="output-head"><div><p class="eyebrow" data-i18n="optimizationEyebrow">创意优化</p><h2 data-i18n="optimizationTitle">导演版创意</h2></div><span class="badge neutral" data-i18n="local">本地</span></div>
+        <pre id="optimization-output"></pre>
+        <details class="canonical-details"><summary data-i18n="showOriginal">查看客户原始创意</summary><pre id="optimization-original"></pre></details>
+        <div class="optimization-actions"><button id="apply-optimization" class="primary" data-i18n="applyOptimization">采用优化</button><button id="restore-original" class="secondary" data-i18n="restoreOriginal">恢复原始</button><button id="copy-optimization" class="quiet" data-i18n="copyOptimization">复制导演版</button></div>
+      </section>
       <section class="harness-panel">
-        <div class="output-head"><div><p class="eyebrow">AI HARNESS BRIDGE</p><h2>辅助平台协作</h2></div><span id="harness-state" class="badge neutral">LOCAL</span></div>
-        <label class="harness-label">目标工具<select id="harness" aria-label="目标 AI Harness"></select></label>
-        <textarea id="harness-prompt" class="harness-prompt" aria-label="发给 AI Harness 的任务" placeholder="例如：根据当前 VisualSpec 提出三个更克制的艺术指导方案。"></textarea>
-        <div class="harness-actions"><button id="use-prompt" class="secondary">带入编译结果</button><button id="run-harness" class="primary">发送协作任务</button></div>
-        <pre id="harness-output" class="harness-output">等待连接已启用的 Harness。配置保存在服务端，不在浏览器中保存密钥或命令。</pre>
-        <a id="harness-link" class="harness-link" target="_blank" rel="noreferrer" hidden>打开授权入口</a>
-        <button id="confirm-harness" class="secondary confirm-harness" hidden>我已完成人工授权，确认接入</button>
+        <div class="output-head"><div><p class="eyebrow" data-i18n="harnessBridge">AI 辅助平台</p><h2 data-i18n="harnessTitle">辅助平台协作</h2></div><span id="harness-state" class="badge neutral" data-i18n="local">本地</span></div>
+        <label class="harness-label"><span data-i18n="targetTool">目标工具</span><select id="harness" data-i18n-aria-label="targetHarness"></select></label>
+        <label class="harness-label"><span data-i18n="capability">使用能力</span><select id="harness-capability" data-i18n-aria-label="harnessCapability"></select></label>
+        <p id="harness-description" class="harness-description"></p>
+        <textarea id="harness-prompt" class="harness-prompt" data-i18n-aria-label="harnessPrompt" data-i18n-placeholder="harnessPromptPlaceholder"></textarea>
+        <div class="harness-actions"><button id="use-prompt" class="secondary" data-i18n="useCompiled">带入编译结果</button><button id="run-harness" class="primary" data-i18n="sendTask">发送协作任务</button></div>
+        <pre id="harness-output" class="harness-output" data-i18n="harnessEmpty">等待连接已启用的 Harness。配置保存在服务端，不在浏览器中保存密钥或命令。</pre>
+        <a id="harness-link" class="harness-link" target="_blank" rel="noreferrer" hidden data-i18n="openAuthorization">打开授权入口</a>
+        <button id="confirm-harness" class="secondary confirm-harness" hidden data-i18n="confirmAuthorization">我已完成人工授权，确认接入</button>
         <div class="realtime-chat">
-          <div class="chat-head"><span>CODEX REALTIME</span><button id="start-realtime" class="quiet">开始实时会话</button></div>
-          <div id="chat-log" class="chat-log">尚未建立实时会话。</div>
-          <div class="chat-compose"><input id="chat-input" placeholder="向 Codex 发送消息…" aria-label="实时消息"><button id="send-chat" class="primary" disabled>发送</button></div>
+          <div class="chat-head"><span data-i18n="codexRealtime">CODEX 实时会话</span><button id="start-realtime" class="quiet" data-i18n="startRealtime">开始实时会话</button></div>
+          <div id="chat-log" class="chat-log" data-i18n="realtimeEmpty">尚未建立实时会话。</div>
+          <div class="chat-compose"><input id="chat-input" data-i18n-placeholder="chatPlaceholder" data-i18n-aria-label="realtimeMessage"><button id="send-chat" class="primary" disabled data-i18n="send">发送</button></div>
         </div>
       </section>
       <p id="message" class="message" aria-live="polite"></p>

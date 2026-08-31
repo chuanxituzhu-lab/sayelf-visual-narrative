@@ -6,7 +6,7 @@ export const openAIProvider = {
   id: 'openai',
 
   compile(spec, options = {}) {
-    const prompt = compileCanonicalPrompt(spec);
+    const prompt = compileCanonicalPrompt(spec, options.language);
     return {
       provider: 'openai',
       request: {
@@ -57,6 +57,42 @@ export const openAIProvider = {
         url: item.url,
         revised_prompt: item.revised_prompt
       })),
+      usage: payload.usage,
+      raw: payload
+    };
+  },
+
+  async generatePrompt(prompt, options = {}) {
+    const apiKey = options.apiKey || process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new Error('OPENAI_API_KEY is required for OpenAI image generation');
+    const request = {
+      model: options.model || process.env.SAYELF_OPENAI_IMAGE_MODEL || 'gpt-image-2',
+      prompt: String(prompt || '').trim(),
+      size: options.size || aspectRatioToSize(options.aspectRatio),
+      quality: options.quality || 'auto',
+      output_format: options.outputFormat || 'png',
+      n: options.n || 1
+    };
+    if (!request.prompt) throw new TypeError('prompt is required for OpenAI image generation');
+    const response = await fetch(options.endpoint || DEFAULT_ENDPOINT, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(request),
+      signal: options.signal
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const message = payload?.error?.message || `OpenAI image request failed with HTTP ${response.status}`;
+      const error = new Error(message);
+      error.status = response.status;
+      error.payload = payload;
+      throw error;
+    }
+    return {
+      provider: 'openai-images',
+      model: request.model,
+      request,
+      images: (payload.data || []).map((item, index) => ({ index, b64_json: item.b64_json, url: item.url, revised_prompt: item.revised_prompt })),
       usage: payload.usage,
       raw: payload
     };

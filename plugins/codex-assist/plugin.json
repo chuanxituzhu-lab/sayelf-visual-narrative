@@ -1,0 +1,18 @@
+{
+  "type": "sayelf-assist-plugin",
+  "id": "codex",
+  "name": "Codex",
+  "version": "0.1.0",
+  "description": "Codex CLI assistant plugin; machine-specific auth and enablement stay in config/harnesses.json.",
+  "transport": "cli",
+  "enabled": false,
+  "entry": {
+    "command": "codex",
+    "args": ["exec", "-"]
+  },
+  "capabilities": [
+    { "id": "assist", "name": "协作", "description": "分析当前视觉任务。" },
+    { "id": "review", "name": "审阅", "description": "检查意图、连续性与提示词质量。" },
+    { "id": "refine", "name": "改写", "description": "保留导演意图并改进结果。" }
+  ]
+}

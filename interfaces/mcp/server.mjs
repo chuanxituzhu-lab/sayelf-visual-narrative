@@ -1,14 +1,64 @@
 #!/usr/bin/env node
 import readline from 'node:readline';
 import { validateVisualSpec } from '../../core/compiler.mjs';
+import { optimizeCreativeIntent } from '../../core/creative-optimizer.mjs';
 import { genericProvider } from '../../adapters/providers/generic.mjs';
 import { openAIProvider } from '../../adapters/providers/openai.mjs';
 import { compareContinuity } from '../../core/continuity.mjs';
+import { createDualOutputRuntime } from '../../core/dual-output/runtime.mjs';
+import { createMediaRuntime } from '../../core/media/runtime.mjs';
+import { fileURLToPath } from 'node:url';
 
 const protocolVersion = '2025-11-25';
 const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
+const rootDir = fileURLToPath(new URL('../../', import.meta.url));
+const dualOutputRuntime = createDualOutputRuntime(rootDir);
+const mediaRuntime = createMediaRuntime(rootDir);
 
 const tools = [
+  {
+    name: 'list_visual_skills',
+    description: 'List the enabled built-in and external Visual Skill plugins available to the director core.',
+    inputSchema: { type: 'object', properties: {} }
+  },
+  {
+    name: 'run_visual_skill',
+    description: 'Run a routed Visual Skill and return validated synchronized image prompts plus a video storyboard.',
+    inputSchema: {
+      type: 'object',
+      required: ['input'],
+      properties: { input: { type: 'object' } }
+    }
+  },
+  {
+    name: 'optimize_creative_intent',
+    description: 'Locally optimize customer creative intent into a director-ready brief while preserving the original intent and consistency locks.',
+    inputSchema: {
+      type: 'object',
+      required: ['intent'],
+      properties: { intent: { type: 'string' }, language: { enum: ['zh', 'en', 'bilingual'] }, spec: { type: 'object' } }
+    }
+  },
+  {
+    name: 'list_media_providers',
+    description: 'List local and configured media providers without exposing credentials.',
+    inputSchema: { type: 'object', properties: {} }
+  },
+  {
+    name: 'submit_media_job',
+    description: 'Submit a text-to-image, image-to-video, or text-to-video job to a configured provider, or receive an AI assistant fallback task.',
+    inputSchema: { type: 'object', required: ['asset_type', 'mode'], properties: { asset_type: { enum: ['image', 'video'] }, mode: { enum: ['text_to_image', 'image_to_video', 'text_to_video'] }, provider_id: { type: 'string' }, prompt: { type: 'string' }, prompts: { type: 'array', items: { type: 'string' } }, options: { type: 'object' } } }
+  },
+  {
+    name: 'get_media_job',
+    description: 'Get the local state, preview URLs, and download URLs for a media job.',
+    inputSchema: { type: 'object', required: ['job_id'], properties: { job_id: { type: 'string' } } }
+  },
+  {
+    name: 'refresh_media_job',
+    description: 'Poll an asynchronous media provider once and return the updated local job state.',
+    inputSchema: { type: 'object', required: ['job_id'], properties: { job_id: { type: 'string' } } }
+  },
   {
     name: 'validate_visual_spec',
     description: 'Validate a VisualSpec through director, art-direction, and continuity gates.',
@@ -68,7 +118,7 @@ rl.on('line', async (line) => {
         return writeResult(message.id, {
           protocolVersion,
           capabilities: { tools: {} },
-          serverInfo: { name: 'sayelf-visual-narrative', version: '0.2.0' }
+          serverInfo: { name: 'sayelf-visual-narrative', version: '0.3.0' }
         });
       case 'tools/list':
         return writeResult(message.id, { tools });
@@ -89,7 +139,14 @@ rl.on('line', async (line) => {
 
 async function callTool(name, args) {
   let result;
-  if (name === 'validate_visual_spec') result = validateVisualSpec(args.spec, args.previous || null);
+  if (name === 'list_visual_skills') result = (await dualOutputRuntime).listSkills();
+  else if (name === 'run_visual_skill') result = await (await dualOutputRuntime).execute(args.input);
+  else if (name === 'optimize_creative_intent') result = optimizeCreativeIntent(args);
+  else if (name === 'list_media_providers') result = (await mediaRuntime).listProviders();
+  else if (name === 'submit_media_job') result = await (await mediaRuntime).submit(args);
+  else if (name === 'get_media_job') result = (await mediaRuntime).getJob(args.job_id);
+  else if (name === 'refresh_media_job') result = await (await mediaRuntime).refreshJob(args.job_id);
+  else if (name === 'validate_visual_spec') result = validateVisualSpec(args.spec, args.previous || null);
   else if (name === 'compile_visual_prompt') {
     const provider = args.provider === 'openai' ? openAIProvider : genericProvider;
     result = provider.compile(args.spec, args.options || {});

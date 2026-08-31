@@ -1,0 +1,20 @@
+{
+  "type": "sayelf-assist-plugin",
+  "id": "custom-api",
+  "name": "Custom HTTP API",
+  "version": "0.1.0",
+  "description": "A disabled HTTP AI assistant plugin; configure its endpoint and local key in config/harnesses.json or a local override.",
+  "transport": "api",
+  "enabled": false,
+  "entry": {
+    "url": "http://127.0.0.1:9000/assist",
+    "method": "POST",
+    "required_env": ["SAYELF_CUSTOM_API_KEY"],
+    "header_env": { "Authorization": "SAYELF_CUSTOM_API_KEY" }
+  },
+  "capabilities": [
+    { "id": "assist", "name": "协作", "description": "分析当前任务并提出建议。" },
+    { "id": "review", "name": "审阅", "description": "检查当前结果并指出风险。" },
+    { "id": "refine", "name": "改写", "description": "生成保留意图的改进版本。" }
+  ]
+}

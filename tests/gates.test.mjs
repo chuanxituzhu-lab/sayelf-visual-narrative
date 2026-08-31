@@ -15,4 +15,6 @@ test('compiler emits a canonical prompt', () => {
   const prompt = compileCanonicalPrompt(spec);
   assert.match(prompt, /Visual philosophy:/);
   assert.match(prompt, /decisive/i);
+  assert.match(prompt, /elderly-man-01/);
+  assert.match(prompt, /short silver hair/);
 });

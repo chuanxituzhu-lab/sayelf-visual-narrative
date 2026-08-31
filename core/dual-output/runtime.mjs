@@ -3,6 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { discoverSkills } from './registry.mjs';
 import { routeIntent } from './router.mjs';
 import { loadSchemaSet, validateAgainstSchema } from './schema-validator.mjs';
+import { planStoryboard } from './storyboard-planner.mjs';
+import { assertMatchingPromptCounts, buildVisualOutputPackage } from './output-package.mjs';
+import { buildConsistencyState, validateConsistencyState } from '../consistency-state.mjs';
 
 const DEFAULT_ROOT = fileURLToPath(new URL('../../', import.meta.url));
 
@@ -11,15 +14,41 @@ export async function createDualOutputRuntime(rootDir = DEFAULT_ROOT) {
   const schemas = await loadSchemaSet(path.join(rootDir, 'schemas'));
   return {
     registry,
+    listSkills() {
+      return registry.skills.map(({ id, priority, manifest, origin }) => ({
+        id,
+        priority,
+        origin: origin || 'builtin',
+        name: manifest.name,
+        version: manifest.version,
+        capabilities: manifest.capabilities,
+        tags: manifest.router.tags,
+        source: manifest.source
+      }));
+    },
     route(input) { return routeIntent(input, registry); },
     async execute(input) {
       validateRequest(input);
       const route = routeIntent(input, registry);
       const skill = registry.byId.get(route.selectedSkillId);
-      const output = await skill.execute(input, { manifest: skill.manifest });
+      const consistencyState = buildConsistencyState(input);
+      const consistencyValidation = validateConsistencyState(consistencyState);
+      if (!consistencyValidation.valid) throw new Error(`Invalid consistency state:\n${consistencyValidation.errors.map((error) => `- ${error}`).join('\n')}`);
+      const productAnchor = consistencyState.product?.identity || '';
+      const plan = planStoryboard({ ...input, consistency_state: consistencyState, product_anchor: productAnchor });
+      const output = await skill.execute({ ...input, consistency_state: consistencyState, product_anchor: productAnchor, environment: plan.scene.selected, aspect_ratio: plan.aspect_ratio, duration_seconds: plan.duration_seconds, plan }, { manifest: skill.manifest });
       const validation = validateDualOutput(output, schemas);
       if (!validation.valid) throw new Error(`Skill ${skill.id} returned an invalid Dual Output:\n${validation.errors.map((error) => `- ${error}`).join('\n')}`);
-      return { input, route, output, validation };
+      const outputPackage = buildVisualOutputPackage({
+        output,
+        plan,
+        mode: input.mode || 'story_sequence',
+        language: input.language || output.video_storyboard.language,
+        imagePlatform: input.image_platform_profile || '',
+        consistencyState
+      });
+      assertMatchingPromptCounts(outputPackage);
+      return { input, route, plan, consistency_state: consistencyState, output, output_package: outputPackage, validation, consistency_validation: consistencyValidation };
     }
   };
 }

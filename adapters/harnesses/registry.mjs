@@ -8,8 +8,17 @@ const defaultConfig = resolve(root, 'config', 'harnesses.json');
 
 export async function listHarnesses() {
   const config = await loadConfig();
-  return config.harnesses.map(({ id, name, transport, enabled, description = '', capabilities = ['assist'], plugin, version }) => ({
-    id, name, transport, enabled: Boolean(enabled), description, capabilities, plugin: Boolean(plugin), version
+  return config.harnesses.map((harness) => ({
+    id: harness.id,
+    name: harness.name,
+    transport: harness.transport,
+    enabled: Boolean(harness.enabled),
+    description: harness.description || '',
+    capabilities: normalizeCapabilities(harness.capabilities),
+    configured: missingEnvironment(harness).length === 0,
+    missing_env: missingEnvironment(harness),
+    plugin: Boolean(harness.plugin),
+    version: harness.version
   }));
 }
 
@@ -20,7 +29,8 @@ export async function invokeHarness(id, input = {}) {
   if (!harness.enabled) throw httpError(409, `${harness.name} is not enabled in config/harnesses.json`);
   const prompt = typeof input.prompt === 'string' ? input.prompt.trim() : '';
   if (!prompt) throw httpError(400, 'prompt is required');
-  const request = { prompt, spec: input.spec || null, compiledPrompt: input.compiledPrompt || '' };
+  const capability = selectCapability(harness, input.capability);
+  const request = { prompt, spec: input.spec || null, compiledPrompt: input.compiledPrompt || '', capability: capability.id };
   if (harness.transport === 'cli') return runCli(harness, request);
   if (harness.transport === 'api') return runApi(harness, request);
   if (harness.transport === 'mcp') return runMcp(harness, request);
@@ -31,6 +41,11 @@ export async function connectHarness(id) {
   const config = await loadConfig();
   const harness = config.harnesses.find((item) => item.id === id);
   if (!harness) throw httpError(404, `Unknown harness: ${id}`);
+  if (harness.transport === 'api') {
+    const missing = missingEnvironment(harness);
+    if (missing.length) return { harness: id, status: 'api_configuration_required', missing_env: missing, message: `${harness.name} requires local API configuration before it can be used.` };
+    return { harness: id, status: 'api_ready', message: `${harness.name} API configuration is available locally. Run a capability to test the endpoint.` };
+  }
   if (!harness.auth) return { harness: id, status: harness.enabled ? 'ready' : 'not_configured', message: `${harness.name} has no automatic authorization flow configured.` };
   const authorizationUrl = harness.auth.url || null;
   const command = harness.auth.command || harness.command;
@@ -49,6 +64,12 @@ export async function confirmHarness(id) {
   const config = await loadConfig();
   const harness = config.harnesses.find((item) => item.id === id);
   if (!harness) throw httpError(404, `Unknown harness: ${id}`);
+  if (harness.transport === 'api') {
+    const missing = missingEnvironment(harness);
+    return missing.length
+      ? { harness: id, status: 'api_configuration_required', missing_env: missing, message: `${harness.name} is not configured. Set the required local environment variables, then try again.` }
+      : { harness: id, status: 'api_ready', message: `${harness.name} API configuration is available locally.` };
+  }
   const verify = harness.auth?.verify;
   if (!verify?.command) return { harness: id, status: 'manual_confirmation_recorded', message: `${harness.name} has no verification command. Manual confirmation recorded locally; configure a verifier to prove the credential is available.` };
   try {
@@ -105,11 +126,15 @@ async function runCli(harness, request) {
 
 async function runApi(harness, request) {
   if (!harness.url) throw httpError(409, `${harness.name} has no API URL configured`);
+  const missing = missingEnvironment(harness);
+  if (missing.length) throw httpError(409, `${harness.name} requires local environment variables: ${missing.join(', ')}`);
+  const headers = { 'Content-Type': 'application/json', ...(harness.headers || {}) };
+  for (const [header, envName] of Object.entries(headerEnvironment(harness))) headers[header] = process.env[envName];
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), harness.timeoutMs || 60_000);
   try {
     const response = await fetch(harness.url, {
-      method: harness.method || 'POST', headers: { 'Content-Type': 'application/json', ...(harness.headers || {}) },
+      method: harness.method || 'POST', headers,
       body: JSON.stringify(request), signal: controller.signal
     });
     const text = await response.text();
@@ -174,7 +199,36 @@ function startInteractiveProcess(command, args) {
 }
 
 function interpolate(value, request) {
-  return String(value).replaceAll('{prompt}', request.prompt).replaceAll('{compiledPrompt}', request.compiledPrompt).replaceAll('{specJson}', JSON.stringify(request.spec || {}));
+  return String(value).replaceAll('{prompt}', request.prompt).replaceAll('{compiledPrompt}', request.compiledPrompt).replaceAll('{capability}', request.capability).replaceAll('{specJson}', JSON.stringify(request.spec || {}));
+}
+
+function normalizeCapabilities(capabilities) {
+  const items = Array.isArray(capabilities) && capabilities.length ? capabilities : ['assist'];
+  return items.map((item) => {
+    if (typeof item === 'string') return { id: item, name: item, description: '' };
+    return { id: item.id, name: item.name || item.id, description: item.description || '' };
+  }).filter((item) => typeof item.id === 'string' && item.id.trim());
+}
+
+function selectCapability(harness, requested) {
+  const capabilities = normalizeCapabilities(harness.capabilities);
+  const id = typeof requested === 'string' && requested.trim() ? requested.trim() : capabilities[0]?.id;
+  const capability = capabilities.find((item) => item.id === id);
+  if (!capability) throw httpError(400, `${harness.name} does not declare capability: ${id}`);
+  return capability;
+}
+
+function headerEnvironment(harness) {
+  return harness.header_env || harness.headers_env || harness.headerEnv || {};
+}
+
+function missingEnvironment(harness) {
+  const names = [
+    ...(Array.isArray(harness.required_env) ? harness.required_env : []),
+    ...(Array.isArray(harness.auth?.required_env) ? harness.auth.required_env : []),
+    ...Object.values(headerEnvironment(harness))
+  ].filter((name) => typeof name === 'string' && name.trim());
+  return [...new Set(names)].filter((name) => !process.env[name]);
 }
 
 function httpError(status, message) { const error = new Error(message); error.status = status; return error; }

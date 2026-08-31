@@ -3,12 +3,27 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateVisualSpec } from '../../core/compiler.mjs';
+import { optimizeCreativeIntent } from '../../core/creative-optimizer.mjs';
 import { compareContinuity } from '../../core/continuity.mjs';
 import { genericProvider } from '../../adapters/providers/generic.mjs';
 import { openAIProvider } from '../../adapters/providers/openai.mjs';
+import { createDualOutputRuntime } from '../../core/dual-output/runtime.mjs';
+import { createMediaRuntime } from '../../core/media/runtime.mjs';
 
 const [, , command, inputPath, ...rest] = process.argv;
-if (!command || !inputPath) usage(1);
+if (!command) usage(1);
+
+if (command === 'skills') {
+  console.log(JSON.stringify((await createDualOutputRuntime(fileURLToPath(new URL('../../', import.meta.url)))).listSkills(), null, 2));
+  process.exit(0);
+}
+
+if (command === 'providers') {
+  console.log(JSON.stringify((await createMediaRuntime(fileURLToPath(new URL('../../', import.meta.url)))).listProviders(), null, 2));
+  process.exit(0);
+}
+
+if (!inputPath) usage(1);
 
 const spec = readJson(inputPath);
 const flags = parseFlags(rest);
@@ -31,6 +46,27 @@ if (command === 'compile') {
     console.log(JSON.stringify(provider.compile(spec, flags), null, 2));
   } catch (error) {
     console.error(JSON.stringify(error.validation || { error: error.message }, null, 2));
+    process.exit(2);
+  }
+  process.exit(0);
+}
+
+if (command === 'run') {
+  try {
+    const runtime = await createDualOutputRuntime(fileURLToPath(new URL('../../', import.meta.url)));
+    console.log(JSON.stringify(await runtime.execute(spec), null, 2));
+  } catch (error) {
+    console.error(JSON.stringify({ error: error.message, validation: error.validation }, null, 2));
+    process.exit(2);
+  }
+  process.exit(0);
+}
+
+if (command === 'optimize') {
+  try {
+    console.log(JSON.stringify(optimizeCreativeIntent({ intent: spec.story?.intent || spec.intent, language: flags.language || 'zh', spec }), null, 2));
+  } catch (error) {
+    console.error(JSON.stringify({ error: error.message }, null, 2));
     process.exit(2);
   }
   process.exit(0);
@@ -89,6 +125,6 @@ function fail(message) {
 
 function usage(code = 0) {
   const script = path.basename(fileURLToPath(import.meta.url));
-  console.log(`Usage:\n  node ${script} validate <visual-spec.json> [--previous previous.json]\n  node ${script} continuity <visual-spec.json> --previous previous.json\n  node ${script} compile <visual-spec.json> [--provider generic|openai] [--model MODEL]\n  node ${script} generate <visual-spec.json> --provider openai [--output DIR] [--model MODEL]`);
+  console.log(`Usage:\n  node ${script} skills\n  node ${script} providers\n  node ${script} validate <visual-spec.json> [--previous previous.json]\n  node ${script} continuity <visual-spec.json> --previous previous.json\n  node ${script} compile <visual-spec.json> [--provider generic|openai] [--model MODEL]\n  node ${script} optimize <visual-spec.json> [--language zh|en|bilingual]\n  node ${script} run <visual-input.json>\n  node ${script} generate <visual-spec.json> --provider openai [--output DIR] [--model MODEL]`);
   process.exit(code);
 }

@@ -1,0 +1,5 @@
+{
+  "contract_version": "media/1.0",
+  "provider_directories": ["../plugins/media-providers"],
+  "providers": []
+}

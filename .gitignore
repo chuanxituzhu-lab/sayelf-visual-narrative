@@ -8,6 +8,7 @@
 node_modules/
 coverage/
 dist/
+data/
 
 # Local editor and OS files
 .DS_Store

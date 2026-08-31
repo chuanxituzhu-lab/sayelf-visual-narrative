@@ -33,6 +33,12 @@ export function continuityGate(spec, previous = null) {
   if (previous?.style?.visual_philosophy && spec?.style?.visual_philosophy && previous.style.visual_philosophy !== spec.style.visual_philosophy) {
     issues.push('visual philosophy drift detected');
   }
+  if (previous?.consistency?.product && spec?.consistency?.product && JSON.stringify(previous.consistency.product) !== JSON.stringify(spec.consistency.product)) {
+    issues.push('product consistency drift detected');
+  }
+  if (previous?.consistency?.characters && spec?.consistency?.characters && JSON.stringify(previous.consistency.characters) !== JSON.stringify(spec.consistency.characters)) {
+    issues.push('character consistency drift detected');
+  }
   return result('continuity', issues);
 }
 

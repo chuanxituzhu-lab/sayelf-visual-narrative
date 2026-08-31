@@ -22,3 +22,13 @@ test('continuity gate catches character identity drift', () => {
   assert.equal(report.status, 'REVISE');
   assert.ok(report.drifts.some((item) => item.path === 'character.identity'));
 });
+
+test('continuity allows a planned space change but checks a same-place change', () => {
+  const previous = { world: { location: '旷野', spatial_rules: 'open horizon' }, consistency: { space_continuity: { mode: 'auto' } } };
+  const differentSpace = { world: { location: '室内', spatial_rules: 'four walls' }, consistency: { space_continuity: { mode: 'auto' } } };
+  const sameSpaceChanged = { world: { location: '旷野', spatial_rules: 'dense forest' }, consistency: { space_continuity: { mode: 'auto' } } };
+  assert.equal(compareContinuity(previous, differentSpace).status, 'PASS');
+  assert.equal(compareContinuity(previous, differentSpace).space.transition, true);
+  assert.equal(compareContinuity(previous, sameSpaceChanged).status, 'REVISE');
+  assert.ok(compareContinuity(previous, sameSpaceChanged).drifts.some((drift) => drift.path === 'world.spatial_rules'));
+});

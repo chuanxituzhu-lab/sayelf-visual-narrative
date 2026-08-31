@@ -11,5 +11,5 @@
     "args": ["{prompt}"],
     "stdin": false
   },
-  "capabilities": ["assist"]
+  "capabilities": [{ "id": "assist", "name": "协作", "description": "向本地辅助 CLI 发送任务。" }]
 }
