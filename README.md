@@ -34,6 +34,16 @@ This release adds three dynamic scene-composition modes: automatic selection cho
 
 This v0.5 output-contract milestone builds on v0.12.0: one `SceneSpec` now selects `image`, `storyboard`, or `both` through one `OutputContract`. Image prompt compilation lives in `plugins/outputs/image`; storyboard compilation lives in `plugins/outputs/storyboard` and always returns five shots — `ENTER / ENCLOSE / GUIDE / REVEAL / HOLD`. `HOLD` is a temporal coda, not a new Core stage. Output failures are isolated in `errors`, so a healthy sibling output remains available.
 
+**v0.14.0 — Continuity Workspace / 一致性双栏工作台**
+
+v0.6 界面里程碑继续保持同一个 `SceneSpec` 和冻结 Core：WebUI 默认同时展示图片提示词与视频分镜提示词，两栏各自独立复制；图片提示词自动对齐分镜的 `REVEAL` 关键帧，分镜以 `HOLD` 收束。
+
+The v0.6 interface milestone keeps one `SceneSpec` and the frozen Core intact. The WebUI defaults to both outputs in two independent columns with separate copy actions. The image prompt is automatically aligned to the storyboard `REVEAL` keyframe, while the storyboard closes with `HOLD`.
+
+全域语言按钮支持中文、English 和中英双语，并会在已有结果上即时重绘。统一契约新增确定性的 `continuity` 锚点，跨图片与五个镜头固定主体、环境、隐藏窗口、视觉钩子、色彩、光线和镜头身份；变化只推进 `ENTER → ENCLOSE → GUIDE → REVEAL` 的发现过程。
+
+The global language switch supports Chinese, English, and bilingual output and re-renders an existing result immediately. The unified contract now carries a deterministic `continuity` anchor that keeps subject, environment, hidden window, visual hook, palette, light, and camera identity stable across the image and all five shots; only the discovery sequence advances through `ENTER → ENCLOSE → GUIDE → REVEAL`.
+
 ![Nature Window core overview](assets/nature-window-overview.png)
 
 ![Nature Window visual preview](assets/nature-window-preview.png)
@@ -202,13 +212,14 @@ Every generation request accepts `output: image | storyboard | both` and returns
 ```json
 {
   "contract": "hidden-nature-window.output",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "output": "both",
   "language": "bilingual",
   "scene": "shared SceneSpec",
   "seed": 2026,
   "variation": "shared deterministic variation",
   "visual_grammar": ["enter", "enclose", "guide", "reveal"],
+  "continuity": { "continuity_id": "nw-…", "shot_order": ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"], "image_keyframe": "REVEAL", "final_hold": "HOLD" },
   "outputs": { "image": "...", "storyboard": "..." },
   "errors": []
 }

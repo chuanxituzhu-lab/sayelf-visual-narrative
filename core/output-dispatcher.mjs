@@ -1,5 +1,5 @@
 import { loadRegistry, enabledPlugins } from "./plugin-loader.mjs";
-import { createOutputContract, selectedOutputTypes, VISUAL_GRAMMAR } from "./contracts.mjs";
+import { createContinuityAnchor, createOutputContract, selectedOutputTypes, VISUAL_GRAMMAR } from "./contracts.mjs";
 import * as imageOutput from "../plugins/outputs/image/index.mjs";
 import * as storyboardOutput from "../plugins/outputs/storyboard/index.mjs";
 
@@ -49,6 +49,8 @@ export function compileOutputs(context, { output = "image", plugins } = {}) {
   const selected = selectedOutputTypes(output);
   const result = {};
   const errors = [...loaded.errors];
+  const continuity = context.continuity || createContinuityAnchor(context);
+  const pluginContext = { ...context, continuity };
 
   for (const type of selected) {
     const plugin = loaded.plugins.find(item => item.outputType === type || item.id === type);
@@ -57,7 +59,7 @@ export function compileOutputs(context, { output = "image", plugins } = {}) {
       continue;
     }
     try {
-      result[type] = plugin.compile(context);
+      result[type] = plugin.compile(pluginContext);
     } catch (error) {
       errors.push(errorFor(type, error));
     }
@@ -79,6 +81,7 @@ export function compileOutputs(context, { output = "image", plugins } = {}) {
     seed: context.seed,
     variation: context.variation,
     outputs: result,
+    continuity,
     errors
   });
 }

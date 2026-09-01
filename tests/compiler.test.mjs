@@ -246,6 +246,10 @@ test("unified output contract selects image, storyboard, or both", () => {
   assert.deepEqual(Object.keys(both.outputs), ["image", "storyboard"]);
   assert.deepEqual(both.errors, []);
   assert.deepEqual(both.visual_grammar, ["enter", "enclose", "guide", "reveal"]);
+  assert.ok(both.continuity.continuity_id);
+  assert.deepEqual(both.continuity.shot_order, ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"]);
+  assert.equal(both.outputs.image.continuity_id, both.continuity.continuity_id);
+  assert.equal(both.outputs.storyboard.continuity_id, both.continuity.continuity_id);
 });
 
 test("storyboard output is exactly five ordered shots with image and video directions", () => {
@@ -275,6 +279,26 @@ test("image and storyboard from both share the same SceneSpec, variation, and se
   assert.deepEqual(both.variation, storyboard.variation);
   assert.equal(both.outputs.image.prompt, image.outputs.image.prompt);
   assert.deepEqual(both.outputs.storyboard.shots, storyboard.outputs.storyboard.shots);
+  assert.deepEqual(both.continuity, image.continuity);
+  assert.deepEqual(both.continuity, storyboard.continuity);
+  assert.equal(both.outputs.image.storyboard_alignment.keyframe, "REVEAL");
+  assert.equal(both.outputs.image.storyboard_alignment.hold, "HOLD");
+  assert.match(both.outputs.image.prompt, /REVEAL/);
+  assert.match(both.outputs.storyboard.shots[0].video_prompt, /Continuity anchor|连续性锚点/);
+});
+
+test("continuity anchor keeps the same visual identity through all five shots", () => {
+  const out = generateOutput({ scene: "lotus_pond", output: "both", language: "en", seed: 7171 });
+  const anchor = out.continuity;
+  assert.equal(anchor.scene_identity.en, "Lotus Pond");
+  assert.equal(anchor.image_keyframe, "REVEAL");
+  assert.equal(anchor.final_hold, "HOLD");
+  for (const shot of out.outputs.storyboard.shots) {
+    assert.match(shot.video_prompt_en, /same|unchanged/);
+    assert.ok(shot.video_prompt_en.includes(anchor.subject.en));
+  }
+  assert.match(out.outputs.image.prompt_en, /storyboard REVEAL keyframe/);
+  assert.notEqual(anchor.continuity_id, generateOutput({ scene: "lotus_pond", output: "both", language: "en", seed: 7172 }).continuity.continuity_id);
 });
 
 test("both output is byte-reproducible for the same SceneSpec and seed", () => {

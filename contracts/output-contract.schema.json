@@ -11,6 +11,7 @@
     "variation",
     "visual_grammar",
     "outputs",
+    "continuity",
     "errors"
   ],
   "properties": {
@@ -23,6 +24,16 @@
     "seed": { "type": ["number", "string"] },
     "visual_grammar": {
       "const": ["enter", "enclose", "guide", "reveal"]
+    },
+    "continuity": {
+      "type": "object",
+      "required": ["continuity_id", "shot_order", "image_keyframe", "final_hold"],
+      "properties": {
+        "continuity_id": { "type": "string" },
+        "shot_order": { "const": ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"] },
+        "image_keyframe": { "const": "REVEAL" },
+        "final_hold": { "const": "HOLD" }
+      }
     },
     "outputs": {
       "type": "object",

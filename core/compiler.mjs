@@ -116,7 +116,7 @@ export function generateOutput({
     visualStyle,
     aspectRatio,
     overrides,
-    version: "0.13.0"
+    version: "0.14.0"
   }, { output: selectedOutput });
 }
 
@@ -176,7 +176,7 @@ export async function generateComposedOutput({
     overrides: input,
     composition_mode: scene.composition_mode,
     composition_selection: scene.composition_selection,
-    version: "0.13.0"
+    version: "0.14.0"
   }, { output: selectedOutput });
 }
 

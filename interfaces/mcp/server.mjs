@@ -13,7 +13,7 @@ const outputEnum = z.enum(["image", "storyboard", "both"]);
 const languageEnum = z.enum(["zh", "en", "bilingual"]);
 const ratioEnum = z.enum(["1:1", "4:5", "3:4", "9:16", "16:9"]);
 const styleEnum = z.enum(["natural", "contrast", "impact"]);
-const server = new McpServer({ name: "hidden-nature-window", version: "0.13.0" });
+const server = new McpServer({ name: "hidden-nature-window", version: "0.14.0" });
 
 function result(value) {
   return { content: [{ type: "text", text: JSON.stringify(value, null, 2) }] };

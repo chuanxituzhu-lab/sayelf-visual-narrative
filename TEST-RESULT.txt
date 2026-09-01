@@ -45,16 +45,18 @@ ok 21 - unified output contract selects image, storyboard, or both
 ok 22 - storyboard output is exactly five ordered shots with image and video directions
 # Subtest: image and storyboard from both share the same SceneSpec, variation, and seed
 ok 23 - image and storyboard from both share the same SceneSpec, variation, and seed
+# Subtest: continuity anchor keeps the same visual identity through all five shots
+ok 24 - continuity anchor keeps the same visual identity through all five shots
 # Subtest: both output is byte-reproducible for the same SceneSpec and seed
-ok 24 - both output is byte-reproducible for the same SceneSpec and seed
+ok 25 - both output is byte-reproducible for the same SceneSpec and seed
 # Subtest: a failed output plugin does not block a healthy sibling output
-ok 25 - a failed output plugin does not block a healthy sibling output
+ok 26 - a failed output plugin does not block a healthy sibling output
 # Subtest: composer can feed both outputs through the same contract
-ok 26 - composer can feed both outputs through the same contract
-1..26
-# tests 26
+ok 27 - composer can feed both outputs through the same contract
+1..27
+# tests 27
 # suites 0
-# pass 26
+# pass 27
 # fail 0
 # cancelled 0
 # skipped 0

@@ -9,7 +9,11 @@ const composeModeEl = document.querySelector("#composeMode");
 const plantEl = document.querySelector("#plant");
 const locationEl = document.querySelector("#location");
 const composerEmotionEl = document.querySelector("#composerEmotion");
-const outputEl = document.querySelector("#output");
+const languageButtons = [...document.querySelectorAll(".language-toggle button")];
+const imagePromptColumnEl = document.querySelector("#imagePromptColumn");
+const storyboardPromptColumnEl = document.querySelector("#storyboardPromptColumn");
+const imageOutputEl = document.querySelector("#imageOutput");
+const storyboardOutputEl = document.querySelector("#storyboardOutput");
 const metaEl = document.querySelector("#meta");
 const previewEl = document.querySelector("#preview");
 const previewFrameEl = document.querySelector(".preview-frame");
@@ -17,6 +21,81 @@ const previewEmptyEl = document.querySelector("#previewEmpty");
 const previewCaptionEl = document.querySelector("#previewCaption");
 const copyStatusEl = document.querySelector("#copyStatus");
 let copyStatusTimer;
+let lastResult;
+let lastResultList;
+let lastMetaData;
+let lastMetaPrefix = "";
+let lastPreviewData;
+
+const UI_COPY = {
+  zh: {
+    generate: "生成提示词",
+    oneClick: "一键随机生成",
+    compose: "组合新场景并生成",
+    composeSeries: "组合系列（6条）",
+    clear: "清空",
+    imageLabel: "图片提示词",
+    storyboardLabel: "视频分镜提示词",
+    copyImage: "复制图片提示词",
+    copyStoryboard: "复制视频分镜",
+    languageLabel: "语言",
+    outputLabel: "输出",
+    languageZh: "中文",
+    languageEn: "English",
+    languageBilingual: "中英"
+  },
+  en: {
+    generate: "Generate prompt",
+    oneClick: "Generate random",
+    compose: "Compose & generate",
+    composeSeries: "Compose series (6)",
+    clear: "Clear",
+    imageLabel: "Image prompt",
+    storyboardLabel: "Video storyboard prompt",
+    copyImage: "Copy image prompt",
+    copyStoryboard: "Copy storyboard",
+    languageLabel: "Language",
+    outputLabel: "Output",
+    languageZh: "Chinese",
+    languageEn: "English",
+    languageBilingual: "Bilingual"
+  }
+};
+
+const OUTPUT_LABELS = {
+  zh: { image: "图片提示词", storyboard: "视频分镜", both: "图片 + 视频分镜" },
+  en: { image: "Image prompt", storyboard: "Video storyboard", both: "Image + storyboard" }
+};
+
+function setLanguage(language) {
+  const normalized = ["zh", "en", "bilingual"].includes(language) ? language : "zh";
+  langEl.value = normalized;
+  document.documentElement.lang = normalized === "en" ? "en" : "zh-CN";
+  languageButtons.forEach(button => {
+    button.classList.toggle("active", button.dataset.language === normalized);
+  });
+  const ui = normalized === "en" ? UI_COPY.en : UI_COPY.zh;
+  document.querySelector("#generate").textContent = ui.generate;
+  document.querySelector("#oneClick").textContent = ui.oneClick;
+  document.querySelector("#compose").textContent = ui.compose;
+  document.querySelector("#composeSeries").textContent = ui.composeSeries;
+  document.querySelector("#clear").textContent = ui.clear;
+  document.querySelector("#imagePromptLabel").textContent = ui.imageLabel;
+  document.querySelector("#storyboardPromptLabel").textContent = ui.storyboardLabel;
+  document.querySelector("#copyImage").textContent = ui.copyImage;
+  document.querySelector("#copyStoryboard").textContent = ui.copyStoryboard;
+  document.querySelector("#languageZh").textContent = ui.languageZh;
+  document.querySelector("#languageEn").textContent = ui.languageEn;
+  document.querySelector("#languageBilingual").textContent = ui.languageBilingual;
+  document.querySelector("#languageLabel").textContent = ui.languageLabel;
+  document.querySelector("#outputLabel").textContent = ui.outputLabel;
+  const outputLabels = normalized === "en" ? OUTPUT_LABELS.en : OUTPUT_LABELS.zh;
+  [...outputTypeEl.options].forEach(option => { option.textContent = outputLabels[option.value]; });
+  if (lastResultList) renderOutputList(lastResultList);
+ else if (lastResult) renderOutputFields(lastResult);
+ if (lastMetaData) updateMeta(lastMetaData, lastMetaPrefix);
+  if (lastPreviewData) updatePreview(lastPreviewData);
+}
 
 function hashText(value) {
   let hash = 2166136261;
@@ -222,13 +301,63 @@ function showCopyStatus(message, isError = false) {
   }
 }
 
-function renderContract(data) {
-  if (!data.contract) return data.prompt || "";
-  return Object.values(data.outputs || {}).map(output => output.text || output.prompt || JSON.stringify(output, null, 2)).join("\n\n");
+function localize(language, zh, en) {
+  if (language === "en") return en || zh || "";
+  if (language === "bilingual") return `【中文】\n${zh || ""}\n\n【English】\n${en || zh || ""}`;
+  return zh || en || "";
+}
+
+function imagePromptText(data) {
+  const output = data.outputs?.image;
+  if (output) return localize(langEl.value, output.prompt_zh || output.prompt, output.prompt_en || output.prompt);
+  return localize(langEl.value, data.prompt_zh || data.prompt, data.prompt_en || data.prompt);
+}
+
+function storyboardPromptText(data) {
+  const output = data.outputs?.storyboard;
+  if (!output?.shots?.length) return "";
+  const render = language => output.shots.map(shot => {
+    const title = `SHOT ${String(shot.index).padStart(2, "0")} — ${shot.stage} (${shot.duration_seconds}s)`;
+    const prompt = language === "en" ? (shot.video_prompt_en || shot.video_prompt) : (shot.video_prompt_zh || shot.video_prompt);
+    return `${title}\n${prompt || ""}`;
+  }).join("\n\n");
+  return localize(langEl.value, render("zh"), render("en"));
+}
+
+function renderOutputFields(data) {
+  const imageText = imagePromptText(data);
+  const storyboardText = storyboardPromptText(data);
+  imageOutputEl.value = imageText;
+  storyboardOutputEl.value = storyboardText;
+  imagePromptColumnEl.hidden = !imageText.trim();
+  storyboardPromptColumnEl.hidden = !storyboardText.trim();
+}
+
+function renderOutputList(items) {
+  const imageText = items.map((item, index) => {
+    const text = imagePromptText(item);
+    return text ? `### ${index + 1}\n${text}` : "";
+  }).filter(Boolean).join("\n\n");
+  const storyboardText = items.map((item, index) => {
+    const text = storyboardPromptText(item);
+    return text ? `### ${index + 1}\n${text}` : "";
+  }).filter(Boolean).join("\n\n");
+  imageOutputEl.value = imageText;
+  storyboardOutputEl.value = storyboardText;
+  imagePromptColumnEl.hidden = !imageText.trim();
+  storyboardPromptColumnEl.hidden = !storyboardText.trim();
 }
 
 function displayOutput(data) {
-  outputEl.value = renderContract(data);
+  lastResult = data;
+  lastResultList = undefined;
+  renderOutputFields(data);
+}
+
+function displayOutputList(items) {
+  lastResult = undefined;
+  lastResultList = items;
+  renderOutputList(items);
 }
 
 function outputView(data) {
@@ -237,22 +366,29 @@ function outputView(data) {
 
 function updatePreview(data) {
   const view = outputView(data);
-  const sceneName = view.scene?.name_zh || view.scene?.name_en || "Nature Window";
+  lastPreviewData = data;
+  const isEnglish = langEl.value === "en";
+  const sceneName = isEnglish ? (view.scene?.name_en || view.scene?.name_zh || "Nature Window") : (view.scene?.name_zh || view.scene?.name_en || "Nature Window");
   const [ratioWidth, ratioHeight] = parsePreviewRatio(view.aspect_ratio);
   previewFrameEl.style.aspectRatio = `${ratioWidth} / ${ratioHeight}`;
   previewEl.src = previewDataUri(view);
   previewEl.alt = `${sceneName} Nature Window visual simulation`;
   previewEl.hidden = false;
   previewEmptyEl.hidden = true;
-  previewCaptionEl.textContent = `${sceneName} · 视觉模拟图已根据本次提示词的构图、天空情绪与色彩自动变化；不是最终照片。`;
+  previewCaptionEl.textContent = isEnglish
+    ? `${sceneName} · The simulation follows this prompt's composition, sky mood and color; it is not the final photo.`
+    : `${sceneName} · 视觉模拟图已根据本次提示词的构图、天空情绪与色彩自动变化；不是最终照片。`;
 }
 
 function resetPreview() {
+  lastPreviewData = undefined;
   previewFrameEl.style.aspectRatio = "9 / 16";
   previewEl.src = "/assets/nature-window-preview.png";
   previewEl.hidden = true;
   previewEmptyEl.hidden = false;
-  previewCaptionEl.textContent = "预览图展示 Nature Window 的观看方式；生成后会依据提示词与所选画面比例自动绘制视觉模拟图。";
+  previewCaptionEl.textContent = langEl.value === "en"
+    ? "The preview demonstrates the Nature Window viewpoint; generation draws a prompt-driven simulation at the selected ratio."
+    : "预览图展示 Nature Window 的观看方式；生成后会依据提示词与所选画面比例自动绘制视觉模拟图。";
 }
 
 function getManualOverrides() {
@@ -284,23 +420,31 @@ function syncCompositionSelection(data) {
 }
 
 function updateMeta(data, prefix) {
-  const view = outputView(data);
-  const match = view.auto_match;
-  if (!match) {
-    metaEl.textContent = prefix;
-    return;
-  }
-  const hook = langEl.value === "en" ? match.visual_hook.en : match.visual_hook.zh;
-  const emotion = langEl.value === "en" ? match.emotion.en : match.emotion.zh;
-  const windowText = langEl.value === "en" ? match.hidden_window.en : match.hidden_window.zh;
+  lastMetaData = data;
+ lastMetaPrefix = prefix;
+ const view = outputView(data);
+ const match = view.auto_match;
+  const isEnglish = langEl.value === "en";
+  const sceneName = data.scene ? (isEnglish ? data.scene.name_en : data.scene.name_zh) : prefix;
+  const languageName = langEl.value === "bilingual" ? (isEnglish ? "Bilingual" : "中英双语") : (isEnglish ? "English" : "中文");
+  const prefixText = prefix.includes("动态组合系列") ? (isEnglish ? "Composed series · 6 items" : "动态组合系列 · 6条") : prefix.includes("动态组合") ? `${isEnglish ? "Composed scene" : "动态组合"} · ${sceneName}` : `${sceneName} · ${languageName}`;
+ if (!match) {
+    metaEl.textContent = prefixText;
+   return;
+ }
+ const hook = isEnglish ? match.visual_hook.en : match.visual_hook.zh;
+  const emotion = isEnglish ? match.emotion.en : match.emotion.zh;
+  const windowText = isEnglish ? match.hidden_window.en : match.hidden_window.zh;
   const upward = view.upward_motif
-    ? (langEl.value === "en" ? view.upward_motif.en : view.upward_motif.zh)
+    ? (isEnglish ? view.upward_motif.en : view.upward_motif.zh)
     : "";
-  const upwardLine = upward ? `\n向上视角：${upward}` : "";
-  const ratioLine = `\n画面比例：${view.aspect_ratio || "9:16"}`;
+  const upwardLine = upward ? `\n${isEnglish ? "Upward view" : "向上视角"}：${upward}` : "";
+  const ratioLine = `\n${isEnglish ? "Aspect ratio" : "画面比例"}：${view.aspect_ratio || "9:16"}`;
   const composition = data.composition_mode || data.scene?.composition_mode;
-  const compositionLine = composition ? `\n组合方式：${composition.name_zh}` : "";
-  metaEl.textContent = `${prefix} · ${match.mode_zh}${ratioLine}${compositionLine}\n视觉钩子：${hook} · 情绪：${emotion} · 隐藏窗口：${windowText}${upwardLine}`;
+  const compositionLine = composition ? `\n${isEnglish ? "Composition" : "组合方式"}：${composition.name_en || composition.name_zh}` : "";
+ const mode = isEnglish ? match.mode_en : match.mode_zh;
+ const details = isEnglish ? `Visual hook: ${hook} · Emotion: ${emotion} · Hidden window: ${windowText}` : `视觉钩子：${hook} · 情绪：${emotion} · 隐藏窗口：${windowText}`;
+  metaEl.textContent = `${prefixText} · ${mode}${ratioLine}${compositionLine}\n${details}${upwardLine}`;
 }
 
 async function json(url, options) {
@@ -350,19 +494,42 @@ async function oneClickPrompt() {
 
 document.querySelector("#generate").onclick = () => generate().catch(e => alert(e.message));
 document.querySelector("#oneClick").onclick = () => oneClickPrompt().catch(e => alert(e.message));
-document.querySelector("#copy").onclick = async () => {
-  if (!outputEl.value.trim()) {
-    showCopyStatus("暂无内容可复制", true);
+async function copyPrompt(element, kind) {
+  const isEnglish = langEl.value === "en";
+  const emptyMessage = isEnglish ? "Nothing to copy yet" : "暂无内容可复制";
+  const successMessage = isEnglish ? `${kind} copied` : `${kind}复制成功`;
+  const failureMessage = isEnglish ? "Copy failed; please copy manually" : "复制失败，请手动复制";
+  if (!element.value.trim()) {
+    showCopyStatus(emptyMessage, true);
     return;
   }
   try {
-    await navigator.clipboard.writeText(outputEl.value);
-    showCopyStatus("复制成功");
+    await navigator.clipboard.writeText(element.value);
+    showCopyStatus(successMessage);
   } catch (error) {
-    showCopyStatus("复制失败，请手动复制", true);
+    showCopyStatus(failureMessage, true);
   }
+}
+document.querySelector("#copyImage").onclick = () => copyPrompt(imageOutputEl, langEl.value === "en" ? "Image prompt" : "图片提示词");
+document.querySelector("#copyStoryboard").onclick = () => copyPrompt(storyboardOutputEl, langEl.value === "en" ? "Storyboard" : "视频分镜");
+document.querySelector("#clear").onclick = () => {
+  lastResult = undefined;
+  lastResultList = undefined;
+  lastMetaData = undefined;
+  lastMetaPrefix = "";
+  imageOutputEl.value = "";
+  storyboardOutputEl.value = "";
+  imagePromptColumnEl.hidden = true;
+  storyboardPromptColumnEl.hidden = true;
+  metaEl.textContent = "";
+  copyStatusEl.textContent = "";
+  resetPreview();
 };
-document.querySelector("#clear").onclick = () => { outputEl.value = ""; metaEl.textContent = ""; copyStatusEl.textContent = ""; resetPreview(); };
+languageButtons.forEach(button => {
+  button.onclick = () => setLanguage(button.dataset.language);
+});
+langEl.onchange = () => setLanguage(langEl.value);
+setLanguage(langEl.value);
 
 matchModeEl.onchange = updateMatchMode;
 updateMatchMode();
@@ -411,19 +578,19 @@ async function composeSeriesPrompt() {
       emotion: composerEmotionEl.value
     }
   };
-  const items = [];
-  let lastData;
-  const seedBase = Date.now();
-  for (let i = 0; i < 6; i++) {
+  const results = [];
+ let lastData;
+ const seedBase = Date.now();
+ for (let i = 0; i < 6; i++) {
     const data = await json("/v1/compose", {
       method: "POST",
       headers: {"content-type":"application/json"},
       body: JSON.stringify({...base, seed: seedBase + i})
-    });
-    lastData = data;
-    items.push(`### ${i+1}\n${renderContract(data)}`);
-  }
-  outputEl.value = items.join("\n\n");
+   });
+   lastData = data;
+    results.push(data);
+ }
+  displayOutputList(results);
   syncCompositionSelection(lastData);
   updatePreview(lastData);
   updateMeta(lastData, "动态组合系列 · 6条");

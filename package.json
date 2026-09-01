@@ -1,6 +1,6 @@
 {
   "name": "sayelf-nature-window",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "private": false,
   "type": "module",
   "description": "AI-agent-native visual grammar for discovering the world from inside nature.",

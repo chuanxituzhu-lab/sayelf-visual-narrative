@@ -107,7 +107,7 @@ function buildAutoMatch(scene, style, overrides = {}) {
   };
 }
 
-function zhPrompt(scene, variation, style, colorPlan, aspectRatio) {
+function zhPrompt(scene, variation, style, colorPlan, aspectRatio, continuity) {
   return [
     `真实自然摄影，${aspectRatio.prompt_zh}。场景：${scene.name_zh}。`,
     `【进入】${scene.entry_zh}；本次机位变化：${variation.camera_micro.zh}。`,
@@ -127,12 +127,13 @@ function zhPrompt(scene, variation, style, colorPlan, aspectRatio) {
     `智能色彩调整：饱和度——${colorPlan.saturation.zh}；色相——${colorPlan.hue.zh}；明亮度——${colorPlan.brightness.zh}。`,
     `视觉表现（${style.name_zh}）：${style.zh}。`,
     `情绪：${scene.emotion_zh}。`,
+    `连续性锚点：保持同一场景身份、${continuity?.subject?.zh || scene.plant_zh}、${continuity?.window?.zh || scene.window_zh}、${continuity?.visual_hook?.zh || scene.hook_zh}、${continuity?.palette?.zh || scene.dominant_zh}、${continuity?.light_anchor?.zh || scene.light_zh}和镜头身份；此图片作为视频分镜 REVEAL 关键帧，并与 HOLD 尾镜保持同一主体和窗口。`,
     `核心机制固定不变：进入 → 包围 → 引导 → 显露。变化只发生在画面比例、时间、天气、机位微差、向上视角与天空情绪、窗口形态、前景遮挡、空间节奏、季节痕迹、视觉钩子状态和决定性瞬间。`,
     `保持真实植物纹理、随机生长、自然缺损、可信相机位置与真实物理景深。`
   ].join("\n");
 }
 
-function enPrompt(scene, variation, style, colorPlan, aspectRatio) {
+function enPrompt(scene, variation, style, colorPlan, aspectRatio, continuity) {
   return [
     `Photorealistic nature photography, ${aspectRatio.prompt_en}. Scene: ${scene.name_en}.`,
     `[ENTER] ${scene.entry_en}; this variation uses: ${variation.camera_micro.en}.`,
@@ -152,6 +153,7 @@ function enPrompt(scene, variation, style, colorPlan, aspectRatio) {
     `Smart color adjustment: saturation — ${colorPlan.saturation.en}; hue — ${colorPlan.hue.en}; brightness — ${colorPlan.brightness.en}.`,
     `Visual treatment (${style.name_en}): ${style.en}.`,
     `Emotion: ${scene.emotion_en}.`,
+    `Continuity anchor: keep the same scene identity, ${continuity?.subject?.en || scene.plant_en}, ${continuity?.window?.en || scene.window_en}, ${continuity?.visual_hook?.en || scene.hook_en}, ${continuity?.palette?.en || scene.dominant_en}, ${continuity?.light_anchor?.en || scene.light_en} and camera identity; use this image as the storyboard REVEAL keyframe and keep the same subject and window through the HOLD coda.`,
     `The core mechanism is frozen: Enter → Enclose → Guide → Reveal. Variation is allowed only in aspect ratio, time, weather, camera micro-position, upward gaze and sky mood, window shape, foreground occlusion, depth rhythm, seasonal trace, hook state and decisive moment.`,
     `Keep authentic plant texture, random growth, natural imperfections, believable camera placement and real optical depth.`
   ].join("\n");
@@ -176,17 +178,18 @@ export function compile({
   visualStyle = "natural",
   aspectRatio = "9:16",
   overrides = {},
-  version = "0.13.0",
+  version = "0.14.0",
   scene_id,
   source,
   composition_mode,
-  composition_selection
+  composition_selection,
+  continuity
 }) {
   const style = resolveVisualStyle(visualStyle);
   const ratio = resolveAspectRatio(aspectRatio);
   const colorPlan = buildColorPlan(scene, style);
-  const prompt_zh = `${zhPrompt(scene, variation, style, colorPlan, ratio)}\n\n${NEGATIVE_ZH}`;
-  const prompt_en = `${enPrompt(scene, variation, style, colorPlan, ratio)}\n\n${NEGATIVE_EN}`;
+  const prompt_zh = `${zhPrompt(scene, variation, style, colorPlan, ratio, continuity)}\n\n${NEGATIVE_ZH}`;
+  const prompt_en = `${enPrompt(scene, variation, style, colorPlan, ratio, continuity)}\n\n${NEGATIVE_EN}`;
   const output = {
     type: outputType,
     format: "prompt",
@@ -203,6 +206,9 @@ export function compile({
     upward_motif: variation.upward_sky,
     auto_match: buildAutoMatch(scene, style, overrides),
     color_plan: colorPlan,
+    continuity_id: continuity?.continuity_id,
+    consistency_anchor: continuity,
+    storyboard_alignment: { keyframe: "REVEAL", hold: "HOLD" },
     prompt: selectLanguage(language, prompt_zh, prompt_en)
   };
   if (scene_id) output.scene_id = scene_id;

@@ -55,13 +55,21 @@ function formatText(language, shots) {
 export const id = "storyboard";
 export const outputType = "storyboard";
 
-export function compile({ scene, variation, language }) {
+function continuityLine(language, continuity, stage) {
+  const zh = `连续性锚点：保持${continuity?.subject?.zh}、${continuity?.palette?.zh}、隐藏窗口${continuity?.window?.zh}和视觉钩子${continuity?.visual_hook?.zh}不变；本镜只推进 ${stage} 阶段。`;
+  const en = `Continuity anchor: keep ${continuity?.subject?.en}, ${continuity?.palette?.en}, the hidden window ${continuity?.window?.en} and the visual hook ${continuity?.visual_hook?.en} unchanged; this shot only advances the ${stage} stage.`;
+  return selectLanguage(language, zh, en);
+}
+
+export function compile({ scene, variation, language, continuity }) {
   const shots = SHOT_STAGES.map((stage, index) => {
     const copy = shotCopy(stage, scene, variation);
-    const imageZh = `${copy.zh} 画面保持${scene.dominant_zh}主色、真实光学景深和唯一出口。`;
-    const imageEn = `${copy.en} Keep ${scene.dominant_en} as the dominant field, with real optical depth and one visual exit.`;
-    const videoZh = `${copy.zh} ${copy.motion_zh}`;
-    const videoEn = `${copy.en} ${copy.motion_en}`;
+    const anchorZh = continuityLine("zh", continuity, stage);
+    const anchorEn = continuityLine("en", continuity, stage);
+    const imageZh = `${copy.zh} 画面保持${scene.dominant_zh}主色、真实光学景深和唯一出口。${anchorZh}`;
+    const imageEn = `${copy.en} Keep ${scene.dominant_en} as the dominant field, with real optical depth and one visual exit. ${anchorEn}`;
+    const videoZh = `${copy.zh} ${copy.motion_zh} ${anchorZh}`;
+    const videoEn = `${copy.en} ${copy.motion_en} ${anchorEn}`;
     return {
       id: `shot-${String(index + 1).padStart(2, "0")}`,
       index: index + 1,
@@ -84,6 +92,8 @@ export function compile({ scene, variation, language }) {
     duration_seconds: DURATIONS.reduce((sum, value) => sum + value, 0),
     stages: [...SHOT_STAGES],
     shots,
+    continuity_id: continuity?.continuity_id,
+    consistency_anchor: continuity,
     text: formatText(language, shots)
   };
 }
