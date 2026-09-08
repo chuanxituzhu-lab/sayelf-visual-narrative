@@ -1,0 +1,30 @@
+{
+  "_comment": "Distilled from saylef-visual/src/contracts/account-dna.ts. Portable JSON so any plugin can read it without depending on saylef-visual's TypeScript app. Reference an entry by id from VisualSpec.consistency.style.account_id (consistency.style allows additionalProperties, so this does not require a schema change).",
+  "version": "account-dna/1.0",
+  "accounts": {
+    "account-a": {
+      "label": "SAYLEF Painting World",
+      "domain": "painting",
+      "style_version": "style-dna/2.0",
+      "emotional_territory": ["serenity", "healing", "quiet expectation", "belonging"],
+      "story_territory": ["return", "waiting", "a threshold", "an unfinished arrival"],
+      "color_territory": ["warm ivory", "deep charcoal", "high-purity seasonal color", "one clear accent"],
+      "recurring_motifs": ["one old tree", "a quiet dwelling", "a path entering the frame", "a small warm light"],
+      "forbidden_motifs": ["text", "logo", "seal", "decorative clutter", "generic fantasy spectacle"],
+      "composition_bias": { "focal_points": 1, "minimum_negative_space": 0.3, "visual_noise": "low", "depth": "immersive" },
+      "quality_gate": { "artistic_minimum": 88, "style_identity_minimum": 90, "signature_minimum": 93, "ai_trace_maximum": 20 }
+    },
+    "account-b": {
+      "label": "SAYLEF Photography World",
+      "domain": "photography",
+      "style_version": "style-dna/photography-1.0",
+      "emotional_territory": ["presence", "quiet joy", "tender distance", "clear air"],
+      "story_territory": ["a witnessed instant", "human-scale traces", "a place after someone left", "ordinary wonder"],
+      "color_territory": ["fresh natural color", "clear whites", "stable shadows", "honest skin and material tones"],
+      "recurring_motifs": ["one decisive gesture", "natural light on a real surface", "a human-scale trace", "open breathing space"],
+      "forbidden_motifs": ["fake bokeh", "HDR halo", "plastic skin", "perfect symmetry", "staged spectacle"],
+      "composition_bias": { "focal_points": 1, "minimum_negative_space": 0.25, "visual_noise": "low", "depth": "natural" },
+      "quality_gate": { "artistic_minimum": 86, "style_identity_minimum": 90, "signature_minimum": 93, "ai_trace_maximum": 15 }
+    }
+  }
+}

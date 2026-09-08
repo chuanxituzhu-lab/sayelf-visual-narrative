@@ -1,0 +1,12 @@
+{
+  "contract_version": "media/1.0",
+  "id": "dalle3",
+  "name": { "zh": "DALL-E 3（备路）", "en": "DALL-E 3 (fallback)" },
+  "version": "1.0.0",
+  "kind": "media-provider",
+  "transport": "api",
+  "capabilities": ["text_to_image"],
+  "config": { "required_env": ["OPENAI_API_KEY"] },
+  "plugin": { "module": "./plugin.mjs", "entrypoint": "createProvider" },
+  "source": { "label": "Distilled from sayelf-illustrator degradation route: fallback 1" }
+}

@@ -1,0 +1,12 @@
+{
+  "contract_version": "media/1.0",
+  "id": "sdxl-midjourney",
+  "name": { "zh": "SDXL / Midjourney（末路）", "en": "SDXL / Midjourney (last resort)" },
+  "version": "1.0.0",
+  "kind": "media-provider",
+  "transport": "api",
+  "capabilities": ["text_to_image"],
+  "config": { "required_env": ["SDXL_API_KEY", "SDXL_API_BASE"] },
+  "plugin": { "module": "./plugin.mjs", "entrypoint": "createProvider" },
+  "source": { "label": "Distilled from sayelf-illustrator degradation route: fallback 2" }
+}

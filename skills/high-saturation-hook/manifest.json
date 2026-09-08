@@ -1,0 +1,18 @@
+{
+  "contract_version": "dual-output/1.0",
+  "id": "high-saturation-hook",
+  "name": { "zh": "高饱和手绘钩子", "en": "High-Saturation Hand-Drawn Hook" },
+  "version": "1.0.0",
+  "kind": "visual-narrative-skill",
+  "capabilities": ["image_prompt", "video_storyboard"],
+  "input": {
+    "required": ["idea"],
+    "optional": ["emotion", "quote", "sequence_beats", "aspect_ratio", "duration_seconds", "language"]
+  },
+  "router": {
+    "tags": ["金句配图", "痛点海报", "单图hook", "四格连环画", "手绘", "钢笔线描", "马克笔", "色块线框", "高饱和", "hook", "quote card", "four-panel"],
+    "examples": ["把这句话做成一张配图", "四格连环画讲一个反转", "抽象概念可视化成一张钩子海报"]
+  },
+  "plugin": { "module": "./plugin.mjs", "entrypoint": "execute" },
+  "source": { "label": "Distilled from sayelf-illustrator (ai-visual-director): Style DNA + one-image-one-hook pattern" }
+}

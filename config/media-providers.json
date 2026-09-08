@@ -1,0 +1,9 @@
+{
+  "contract_version": "media/1.0",
+  "provider_directories": ["../plugins/media-providers"],
+  "providers": [
+    { "id": "flux", "manifest": "flux/manifest.json", "enabled": true, "priority": 0 },
+    { "id": "dalle3", "manifest": "dalle3/manifest.json", "enabled": true, "priority": 1 },
+    { "id": "sdxl-midjourney", "manifest": "sdxl-midjourney/manifest.json", "enabled": true, "priority": 2 }
+  ]
+}
