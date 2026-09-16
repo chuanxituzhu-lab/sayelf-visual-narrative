@@ -1,3 +1,5 @@
+import { createDsapRecord, DSAP_PROTOCOL } from "./dsap.mjs";
+
 export const OUTPUT_TYPES = Object.freeze(["image", "storyboard", "both"]);
 export const OUTPUT_CONTRACT = "hidden-nature-window.output";
 export const OUTPUT_VERSION = "0.6.0";
@@ -71,10 +73,24 @@ export function createOutputContract({
   errors = []
 }) {
   const resolvedContinuity = continuity || (scene && variation ? createContinuityAnchor({ scene, variation, scene_id, source }) : undefined);
+  const normalizedOutput = normalizeOutput(output);
+  const dsap = createDsapRecord({
+    contract: OUTPUT_CONTRACT,
+    contract_version: OUTPUT_VERSION,
+    output: normalizedOutput,
+    selected_outputs: selectedOutputTypes(normalizedOutput),
+    language,
+    source,
+    scene_id,
+    seed,
+    continuity: resolvedContinuity,
+    outputs,
+    errors
+  });
   const contract = {
     contract: OUTPUT_CONTRACT,
     version: OUTPUT_VERSION,
-    output: normalizeOutput(output),
+    output: normalizedOutput,
     language,
     source,
     scene,
@@ -83,6 +99,7 @@ export function createOutputContract({
     visual_grammar: [...VISUAL_GRAMMAR],
     outputs,
     continuity: resolvedContinuity,
+    dsap,
     errors
   };
   if (scene_id) contract.scene_id = scene_id;
@@ -101,6 +118,16 @@ export function validateOutputContract(contract) {
   }
   if (!Array.isArray(contract.errors)) throw new Error("Output contract errors must be an array");
   if (!contract.continuity?.continuity_id) throw new Error("Output contract requires a continuity anchor");
+  if (contract.dsap?.protocol !== DSAP_PROTOCOL) throw new Error("Output contract requires a DSAP record");
+  if (contract.dsap.state?.status !== "COMPLETED" && contract.dsap.state?.status !== "NEEDS_REVIEW") {
+    throw new Error("Output contract has an invalid DSAP state");
+  }
+  if (contract.dsap.proof?.continuity_id !== contract.continuity.continuity_id) {
+    throw new Error("DSAP proof must reference the output continuity anchor");
+  }
+  if (!Array.isArray(contract.dsap.ledger) || contract.dsap.ledger.length !== 4) {
+    throw new Error("DSAP ledger must contain four events");
+  }
   return contract;
 }
 

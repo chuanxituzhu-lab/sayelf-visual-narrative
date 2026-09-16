@@ -84,7 +84,7 @@ try {
     });
     printOutput(result);
   } else {
-    console.log(`Hidden Nature Window v0.14.0
+    console.log(`Hidden Nature Window v0.15.0
 
 Commands:
   scenes

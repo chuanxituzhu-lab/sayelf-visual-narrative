@@ -12,6 +12,7 @@
     "visual_grammar",
     "outputs",
     "continuity",
+    "dsap",
     "errors"
   ],
   "properties": {
@@ -33,6 +34,38 @@
         "shot_order": { "const": ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"] },
         "image_keyframe": { "const": "REVEAL" },
         "final_hold": { "const": "HOLD" }
+      }
+    },
+    "dsap": {
+      "type": "object",
+      "required": ["protocol", "version", "run_id", "goal", "decision", "state", "action", "proof", "ledger", "handoff"],
+      "properties": {
+        "protocol": { "const": "sayelf-nature-window.dsap" },
+        "version": { "type": "string" },
+        "run_id": { "type": "string" },
+        "goal": { "type": "string" },
+        "decision": {
+          "type": "object",
+          "required": ["selected_outputs", "output", "language", "acceptance_rule"]
+        },
+        "state": {
+          "type": "object",
+          "required": ["status", "current_from", "checkpoint", "resumable_scope", "next_check"],
+          "properties": {
+            "status": { "enum": ["READY", "RUNNING", "NEEDS_REVIEW", "BLOCKED", "FAILED", "COMPLETED"] },
+            "current_from": { "const": "ledger" }
+          }
+        },
+        "action": { "type": "object" },
+        "proof": {
+          "type": "object",
+          "required": ["status", "contract_version", "continuity_id", "compiled_outputs", "failed_outputs", "evidence"]
+        },
+        "ledger": { "type": "array", "minItems": 4 },
+        "handoff": {
+          "type": "object",
+          "required": ["status", "result_version", "result_types", "consumer", "resume_scope"]
+        }
       }
     },
     "outputs": {

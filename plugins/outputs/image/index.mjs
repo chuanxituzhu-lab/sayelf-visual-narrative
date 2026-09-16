@@ -178,7 +178,7 @@ export function compile({
   visualStyle = "natural",
   aspectRatio = "9:16",
   overrides = {},
-  version = "0.14.0",
+  version = "0.15.0",
   scene_id,
   source,
   composition_mode,

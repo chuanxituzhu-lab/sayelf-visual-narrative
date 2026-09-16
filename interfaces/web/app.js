@@ -20,6 +20,7 @@ const previewFrameEl = document.querySelector(".preview-frame");
 const previewEmptyEl = document.querySelector("#previewEmpty");
 const previewCaptionEl = document.querySelector("#previewCaption");
 const copyStatusEl = document.querySelector("#copyStatus");
+const runStateEl = document.querySelector("#runState");
 let copyStatusTimer;
 let lastResult;
 let lastResultList;
@@ -93,6 +94,8 @@ function setLanguage(language) {
   [...outputTypeEl.options].forEach(option => { option.textContent = outputLabels[option.value]; });
   if (lastResultList) renderOutputList(lastResultList);
  else if (lastResult) renderOutputFields(lastResult);
+  if (lastResultList?.length) updateRunState(lastResultList[lastResultList.length - 1]);
+  else if (lastResult) updateRunState(lastResult);
  if (lastMetaData) updateMeta(lastMetaData, lastMetaPrefix);
   if (lastPreviewData) updatePreview(lastPreviewData);
 }
@@ -348,16 +351,47 @@ function renderOutputList(items) {
   storyboardPromptColumnEl.hidden = !storyboardText.trim();
 }
 
+function updateRunState(data) {
+  const dsap = data?.dsap;
+  if (!dsap) {
+    runStateEl.textContent = "";
+    runStateEl.classList.remove("needs-review");
+    return;
+  }
+  const isEnglish = langEl.value === "en";
+  const status = dsap.state?.status || "NEEDS_REVIEW";
+  const completed = (dsap.proof?.compiled_outputs || dsap.handoff?.result_types || [])
+    .map(type => OUTPUT_LABELS[isEnglish ? "en" : "zh"][type] || type)
+    .join(isEnglish ? " + " : " + ");
+  const failed = dsap.proof?.failed_outputs || dsap.state?.resumable_scope || [];
+  const failedText = failed.length
+    ? (isEnglish ? ` · Review: ${failed.join(", ")}` : ` · 需复核：${failed.join("、")}`)
+    : "";
+  if (status === "COMPLETED") {
+    runStateEl.textContent = isEnglish
+      ? `Completed · ${completed} · Next: copy the result you need`
+      : `已完成 · ${completed} · 下一步：复制所需结果`;
+    runStateEl.classList.remove("needs-review");
+    return;
+  }
+  runStateEl.textContent = isEnglish
+    ? `Needs review · usable outputs retained${failedText} · Next: inspect the failed output and retry`
+    : `需复核 · 已保留可用输出${failedText} · 下一步：检查失败出口后重试`;
+  runStateEl.classList.add("needs-review");
+}
+
 function displayOutput(data) {
   lastResult = data;
   lastResultList = undefined;
   renderOutputFields(data);
+  updateRunState(data);
 }
 
 function displayOutputList(items) {
   lastResult = undefined;
   lastResultList = items;
   renderOutputList(items);
+  updateRunState(items[items.length - 1]);
 }
 
 function outputView(data) {
@@ -522,6 +556,8 @@ document.querySelector("#clear").onclick = () => {
   imagePromptColumnEl.hidden = true;
   storyboardPromptColumnEl.hidden = true;
   metaEl.textContent = "";
+  runStateEl.textContent = "";
+  runStateEl.classList.remove("needs-review");
   copyStatusEl.textContent = "";
   resetPreview();
 };

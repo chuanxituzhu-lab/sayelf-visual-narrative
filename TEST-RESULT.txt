@@ -47,16 +47,18 @@ ok 22 - storyboard output is exactly five ordered shots with image and video dir
 ok 23 - image and storyboard from both share the same SceneSpec, variation, and seed
 # Subtest: continuity anchor keeps the same visual identity through all five shots
 ok 24 - continuity anchor keeps the same visual identity through all five shots
+# Subtest: DSAP records decision, action, proof and an explicit handoff
+ok 25 - DSAP records decision, action, proof and an explicit handoff
 # Subtest: both output is byte-reproducible for the same SceneSpec and seed
-ok 25 - both output is byte-reproducible for the same SceneSpec and seed
+ok 26 - both output is byte-reproducible for the same SceneSpec and seed
 # Subtest: a failed output plugin does not block a healthy sibling output
-ok 26 - a failed output plugin does not block a healthy sibling output
+ok 27 - a failed output plugin does not block a healthy sibling output
 # Subtest: composer can feed both outputs through the same contract
-ok 27 - composer can feed both outputs through the same contract
-1..27
-# tests 27
+ok 28 - composer can feed both outputs through the same contract
+1..28
+# tests 28
 # suites 0
-# pass 27
+# pass 28
 # fail 0
 # cancelled 0
 # skipped 0

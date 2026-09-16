@@ -68,6 +68,9 @@
     .actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
     .small { color:var(--muted); font-size:12px; line-height:1.55; }
     #meta { white-space:pre-line; margin-bottom:0; }
+    .run-state { margin:12px 0 0; padding:10px 12px; border:1px solid rgba(157,204,134,.24); border-radius:10px; background:rgba(157,204,134,.07); color:#c9e2c8; font-size:12px; line-height:1.5; }
+    .run-state.needs-review { border-color:rgba(231,181,104,.42); background:rgba(231,181,104,.08); color:#f2d49f; }
+    .run-state:empty { display:none; }
     .helper { margin:18px 0 0; padding:12px 14px; border-left:2px solid var(--moss); background:rgba(157,204,134,.07); color:#c9e2c8; font-size:13px; line-height:1.55; }
     details { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); }
     summary { cursor:pointer; color:#d9ead8; font-size:13px; font-weight:800; }
@@ -276,6 +279,7 @@
       <button id="clear">清空</button>
     </div>
     <p id="copyStatus" class="copy-status" role="status" aria-live="polite"></p>
+    <p id="runState" class="run-state" role="status" aria-live="polite"></p>
     <p id="meta" class="small"></p>
   </section>
 </main>

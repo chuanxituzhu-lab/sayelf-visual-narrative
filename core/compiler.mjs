@@ -11,6 +11,7 @@ export const OUTPUT_TYPES = CONTRACT_OUTPUT_TYPES;
 export const VISUAL_GRAMMAR = FROZEN_VISUAL_GRAMMAR;
 export { NEGATIVE_ZH, NEGATIVE_EN, ASPECT_RATIOS, VISUAL_STYLES } from "../plugins/outputs/image/index.mjs";
 export { renderOutputContract } from "./contracts.mjs";
+export { DSAP_PROTOCOL, DSAP_VERSION } from "./dsap.mjs";
 
 export function loadScenes() {
   return loadJsonProviders("scene-provider");
@@ -116,7 +117,7 @@ export function generateOutput({
     visualStyle,
     aspectRatio,
     overrides,
-    version: "0.14.0"
+    version: "0.15.0"
   }, { output: selectedOutput });
 }
 
@@ -176,7 +177,7 @@ export async function generateComposedOutput({
     overrides: input,
     composition_mode: scene.composition_mode,
     composition_selection: scene.composition_selection,
-    version: "0.14.0"
+    version: "0.15.0"
   }, { output: selectedOutput });
 }
 

@@ -248,6 +248,11 @@ test("unified output contract selects image, storyboard, or both", () => {
   assert.deepEqual(both.visual_grammar, ["enter", "enclose", "guide", "reveal"]);
   assert.ok(both.continuity.continuity_id);
   assert.deepEqual(both.continuity.shot_order, ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"]);
+  assert.equal(both.dsap.protocol, "sayelf-nature-window.dsap");
+  assert.equal(both.dsap.state.status, "COMPLETED");
+  assert.equal(both.dsap.proof.continuity_id, both.continuity.continuity_id);
+  assert.deepEqual(both.dsap.ledger.map(event => event.state), ["READY", "RUNNING", "RUNNING", "COMPLETED"]);
+  assert.equal(both.dsap.handoff.status, "ACCEPTED");
   assert.equal(both.outputs.image.continuity_id, both.continuity.continuity_id);
   assert.equal(both.outputs.storyboard.continuity_id, both.continuity.continuity_id);
 });
@@ -301,6 +306,17 @@ test("continuity anchor keeps the same visual identity through all five shots", 
   assert.notEqual(anchor.continuity_id, generateOutput({ scene: "lotus_pond", output: "both", language: "en", seed: 7172 }).continuity.continuity_id);
 });
 
+test("DSAP records decision, action, proof and an explicit handoff", () => {
+  const out = generateOutput({ scene: "lotus_pond", output: "both", language: "en", seed: 7272 });
+  assert.deepEqual(out.dsap.decision.selected_outputs, ["image", "storyboard"]);
+  assert.equal(out.dsap.action.execution, "local-deterministic");
+  assert.deepEqual(out.dsap.proof.compiled_outputs, ["image", "storyboard"]);
+  assert.deepEqual(out.dsap.proof.failed_outputs, []);
+  assert.equal(out.dsap.proof.evidence.inferences[0].value, "COMPLETED");
+  assert.equal(out.dsap.ledger[3].event, "run.closed");
+  assert.equal(out.dsap.handoff.result_types.join(","), "image,storyboard");
+});
+
 test("both output is byte-reproducible for the same SceneSpec and seed", () => {
   const args = { scene: "winter_branches", output: "both", language: "bilingual", seed: 8080 };
   assert.equal(JSON.stringify(generateOutput(args)), JSON.stringify(generateOutput(args)));
@@ -328,6 +344,10 @@ test("a failed output plugin does not block a healthy sibling output", () => {
   assert.equal(out.outputs.storyboard, undefined);
   assert.equal(out.errors[0].output, "storyboard");
   assert.equal(out.errors[0].code, "OUTPUT_PLUGIN_FAILED");
+  assert.equal(out.dsap.state.status, "NEEDS_REVIEW");
+  assert.equal(out.dsap.handoff.status, "NEEDS_REVIEW");
+  assert.deepEqual(out.dsap.state.resumable_scope, ["storyboard"]);
+  assert.deepEqual(out.dsap.proof.compiled_outputs, ["image"]);
 });
 
 test("composer can feed both outputs through the same contract", async () => {

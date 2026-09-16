@@ -9,6 +9,22 @@
 
 ## 当前版本 / Current Release
 
+**v0.15.0 — DSAP 工作流证据 / DSAP Workflow Evidence**
+
+本版本在既有 `OutputContract`、可插拔 Provider 和 `Open → Input → Execute → Result` 工作流上增加项目内 DSAP：`Decision–State–Action–Proof`。它为每次本地生成记录输出选择、当前状态、执行动作、证据、四个有序事件和下游交接；不扩展 `Enter → Enclose → Guide → Reveal`，不引入远程编排、遥测或新依赖。
+
+This release adds a project-local DSAP — `Decision–State–Action–Proof` — on top of the existing `OutputContract`, plugin boundaries, and `Open → Input → Execute → Result` workflow. Each local generation records its decision, current state, action, proof, four ordered ledger events, and downstream handoff. It does not expand `Enter → Enclose → Guide → Reveal`, add remote orchestration, telemetry, or new dependencies.
+
+- **统一证据出口**：MCP、CLI、HTTP API 和 WebUI 都沿用同一份 DSAP；WebUI 默认只显示状态、可用出口、失败出口和下一步。
+- **可恢复失败**：健康出口继续返回；失败插件将运行标记为 `NEEDS_REVIEW`，并给出受影响出口作为 `resumable_scope`。
+- **确定性与一致性**：相同 `SceneSpec`、Variation、seed 和插件结果生成相同 DSAP；证明记录绑定 OutputContract 版本与 `continuity_id`。
+- **明确边界**：DSAP 是本项目的本地执行证据协议名，不声称兼容外部同名标准。
+
+- **One evidence envelope**: MCP, CLI, HTTP API, and WebUI use the same DSAP record; the WebUI shows only status, available outputs, failures, and next action by default.
+- **Recoverable degradation**: a healthy output remains available; a failed plugin moves the run to `NEEDS_REVIEW` and identifies the affected `resumable_scope`.
+- **Deterministic continuity**: the same `SceneSpec`, Variation, seed, and plugin results produce the same DSAP; proof links the OutputContract version and `continuity_id`.
+- **Explicit boundary**: DSAP is this project's local execution-evidence protocol name, not a claim of compatibility with unrelated external protocols using the same acronym.
+
 **v0.12.0 — 动态场景组合模式 / Dynamic Scene Composition Modes**
 
 本版本在保持 `Enter → Enclose → Guide → Reveal` 核心机制与既有架构不变的基础上，新增：
@@ -220,6 +236,14 @@ Every generation request accepts `output: image | storyboard | both` and returns
   "variation": "shared deterministic variation",
   "visual_grammar": ["enter", "enclose", "guide", "reveal"],
   "continuity": { "continuity_id": "nw-…", "shot_order": ["ENTER", "ENCLOSE", "GUIDE", "REVEAL", "HOLD"], "image_keyframe": "REVEAL", "final_hold": "HOLD" },
+  "dsap": {
+    "protocol": "sayelf-nature-window.dsap",
+    "version": "0.1.0",
+    "state": { "status": "COMPLETED", "checkpoint": "outputs-compiled", "resumable_scope": [] },
+    "proof": { "status": "PASS", "contract_version": "0.6.0", "continuity_id": "nw-…", "compiled_outputs": ["image", "storyboard"], "failed_outputs": [] },
+    "ledger": ["run.created", "decision.recorded", "action.completed", "run.closed"],
+    "handoff": { "status": "ACCEPTED", "result_types": ["image", "storyboard"] }
+  },
   "outputs": { "image": "...", "storyboard": "..." },
   "errors": []
 }
@@ -228,6 +252,10 @@ Every generation request accepts `output: image | storyboard | both` and returns
 The `scene`, `variation`, `seed`, and `visual_grammar` are shared by both outputs. A failed output plugin is reported in `errors` without discarding a healthy sibling output.
 
 图片与分镜共享 `scene`、`variation`、`seed` 和 `visual_grammar`。一个输出插件失败时，错误进入 `errors`，不会丢弃健康的另一个出口。
+
+每个契约还带有 DSAP 工作流证据：`decision` 说明选择了哪些出口，`state` 说明当前状态和检查点，`action` 说明本地执行与重试边界，`proof` 把结果绑定到契约和一致性锚点，`ledger` 保留四个有序事件，`handoff` 说明下游适配器能安全接收什么。它是可验证的结果记录，不是新的 Agent 循环。
+
+Each contract also carries DSAP workflow evidence: `decision` records output selection, `state` records status and checkpoint, `action` records local execution and retry scope, `proof` binds the result to the contract and continuity anchor, `ledger` preserves four ordered events, and `handoff` states what the next adapter may safely consume. It is a verifiable result record, not a new agent loop.
 
 ---
 
