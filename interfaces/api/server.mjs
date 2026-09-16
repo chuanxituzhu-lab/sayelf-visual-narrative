@@ -100,6 +100,9 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "GET" && req.url === "/assets/nature-window-preview.png") {
       return send(res, 200, fs.readFileSync(path.join(assetsRoot, "nature-window-preview.png")), "image/png");
     }
+    if (req.method === "GET" && req.url === "/assets/sayelf-logo.png") {
+      return send(res, 200, fs.readFileSync(path.join(assetsRoot, "sayelf-logo.png")), "image/png");
+    }
     return send(res, 404, { error: "not_found" });
   } catch (error) {
     return send(res, 400, { error: error.message, code: error.code || "BAD_REQUEST", details: error.details });
